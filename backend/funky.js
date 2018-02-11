@@ -1,10 +1,20 @@
 const tools = require('./tools')
 
 signUp = (userInfo) => {
+    emailValidate = (email) => {
+        var regex = /\S+@\S+\.\S+/;
+        return regex.test(email);
+    }
+
     //sorts user data coming in
     var username = userInfo.username;
     var email = userInfo.email;
     var password = userInfo.password;
+
+    //test to see if legit email else fuck you 
+    if(!emailValidate(email)){
+        return ('Invalid email');
+    }
 
     //checks if username already exists
     if (allUsers[username]) {
