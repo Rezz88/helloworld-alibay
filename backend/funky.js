@@ -1,3 +1,4 @@
+const tools = require('./tools')
 
 signUp = (userInfo) => {
     //sorts user data coming in
@@ -7,9 +8,7 @@ signUp = (userInfo) => {
 
     //checks if username already exists
     if (allUsers[username]) {
-        //***to figure out**
-        // how to send back to user right away
-        return ('try again')
+        return false
     }
     
     //creates new user with all info to be filled on the site
@@ -24,13 +23,13 @@ signUp = (userInfo) => {
 
 login = (userInfo, allUsers) => {
     //sorts user data coming in
-    console.log("test2", userInfo)
+    // console.log("test2", userInfo)
+    // console.log("test2.0", attemptUsername)
+    // console.log("test2.1", attemptPass)
     var attemptUsername = userInfo.username;
     var attemptPass = userInfo.password;
-    console.log("test2.0", attemptUsername)
-    console.log("test2.1", attemptPass)
     var dbPassword
- 
+    
     //checks to make sure username already exists in the db
     if (!allUsers[attemptUsername]) {
         //***to figure out**
