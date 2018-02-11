@@ -1,4 +1,5 @@
 const funky = require('./funky')
+const tools = require('./tools')
 const express = require('express')
 const app = express()
 
@@ -9,19 +10,14 @@ app.use(bodyParser.raw({ type: '*/*' }))
 
 allUsers = {};
 
-function fileread(filename){
-    var contents = JSON.parse(fs.readFileSync(filename.toString()));
-    return contents;
- }
-
 app.post('/signUp', (req, res) => { 
     res.send(funky.signUp(JSON.parse(req.body)))
-    fs.writeFileSync("data.json", JSON.stringify(allUsers))
+    fs.writeFileSync("userInfo.json", JSON.stringify(allUsers))
     console.log(allUsers);
 })
 
 app.post('/login', (req, res) => {
-    allUsers = fileread("data.json")
+    allUsers = fileread("userInfo.json")
     console.log('test data read', allUsers)
     res.send(funky.login(JSON.parse(req.body), allUsers))
  })
