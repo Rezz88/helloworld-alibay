@@ -1,28 +1,78 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+// import logo from './logo.svg';
 import './App.css';
+import {Main} from './main.js'
+import {Profile} from './profile.js'
 
 class App extends Component {
   constructor() {
     super();
-    this.state = {}
+    this.state = {
+      loggedin: true,
+      parentState : 'blue'
+    }
   }
 
-  render() {
-    return (
-      <div className="App">
-        <header className="App-header">
-          <input placeholder="Username" ref={r => this.input = r}></input>
-          <div></div>
-          <button onClick={this.login}>Login</button>
-          <div>or</div>
-          <button onClick={this.signUp}>Sign up</button>
-          {/* {this.state.list.map(x => <li>{x}</li>)} */}
+  ChangeAppState = (newValue) => {
+    this.setState({parentState : newValue})
+  } 
 
-        </header>
-      </div>
-    );
+  render() {
+    if (this.state.loggedin === true)  {
+    return (
+      <div>
+    <Main
+    changeParentState = {this.ChangeAppState}
+    />
+    <Profile/>
+    </div>
+  )
+
+    }
   }
 }
 
 export default App;
+
+
+
+
+
+
+
+// import React, { Component } from 'react';
+// // import logo from './logo.svg';
+// import './App.css';
+// import {Main} from './main.js'
+
+// class App extends Component {
+//   constructor() {
+//     super();
+//     this.state = {
+//       loggedin: false, 
+//       mainstate: true,
+//       // loadMain: false,
+//       // loadProfile: false
+//     }
+//   }
+
+//   // ChangeMainState = (newValue) => {
+//   //   this.setState({loadMain : newValue})
+//   // } 
+
+//   render() {
+
+//     if (!this.state.loggedin) {
+//       return  (
+//        <Main
+//        mainState = {this.mainstate}
+//       //  ChangeLoadMain = {this.ChangeMainState}
+//        /> 
+//       )
+//     }
+//   }
+// }
+
+// export default App;
+
+
