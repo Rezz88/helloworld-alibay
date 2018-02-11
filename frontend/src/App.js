@@ -7,28 +7,46 @@ import {Profile} from './profile.js'
 class App extends Component {
   constructor() {
     super();
-    this.state = {
-      loggedin: true,
-      parentState : 'blue'
-    }
+    this.state = {active: ''}
   }
 
-  ChangeAppState = (newValue) => {
-    this.setState({parentState : newValue})
+  ChangeComponent = (component) => {
+    // this.setState({loadMain : newValue})
+    this.setState({active: component})
   } 
 
-  render() {
-    if (this.state.loggedin === true)  {
-    return (
-      <div>
-    <Main
-    changeParentState = {this.ChangeAppState}
-    />
-    <Profile/>
-    </div>
-  )
-
+  renderComponent = () => {
+    const { active } = this.state;
+    if (active==='Main')  {
+      return <Main/>
     }
+    else if (active === 'Profile')  {
+      return <Profile/>
+    } else {
+      return <div>ERROR</div>
+    }
+    
+  }
+
+
+
+  render() {
+    const { active } = this.state;
+    return(
+   <div>
+     <ul>
+       <li>
+         <a onClick={() => this.ChangeComponent('Main')}>M A I N</a>
+       </li>
+       <li>
+         <a onClick={() => this.ChangeComponent('Profile')}>P R O F I L E</a>
+       </li>
+     </ul>
+     <div>
+       {this.renderComponent()}
+     </div>
+   </div>
+    )
   }
 }
 
@@ -76,3 +94,16 @@ export default App;
 // export default App;
 
 
+// if (this.state.loadMain===true)  {
+    // return (
+    // <Main
+    // changeParentState = {this.ChangeAppState}
+    // />
+    // )
+    // }
+    // if (this.state.loadMain === false)  {
+    //   return (
+    //     <Profile
+    //     changeParentState = {this.ChangeAppState}/>
+    //   )
+    // }
