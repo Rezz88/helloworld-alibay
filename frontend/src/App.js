@@ -1,17 +1,19 @@
 import React, { Component } from 'react';
 // import logo from './logo.svg';
 import './App.css';
-import {Main} from './main.js'
-import {Profile} from './profile.js'
+import {Main} from './views/main'
+import {Profile} from './views/profile'
+import {Cart} from './views/cart'
 
 class App extends Component {
   constructor() {
     super();
-    this.state = {active: ''}
+    this.state = {
+      active: '',
+    }
   }
 
   ChangeComponent = (component) => {
-    // this.setState({loadMain : newValue})
     this.setState({active: component})
   } 
 
@@ -22,8 +24,12 @@ class App extends Component {
     }
     else if (active === 'Profile')  {
       return <Profile/>
-    } else {
-      return <div>ERROR</div>
+    } 
+    else if (active === 'Cart')  {
+      return <Cart/>
+    } 
+    else {
+      return <div></div>
     }
     
   }
@@ -31,7 +37,7 @@ class App extends Component {
 
 
   render() {
-    const { active } = this.state;
+    // const { active } = this.state;
     return(
    <div>
      <ul>
@@ -40,6 +46,9 @@ class App extends Component {
        </li>
        <li>
          <a onClick={() => this.ChangeComponent('Profile')}>P R O F I L E</a>
+       </li>
+       <li>
+         <a onClick={() => this.ChangeComponent('Cart')}>C A R T</a>
        </li>
      </ul>
      <div>
