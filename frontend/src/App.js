@@ -39,10 +39,7 @@ class App extends Component {
         return <div></div>
       }
     }
-
   }
-
-
 
   login = (username, password) => {
     console.log({ username, password })
@@ -90,12 +87,11 @@ class App extends Component {
 
   }
 
-
   render() {
     // const { active } = this.state;
     return (
       <div>
-        <ul>
+        <ul className="App-header">
           <li>
             <a onClick={() => this.ChangeComponent('Main')}>M A I N</a>
           </li>
@@ -122,52 +118,3 @@ export default App;
 
 
 
-// import React, { Component } from 'react';
-// // import logo from './logo.svg';
-// import './App.css';
-// import {Main} from './main.js'
-
-// class App extends Component {
-//   constructor() {
-//     super();
-//     this.state = {
-//       loggedin: false, 
-//       mainstate: true,
-//       // loadMain: false,
-//       // loadProfile: false
-//     }
-//   }
-
-//   // ChangeMainState = (newValue) => {
-//   //   this.setState({loadMain : newValue})
-//   // } 
-
-//   render() {
-
-//     if (!this.state.loggedin) {
-//       return  (
-//        <Main
-//        mainState = {this.mainstate}
-//       //  ChangeLoadMain = {this.ChangeMainState}
-//        /> 
-//       )
-//     }
-//   }
-// }
-
-// export default App;
-
-
-// if (this.state.loadMain===true)  {
-    // return (
-    // <Main
-    // changeParentState = {this.ChangeAppState}
-    // />
-    // )
-    // }
-    // if (this.state.loadMain === false)  {
-    //   return (
-    //     <Profile
-    //     changeParentState = {this.ChangeAppState}/>
-    //   )
-    // }
