@@ -1,41 +1,54 @@
 const { addToFile } = require('./tools');
 const fs = require('fs-extra');
 
-const userDbPath = 'userInfo.json';
+const userDbPath = './database/userInfo.json';
 
-signUp = async (userInfo) => {
-    emailValidate = (email) => {
-        var regex = /\S+@\S+\.\S+/;
+const signUp = async (userInfo) => {
+    const emailValidate = (email) => {
+        const regex = /\S+@\S+\.\S+/;
         return regex.test(email);
     }
+    console.log('signup funky');
 
     //sorts user data coming in
     var username = userInfo.username;
     var email = userInfo.email;
     var password = userInfo.password;
+    console.log(userInfo);
 
     //test to see if legit email else fuck you 
-    if(!emailValidate(email)){
+    if (!emailValidate(email)) {
         return ('Invalid email');
     }
 
-    buildObj = () => {
-        var obj = {};
-        obj.username = username;
-        obj.email = email;
-        obj.password = password;
-        obj.cart = [];
-        obj.itemsSold = [];
-        obj.itemsBought = [];
+    const buildObj = () => {
+        var obj = {
+            username,
+            email,
+            password,
+            cart: [],
+            itemsSold: [],
+            itemsBought: []
+        };
+        // obj.username = username;
+        // obj.email = email;
+        // obj.password = password;
+        // obj.cart = [];
+        // obj.itemsSold = [];
+        // obj.itemsBought = [];
 
-        return addToFile(userDbPath, obj);
-    }; 
-    
+        addToFile(userDbPath, obj);
+        console.log('test')
+        return true
+    };
+
     //creates new user with all info to be filled on the site 
-    var response = await fs.readFile(userDbPath, { String })
+    const response = await fs.readFile(userDbPath, { String })
         .then(async data => {
-            var result = JSON.parse(data);
-            if(result.length){ 
+            console.log(data.toString());
+            var result = JSON.parse(data.toString());
+            console.log('result', result);
+            if (result.length) {
                 let alreadyExist = false;
                 result.forEach((item) => {
                     if (item.username === username) {
@@ -53,26 +66,20 @@ signUp = async (userInfo) => {
                 return await buildObj();
             }
         }).catch(err => err);
-    // console.log('response', response);
+    console.log('response', response);
     return response;
 }
 
-login = (userInfo, users) => {
+const login = (userInfo, users) => {
     //sorts user data coming in
-<<<<<<< HEAD
     // console.log(userInfo)
-=======
->>>>>>> cfb4f3b19e36bbeca96b5f369e38d7a6eb706139
     var attemptUsername = userInfo.username;
     var attemptPass = userInfo.password;
     //checks to make sure username already exists in the db
-    
+
     var dbUser = fs.readFileSync(userDbPath, { String });
     dbUser = JSON.parse(dbUser);
-<<<<<<< HEAD
     // console.log(dbUser);
-=======
->>>>>>> cfb4f3b19e36bbeca96b5f369e38d7a6eb706139
     var usernameExists = false;
     var returnVal;
     dbUser.forEach((item) => {
@@ -81,15 +88,15 @@ login = (userInfo, users) => {
             if (item.password !== attemptPass) {
                 returnVal = false;
             } else {
-                returnVal =  true;
+                returnVal = true;
             }
         }
     });
-    if(!usernameExists){
+    if (!usernameExists) {
         returnVal = JSON.stringify('Username does not exist');
     }
     return returnVal;
- }
+}
 
 
 

@@ -27,7 +27,7 @@ export class Login extends Component {
           <button onClick={()=> this.props.signUp(username, password, email)}>Sign up</button>
           {/* {this.state.list.map(x => <li>{x}</li>)} */}
           <div>
-            {this.props.error ? 'FAIL!': '' }
+            {this.props.error ? 'Username/e-mail Already In Use': '' }
           </div>
         </header>
       </div>

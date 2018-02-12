@@ -10,7 +10,8 @@ app.use(bodyParser.raw({ type: '*/*' }))
 app.use(morgan('dev'));
 
 app.post('/signUp', async (req, res) => {
-    res.send(await funky.signUp(JSON.parse(req.body)));
+    console.log('signup');
+    res.send(await funky.signUp(JSON.parse(req.body.toString())));
 })
 
 app.post('/login', (req, res) => {
@@ -21,4 +22,4 @@ app.post('/login', (req, res) => {
 
 // app.post('/')
 
-app.listen(4000)
+app.listen(4003, console.log("We're a go!"))

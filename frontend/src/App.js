@@ -12,7 +12,7 @@ class App extends Component {
     this.state = {
       active: '',
       login: false,
-      error: true
+      error: false
     }
   }
 
@@ -48,10 +48,10 @@ class App extends Component {
     console.log({ username, password })
     fetch('/login', {
       method: 'post',
-      body: {
+      body: JSON.stringify({
         username,
         password
-      }
+      })
     })
       .then(x => x.text())
       .then(x => JSON.parse(x))
@@ -67,23 +67,26 @@ class App extends Component {
     console.log({ user, pass, mail })
     fetch('/signUp', {
       method: 'post',
-      body: {
+      body: JSON.stringify({
         username: user,
         password: pass,
         email: mail
-      }
+      })
     })
       .then(x => x.text())
-      .then(x => JSON.parse(x))
-      .then(x => this.setState({ 
+      .then(x => { console.log(x); return x; })
+      .then(x => this.setState({
         login: x,
         error: !x
-       }).catch((err)=> {
-         console.log(err)
-         this.setState({error: true})
-        })
-      )   //change x to something more descriptive
-       
+      })) 
+      .catch((err) => {
+        console.log(err)
+        this.setState({ error: true })
+      })
+    //change x to something more descriptive
+    if (this.state.login === false) {
+      return 'login failed'
+    }
 
   }
 
