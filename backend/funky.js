@@ -1,6 +1,7 @@
-const tools = require('./tools')
+const { addToFile } = require('./tools');
+const fs = require('fs-extra');
 
-signUp = (userInfo) => {
+signUp = async (userInfo) => {
     emailValidate = (email) => {
         var regex = /\S+@\S+\.\S+/;
         return regex.test(email);
@@ -16,43 +17,70 @@ signUp = (userInfo) => {
         return ('Invalid email');
     }
 
-    //checks if username already exists
-    if (allUsers[username]) {
-        return false
-    }
+    buildObj = () => {
+        var obj = {};
+        obj.username = username;
+        obj.email = email;
+        obj.password = password;
+        obj.cart = [];
+        obj.itemsSold = [];
+        obj.itemsBought = [];
+
+        return addToFile('userInfo.json', obj);
+    }; 
     
-    //creates new user with all info to be filled on the site
-    allUsers[username] = {};
-    allUsers[username]['email'] = email;
-    allUsers[username]['password'] = password;
-    allUsers[username]['cart'] = [];
-    allUsers[username]['itemsSold'] = [];
-    allUsers[username]['itemsBought'] = [];
-    return allUsers[username];
+    //creates new user with all info to be filled on the site 
+    var response = await fs.readFile('userInfo.json', { String })
+        .then(async data => {
+            var result = JSON.parse(data);
+            if(result.length){ 
+                let alreadyExist = false;
+                result.forEach((item) => {
+                    if (item.username === username) {
+                        alreadyExist = true;
+                    }
+                });
+
+                if (alreadyExist) {
+                    return 'User already exists';
+                } else {
+                    console.log('buildObj', buildObj);
+                    return await buildObj();
+                }
+            } else {
+                return await buildObj();
+            }
+        }).catch(err => err);
+    console.log('response', response);
+    return response;
 }
 
-login = (userInfo, allUsers) => {
+login = (userInfo, users) => {
     //sorts user data coming in
-    // console.log("test2", userInfo)
-    // console.log("test2.0", attemptUsername)
-    // console.log("test2.1", attemptPass)
+    console.log(userInfo)
     var attemptUsername = userInfo.username;
     var attemptPass = userInfo.password;
-    var dbPassword
-    
     //checks to make sure username already exists in the db
-    if (!allUsers[attemptUsername]) {
-        //***to figure out**
-        // how to send back to user right away
-        return false
+    
+    var dbUser = fs.readFileSync('userInfo.json', { String });
+    dbUser = JSON.parse(dbUser);
+    console.log(dbUser);
+    var usernameExists = false;
+    var returnVal;
+    dbUser.forEach((item) => {
+        if (item.username === attemptUsername) {
+            usernameExists = true;
+            if (item.password !== attemptPass) {
+                returnVal = false;
+            } else {
+                returnVal =  true;
+            }
+        }
+    });
+    if(!usernameExists){
+        returnVal = 'Username does not exist';
     }
-    var dbPassword = allUsers[attemptUsername]['password']
-    console.log('test2.2', dbPassword)
-    if (dbPassword !== attemptPass) {
-        return false
-    }
-    // figure out how to send "user exists" to render proper page */
-    return true
+    return returnVal;
  }
 
 
