@@ -51,17 +51,20 @@ class App extends Component {
       })
     })
       .then(x => x.text())
-      .then(x => JSON.parse(x))
-      .then(x =>
+      .then(x=> {console.log(x); return x})
+      .then(x => 
         this.setState({
           login: x,
           error: !x
         })
       )
+      
+      // if(this.state.login != 'true' && this.state.login != 'false') {
+
+      // }
   }
 
   signUp = (user, pass, mail) => {
-    console.log({ user, pass, mail })
     fetch('/signUp', {
       method: 'post',
       body: JSON.stringify({
@@ -71,19 +74,18 @@ class App extends Component {
       })
     })
       .then(x => x.text())
-      .then(x => { console.log(x); return x; })
+      .then(x=> {console.log(x); return x})
       .then(x => this.setState({
         login: x,
         error: !x
-      })) 
+      }))
+      .then(()=> console.log(this.state))
       .catch((err) => {
         console.log(err)
         this.setState({ error: true })
       })
     //change x to something more descriptive
-    if (this.state.login === false) {
-      return 'login failed'
-    }
+    console.log(this.state)
 
   }
 
