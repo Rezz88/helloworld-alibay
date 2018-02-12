@@ -1,11 +1,29 @@
 import React, { Component } from 'react';
-export class Child extends Component {
+export class Main extends Component {
+  constructor() {
+    super();
+    this.state = {  }
+  }
+  CallParentFunction = () => {
+    this.props.changeParentState('red')
+  }
     render() {
-      return (
-        <div>
-          CHILD {this.props.thing}
-        </div>
-      );
+      if(this.props.thing === 'ok'){
+        return (
+          <div>
+            CHILD 
+            {this.props.thing}
+            <button onClick={this.CallParentFunction}>Change Parent State </button>
+          </div>
+        );
+      } else {
+        return (
+          <div>
+         nothing
+          </div>
+        );
+      }
+      
     }
   }
   

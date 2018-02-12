@@ -1,15 +1,17 @@
 import React, { Component } from 'react';
-import './App.css';
+import '../../App.css';
 
 export class Profile extends Component {
 
-
+    // CallParentFunction = () => {
+    //     this.props.changeParentState(false)
+    //   }
     
     render() {
         return  (
         <div>
             you are at profile
-            <button>click to go to main</button>
+            {/* <button onClick={this.CallParentFunction}>click to go to main</button> */}
         </div>
         )
 
