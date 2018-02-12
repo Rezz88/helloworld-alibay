@@ -39,7 +39,6 @@ class App extends Component {
         return <div></div>
       }
     }
-
   }
 
   login = (username, password) => {
