@@ -19,6 +19,21 @@ app.post('/login', (req, res) => {
     res.send(funky.login(JSON.parse(req.body), allUsers))
  })
 
-// app.post('/')
+ app.post('/toSell', (req, res) => {
+      res.send(funky.createListing(JSON.parse(req.body)))
+ })
+ 
+ app.post('/profile', (req, res) => {
+
+ })
+
+ app.post('/cart', (req, res) => {
+     
+})
+
+app.post('/main', (req, res) => {
+     
+})
+
 
 app.listen(4000)

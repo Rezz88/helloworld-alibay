@@ -1,1 +1,26 @@
-{"dunky":{"email":"gdsm.kitching@gmail.com","password":"hnjdfvbhb","cart":[],"itemsSold":[],"itemsBought":[]}}
+[
+    {
+        "username": "mcren",
+        "email": "bingo@gmail.com",
+        "password": "pswd111",
+        "cart": [],
+        "itemsSold": [],
+        "itemsBought": []
+    },
+    {
+        "username": "sue",
+        "email": "ginger@gmail.com",
+        "password": "pswd111",
+        "cart": [],
+        "itemsSold": [],
+        "itemsBought": []
+    },
+    {
+        "username": "gleb",
+        "email": "glebD@gmail.com",
+        "password": "pswd111",
+        "cart": [],
+        "itemsSold": [],
+        "itemsBought": []
+    }
+]
