@@ -11,7 +11,7 @@ class App extends Component {
     super();
     this.state = {
       active: '',
-      login: false,
+      login: true,
       error: false
     }
   }

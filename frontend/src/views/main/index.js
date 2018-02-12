@@ -19,16 +19,18 @@ export class Main extends Component {
 
     renderProducts = () => {
         const { products } = this.state
-        if (products.length)    {
+        if (products)    {
             return products.map(product=>{
                 return <ProductCard
+                // plus whatever else we get from the backend
                     name={product.name}
                     image= {product.image}
                     description = {product.descr}
-                    prodId= {product.prodid}
-                    key= {product.prodid}
-                    addToBag={this.addToBag}
-                    addToFav={()=>this.addToFav(product.prodid)}
+                    prodId= {product.prodId}
+                    key= {product.prodId}
+                    // addToBag={this.addToBag}// more limited than addToFav below, works to send one props(propId)
+                    addToBag={()=>this.addToBag(product)}
+                    addToFav={()=>this.addToFav(product)}
                 />
             })
         } else {
@@ -46,35 +48,52 @@ export class Main extends Component {
         //   })
     }
 
+    //stretch goal for search function
     onInput = (event) => {
         this.setState({searchQuery: event.target.value})
     }
 
-    addToFav = (id) =>  {
-        //pass id's to backend to store in favs
-        console.log('fav', id);
+    addToFav = (item) =>  {
+        //pass whole item to backend to store in favs
+        fetch("/fav", {
+            method: "POST",
+            body: JSON.stringify(this.state.products),
+          })
+        console.log('fav', item);
     }
-    addToBag = (id) =>  {
+    addToBag = (item) =>  {
         //pass id's to backend to store in bag
-        console.log('bag', id);
+        fetch("/bag", {
+            method: "POST",
+            body: JSON.stringify(this.state.products),
+          })
+        console.log('bag', item);
     }
 
     componentDidMount() {
-        //for mock testing only
+        //fetch items from backend
+        // fetch("/items")
+        // .then(x=> x.text())
+        // .then(y=> JSON.parse(y))
+        // .then(lst=> this.setState({ products: lst}))
+
+        //for mock testing only below
         const mockproducts = [
-            {prodid: 1,
+            {prodId: 1,
                 name: 'car',
                 descr: 'description of car',
                 image: 'image of car'},
-            {prodid: 2,
+            {prodId: 2,
                 name: 'boat',
                 descr: 'description of boat',
                 image: 'image of boat'},
-            {prodid: 3,
+            {prodId: 3,
                 name: 'shoes',
                 descr: 'description of shoes',
                 image: 'image of shoes'}
             ]
+         
+
             this.setState({products: mockproducts})
     }
 
@@ -99,5 +118,4 @@ export class Main extends Component {
             </div>
         )
     }
-  }
-
+}

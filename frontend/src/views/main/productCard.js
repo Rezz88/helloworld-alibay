@@ -7,7 +7,7 @@ import '../../App.css';
 export default class ProductCard extends Component {
 
     render() {
-        const{ image, name, description, addToBag, prodId, addToFav} = this.props// de-structuring shit from perks
+        const{ image, name, description, addToBag, addToFav} = this.props// de-structuring shit from perks
         return (
             <div>
                 <div>
@@ -20,7 +20,8 @@ export default class ProductCard extends Component {
                     {description}
                 </div>
                 <div>
-                    <button onClick={()=>addToBag(prodId)}>ADD</button>
+                    {/* <button onClick={()=>addToBag(prodId)}>ADD</button> ** use 'prodId' in de-structuring above */}
+                    <button onClick={addToBag}>BAG</button>
                     <button onClick={addToFav}>FAV</button>
                 </div>
                 
