@@ -12,7 +12,7 @@ export class Main extends Component {
     }
 
 
-
+        
     // CallParentFunction = () => {
     //     this.props.changeParentState(false)
     //   }
@@ -20,12 +20,6 @@ export class Main extends Component {
     renderProducts = () => {
         const { products } = this.state
         if (products.length)    {
-            // return  <ProductCard
-            //     name='stuff'
-            //     image= 'image'
-            //     description = 'descr'
-            //     prodID= 'prodID'
-            // />
             return products.map(product=>{
                 return <ProductCard
                     name={product.name}
@@ -38,26 +32,18 @@ export class Main extends Component {
                 />
             })
         } else {
-            return <div>No products...</div>
+            return <div>nothing</div>
         }
     }
     submitQuery = () => {
+        //stretch goal for search form
         //fetch data from endpoint and pass it this.state.searchQuery
-        const mockproducts = [
-            {prodid: 1,
-                name: 'car',
-                descr: 'cool car',
-                image: 'sweet image'},
-            {prodid: 2,
-                name: 'boat',
-                descr: 'cool boat',
-                image: 'sweet image of boat'},
-            {prodid: 3,
-                name: 'shoes',
-                descr: 'sneeeeeeekers',
-                image: 'sweet image of kicks'}
-            ]
-            this.setState({products: mockproducts})
+        // fetch('/search', {
+        //     method: 'post',
+        //     body: {
+        //       //
+        //     }
+        //   })
     }
 
     onInput = (event) => {
@@ -73,11 +59,30 @@ export class Main extends Component {
         console.log('bag', id);
     }
 
+    componentDidMount() {
+        //for mock testing only
+        const mockproducts = [
+            {prodid: 1,
+                name: 'car',
+                descr: 'description of car',
+                image: 'image of car'},
+            {prodid: 2,
+                name: 'boat',
+                descr: 'description of boat',
+                image: 'image of boat'},
+            {prodid: 3,
+                name: 'shoes',
+                descr: 'description of shoes',
+                image: 'image of shoes'}
+            ]
+            this.setState({products: mockproducts})
+    }
+
     render() {
         return(
             <div>
                 <div>
-                    Main Page
+                    WELCOME
                 </div>
                 <div>
                     <input 
@@ -85,7 +90,8 @@ export class Main extends Component {
                         value={this.state.searchQuery}
                         onChange={this.onInput}>
                     </input>
-                    <button onClick={this.submitQuery}>submit</button>
+                    {/* <button onClick={this.submitQuery}>submit</button> ********stretch goal for a search function */}
+                    <button>submit</button>
                 </div>
                 <div>
                     {this.renderProducts()}
