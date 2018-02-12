@@ -1,6 +1,8 @@
 const { addToFile } = require('./tools');
 const fs = require('fs-extra');
 
+const userDbPath = 'userInfo.json';
+
 signUp = async (userInfo) => {
     emailValidate = (email) => {
         var regex = /\S+@\S+\.\S+/;
@@ -26,11 +28,11 @@ signUp = async (userInfo) => {
         obj.itemsSold = [];
         obj.itemsBought = [];
 
-        return addToFile('userInfo.json', obj);
+        return addToFile(userDbPath, obj);
     }; 
     
     //creates new user with all info to be filled on the site 
-    var response = await fs.readFile('userInfo.json', { String })
+    var response = await fs.readFile(userDbPath, { String })
         .then(async data => {
             var result = JSON.parse(data);
             if(result.length){ 
@@ -57,14 +59,12 @@ signUp = async (userInfo) => {
 
 login = (userInfo, users) => {
     //sorts user data coming in
-    console.log(userInfo)
     var attemptUsername = userInfo.username;
     var attemptPass = userInfo.password;
     //checks to make sure username already exists in the db
     
-    var dbUser = fs.readFileSync('userInfo.json', { String });
+    var dbUser = fs.readFileSync(userDbPath, { String });
     dbUser = JSON.parse(dbUser);
-    console.log(dbUser);
     var usernameExists = false;
     var returnVal;
     dbUser.forEach((item) => {
@@ -78,7 +78,7 @@ login = (userInfo, users) => {
         }
     });
     if(!usernameExists){
-        returnVal = 'Username does not exist';
+        returnVal = JSON.stringify('Username does not exist');
     }
     return returnVal;
  }

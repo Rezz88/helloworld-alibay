@@ -1,7 +1,7 @@
 const fs = require('fs-extra');
 
 const fileread = (filename) => {
-    var contents = JSON.parse(fs.readFileSync(filename.toString()));
+    var contents = JSON.parse(fs.readFileSync(filename));
     return contents;
  };
 
@@ -11,9 +11,9 @@ addToFile = (toRead, toAdd) => {
         return value && value.type === 'Buffer' ? Buffer.from(value.data) : value;
     });
     data.push(toAdd);
-    console.log(data);
     fs.writeFileSync(toRead, JSON.stringify(data));
-    return data;
+    // changed to only display the current user that signed up
+    return toAdd;
 };
 
 

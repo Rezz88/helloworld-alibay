@@ -7,7 +7,7 @@ const app = express()
 var fs = require('fs');
 var bodyParser = require('body-parser');
 app.use(bodyParser.raw({ type: '*/*' }))
-// app.use(morgan('method'));
+app.use(morgan('dev'));
 
 app.post('/signUp', async (req, res) => {
     res.send(await funky.signUp(JSON.parse(req.body)));
