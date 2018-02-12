@@ -1,42 +1,65 @@
 const { addToFile } = require('./tools');
 const fs = require('fs-extra');
 
-const userDbPath = 'userInfo.json';
+const userDbPath = './database/userInfo.json';
 
-signUp = async (userInfo) => {
-    emailValidate = (email) => {
-        var regex = /\S+@\S+\.\S+/;
+const signUp = async (userInfo) => {
+    const emailValidate = (email) => {
+        const regex = /\S+@\S+\.\S+/;
         return regex.test(email);
     }
+    console.log('signup funky');
 
     //sorts user data coming in
     var username = userInfo.username;
     var email = userInfo.email;
     var password = userInfo.password;
+    console.log(userInfo);
 
     //test to see if legit email else fuck you 
     if (!emailValidate(email)) {
         return ('Invalid email');
     }
 
-    buildObj = () => {
-        var obj = {};
-        obj.username = username;
-        obj.email = email;
-        obj.password = password;
-        obj.cart = [];
-        obj.itemsSold = [];
-        obj.itemsBought = [];
+    const buildObj = () => {
+        var obj = {
+            username,
+            email,
+            password,
+            cart: [],
+            itemsSold: [],
+            itemsBought: []
+        };
+        // obj.username = username;
+        // obj.email = email;
+        // obj.password = password;
+        // obj.cart = [];
+        // obj.itemsSold = [];
+        // obj.itemsBought = [];
 
+        addToFile(userDbPath, obj);
+        console.log('test')
+        return true
+    };
+
+<<<<<<< HEAD
         addToFile(userDbPath, obj);
         return true;
          
     };
 
+=======
+>>>>>>> 34942791d79b3e0a59b08c9ef8aa3e148a3cb95f
     //creates new user with all info to be filled on the site 
-    var response = await fs.readFile(userDbPath, { String })
+    const response = await fs.readFile(userDbPath, { String })
         .then(async data => {
+<<<<<<< HEAD
             var result = JSON.parse(data);
+=======
+            console.log(data.toString());
+            var result = JSON.parse(data.toString());
+            console.log('result', result);
+>>>>>>> 34942791d79b3e0a59b08c9ef8aa3e148a3cb95f
             if (result.length) {
                 let alreadyExist = false;
                 result.forEach((item) => {
@@ -55,10 +78,14 @@ signUp = async (userInfo) => {
                 return await buildObj();
             }
         }).catch(err => err);
+<<<<<<< HEAD
+=======
+    console.log('response', response);
+>>>>>>> 34942791d79b3e0a59b08c9ef8aa3e148a3cb95f
     return response;
 }
 
-login = (userInfo, users) => {
+const login = (userInfo, users) => {
     //sorts user data coming in
     // console.log(userInfo)
     var attemptUsername = userInfo.username;
@@ -85,6 +112,7 @@ login = (userInfo, users) => {
     }
     return returnVal;
 }
+<<<<<<< HEAD
 
 createListing = (user, price, blurb) => {
     const dbForSalePath = 'itemsForSale.json'
@@ -131,6 +159,8 @@ createListing = (user, price, blurb) => {
     addToFile()
 
 }
+=======
+>>>>>>> 34942791d79b3e0a59b08c9ef8aa3e148a3cb95f
 
 
 

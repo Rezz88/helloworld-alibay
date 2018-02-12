@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 [
     {
         "username": "mcren",
@@ -24,3 +25,6 @@
         "itemsBought": []
     }
 ]
+=======
+[{"username":"sda","email":"asd@dfg.com","password":"asd","cart":[],"itemsSold":[],"itemsBought":[]}]
+>>>>>>> 34942791d79b3e0a59b08c9ef8aa3e148a3cb95f
