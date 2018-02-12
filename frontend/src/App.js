@@ -39,10 +39,7 @@ class App extends Component {
         return <div></div>
       }
     }
-
   }
-
-
 
   login = (username, password) => {
     console.log({ username, password })
@@ -75,18 +72,16 @@ class App extends Component {
     })
       .then(x => x.text())
       .then(x => JSON.parse(x))
-      .then(x => this.setState({ 
+      .then(x => this.setState({
         login: x,
         error: !x
-       }).catch((err)=> {
-         console.log(err)
-         this.setState({error: true})
-        })
+      }).catch((err) => {
+        console.log(err)
+        this.setState({ error: true })
+      })
       )   //change x to something more descriptive
-       
 
   }
-
 
   render() {
     // const { active } = this.state;
