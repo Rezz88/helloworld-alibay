@@ -11,7 +11,7 @@ class App extends Component {
     super();
     this.state = {
       active: '',
-      login: false,
+      login: true,
       error: true
     }
   }
@@ -41,8 +41,6 @@ class App extends Component {
     }
 
   }
-
-
 
   login = (username, password) => {
     console.log({ username, password })
@@ -83,16 +81,13 @@ class App extends Component {
          this.setState({error: true})
         })
       )   //change x to something more descriptive
-       
-
   }
-
 
   render() {
     // const { active } = this.state;
     return (
       <div>
-        <ul>
+        <ul className = "App-header">
           <li>
             <a onClick={() => this.ChangeComponent('Main')}>M A I N</a>
           </li>
