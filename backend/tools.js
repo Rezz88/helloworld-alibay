@@ -16,8 +16,14 @@ addToFile = (toRead, toAdd) => {
     return toAdd;
 };
 
+ genPID = () => {
+    return Math.floor(Math.random() * 100000000)
+}
+
+
 
 module.exports = {
     fileread,
-    addToFile
+    addToFile,
+    genPID
 };

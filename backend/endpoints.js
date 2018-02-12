@@ -14,14 +14,14 @@ app.post('/signUp', async (req, res) => {
     res.send(await funky.signUp(JSON.parse(req.body.toString())));
 })
 
-app.post('/login', (req, res) => {
-    allUsers = fileread('userInfo.json')
+app.post('/login', async (req, res) => {
+    allUsers = fileread('./database/userInfo.json')
     // console.log('test data read', allUsers)
-    res.send(funky.login(JSON.parse(req.body), allUsers))
+    res.send(await funky.login(JSON.parse(req.body.toString()), allUsers))
  })
 
  app.post('/toSell', (req, res) => {
-      res.send(funky.createListing(JSON.parse(req.body)))
+      res.send(funky.createListing(JSON.parse(req.body.toString())))
  })
  
  app.post('/profile', (req, res) => {
@@ -37,5 +37,5 @@ app.post('/main', (req, res) => {
 })
 
 
-app.listen(4003, console.log("We're a go!"))
+app.listen(4000, console.log("We're a go!"))
  
