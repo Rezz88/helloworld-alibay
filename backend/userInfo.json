@@ -1,1 +1,50 @@
-[{"username":"fuckyou","email":"gdsm.kitching@gmail.com","password":"hnjdfvbhb","cart":[],"itemsSold":[],"itemsBought":[]},{"username":"booby","email":"gdsm.kitching@gmail.com","password":"hnjdfvbhb","cart":[],"itemsSold":[],"itemsBought":[]},{"username":"newGuy","email":"gdsm.kitching@gmail.com","password":"hnjdfvbhb","cart":[],"itemsSold":[],"itemsBought":[]},{"username":"cooldude","email":"gdsm.kitching@gmail.com","password":"hnjdfvbhb","cart":[],"itemsSold":[],"itemsBought":[]}]
+[
+    {
+        "username": "fuckyou",
+        "email": "gdsm.kitching@gmail.com",
+        "password": "hnjdfvbhb",
+        "cart": [],
+        "itemsSold": [],
+        "itemsBought": []
+    },
+    {
+        "username": "booby",
+        "email": "gdsm.kitching@gmail.com",
+        "password": "hnjdfvbhb",
+        "cart": [],
+        "itemsSold": [],
+        "itemsBought": []
+    },
+    {
+        "username": "newGuy",
+        "email": "gdsm.kitching@gmail.com",
+        "password": "hnjdfvbhb",
+        "cart": [],
+        "itemsSold": [],
+        "itemsBought": []
+    },
+    {
+        "username": "cooldude",
+        "email": "gdsm.kitching@gmail.com",
+        "password": "hnjdfvbhb",
+        "cart": [],
+        "itemsSold": [],
+        "itemsBought": []
+    },
+    {
+        "username": "dre",
+        "email": "dre@gmail.com",
+        "password": "pswd123",
+        "cart": [],
+        "itemsSold": [],
+        "itemsBought": []
+    },
+    {
+        "username": "dude",
+        "email": "blah@gmail.com",
+        "password": "pswd123",
+        "cart": [],
+        "itemsSold": [],
+        "itemsBought": []
+    }
+]

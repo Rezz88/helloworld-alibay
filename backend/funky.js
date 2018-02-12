@@ -44,27 +44,27 @@ signUp = async (userInfo) => {
                 if (alreadyExist) {
                     return 'User already exists';
                 } else {
-                    console.log('buildObj', buildObj);
+                    // console.log('buildObj', buildObj);
                     return await buildObj();
                 }
             } else {
                 return await buildObj();
             }
         }).catch(err => err);
-    console.log('response', response);
+    // console.log('response', response);
     return response;
 }
 
 login = (userInfo, users) => {
     //sorts user data coming in
-    console.log(userInfo)
+    // console.log(userInfo)
     var attemptUsername = userInfo.username;
     var attemptPass = userInfo.password;
     //checks to make sure username already exists in the db
     
     var dbUser = fs.readFileSync('userInfo.json', { String });
     dbUser = JSON.parse(dbUser);
-    console.log(dbUser);
+    // console.log(dbUser);
     var usernameExists = false;
     var returnVal;
     dbUser.forEach((item) => {
