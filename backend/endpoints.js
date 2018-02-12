@@ -17,7 +17,7 @@ app.post('/signUp', async (req, res) => {
 app.post('/login', (req, res) => {
     allUsers = fileread('userInfo.json')
     // console.log('test data read', allUsers)
-    res.send(funky.login(JSON.parse(req.body), allUsers))
+    res.send(funky.login(JSON.parse(req.body).toString(), allUsers))
  })
 
 // app.post('/')
