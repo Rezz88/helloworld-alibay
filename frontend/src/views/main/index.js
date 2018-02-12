@@ -38,7 +38,7 @@ export class Main extends Component {
                 />
             })
         } else {
-            return <div>no products</div>
+            return <div>No products...</div>
         }
     }
     submitQuery = () => {
@@ -73,13 +73,11 @@ export class Main extends Component {
         console.log('bag', id);
     }
 
-
-
     render() {
         return(
             <div>
                 <div>
-                    you are at main
+                    Main Page
                 </div>
                 <div>
                     <input 
