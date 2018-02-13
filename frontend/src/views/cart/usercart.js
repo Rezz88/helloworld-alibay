@@ -1,13 +1,11 @@
 import React, { Component } from 'react';
 import '../../App.css';
 
+export default class Usercart extends Component {
 
-
-
-export default class ProductCard extends Component {
 
     render() {
-        const{ image, price, name, description, addToCart, addToFav} = this.props// de-structuring shit from perks
+        const{ image, price, name, description, checkout, deleteItem} = this.props// de-structuring shit from perks
         return (
             <div className='Main-items'>
                 <div>
@@ -23,13 +21,18 @@ export default class ProductCard extends Component {
                     {price}
                 </div>
                 <div>
-                    {/* <button onClick={()=>addToBag(prodId)}>ADD</button> ** use 'prodId' in de-structuring above */}
-                    <button onClick={addToCart}>C A R T</button>
-                    <button onClick={addToFav}>F A V</button>
+                    <button onClick={checkout}>C H E C K O U T</button>
+                    <button onClick={deleteItem}>D E L E T E</button>
                 </div>
                 
 
             </div>
         )
     }
+
+
+
+
+
+
 }
