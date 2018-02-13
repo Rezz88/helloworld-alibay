@@ -38,9 +38,9 @@ export class Profile extends Component {
             <div className="profile">
                 Profile Page  
                     <div className="App-header">
-                        <a onClick={() => this.ChangeComponent("SoldItem")}>SOLD -</a>
-                        <a onClick={() => this.ChangeComponent("FavItem")}> - FAVORITE -</a>
-                        <a onClick={() => this.ChangeComponent("HistoryItem")}>- HISTORY</a>
+                        <a onClick={() => this.ChangeComponent("SoldItem")}>SOLD</a>
+                        <a onClick={() => this.ChangeComponent("FavItem")}>FAVORITE</a>
+                        <a onClick={() => this.ChangeComponent("HistoryItem")}>HISTORY</a>
                     </div>
                 <div>{this.renderComponent()}</div>
             </div>

@@ -23,6 +23,16 @@
   margin: 0 5px;
 }
 
+.App-header > a {
+  font-size: 90%;
+  text-decoration: none;
+  display: inline-block;
+  border: 1px solid white;
+  border-style: outset;
+  padding: 4px;
+  margin: 0 5px;
+}
+
 .sold-item {
   padding: 15px;
   margin: 25px;

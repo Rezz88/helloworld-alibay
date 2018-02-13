@@ -48,13 +48,13 @@ export class ItemSold extends Component {
     render() {
         // const{ image, name, description, addToBag, prodId, addToFav} = this.state.products
         return (<div className="sold-item">
-            <div>
+            <div>Image
                 {this.state.products.image}
             </div>
-            <div>
+            <div>Name
                 {this.state.products.name}
             </div>
-            <div>
+            <div>Description
                 {this.state.products.description}
             </div>
         </div>
