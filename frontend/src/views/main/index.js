@@ -7,12 +7,10 @@ export class Main extends Component {
         super();
         this.state = {
             products: [],
-            searchQuery: ''
+            // searchQuery: '' //for the 
         }
     }
 
-
-        
     // CallParentFunction = () => {
     //     this.props.changeParentState(false)
     //   }
@@ -25,11 +23,13 @@ export class Main extends Component {
                 // plus whatever else we get from the backend
                     name={product.name}
                     image= {product.image}
-                    description = {product.descr}
+                    description= {product.descr}
+                    sellerId= {product.seller}
                     prodId= {product.prodId}
                     key= {product.prodId}
+                    price= {product.price}
                     // addToBag={this.addToBag}// more limited than addToFav below, works to send one props(propId)
-                    addToBag={()=>this.addToBag(product)}
+                    addToCart={()=>this.addToCart(product)}
                     addToFav={()=>this.addToFav(product)}
                 />
             })
@@ -55,42 +55,49 @@ export class Main extends Component {
 
     addToFav = (item) =>  {
         //pass whole item to backend to store in favs
-        fetch("/fav", {
-            method: "POST",
-            body: JSON.stringify(this.state.products),
-          })
+        // fetch("/fav", {
+        //     method: "POST",
+        //     body: JSON.stringify(item),
+        //   })
         console.log('fav', item);
     }
-    addToBag = (item) =>  {
-        //pass id's to backend to store in bag
-        fetch("/bag", {
-            method: "POST",
-            body: JSON.stringify(this.state.products),
-          })
-        console.log('bag', item);
+    addToCart = (item) =>  {
+        //pass id's to backend to store in cart uncomment when backend is ready
+        // fetch("/cart", {
+        //     method: "POST",
+        //     body: JSON.stringify(item),
+        //   })
+        console.log('Cart', item);
     }
 
     componentDidMount() {
-        //fetch items from backend
+        //fetch items from backend uncomment when backend is ready
         // fetch("/items")
         // .then(x=> x.text())
         // .then(y=> JSON.parse(y))
         // .then(lst=> this.setState({ products: lst}))
 
-        //for mock testing only below
+        //for mock testing below
+
         const mockproducts = [
             {prodId: 1,
                 name: 'car',
                 descr: 'description of car',
-                image: 'image of car'},
+                price: '$1000',
+                image: 'image of car',
+                sellerId: 'John'},
             {prodId: 2,
                 name: 'boat',
                 descr: 'description of boat',
-                image: 'image of boat'},
+                price: '$1000',
+                image: 'image of boat',
+                sellerId: 'sue'},
             {prodId: 3,
                 name: 'shoes',
                 descr: 'description of shoes',
-                image: 'image of shoes'}
+                price: '$1000',
+                image: 'image of shoes',
+                sellerId: 'bob'}
             ]
          
 
@@ -99,13 +106,13 @@ export class Main extends Component {
 
     render() {
         return(
-            <div>
-                <div>
-                    WELCOME
+            <div className='App'>
+                <div className='Main-items'>
+                    W E L C O M E
                 </div>
-                <div>
-                    <input 
-                        placeholder="Search for item..."
+                <div className='Main-items'>
+                    <input  
+                        placeholder="Does not work yet..."
                         value={this.state.searchQuery}
                         onChange={this.onInput}>
                     </input>
