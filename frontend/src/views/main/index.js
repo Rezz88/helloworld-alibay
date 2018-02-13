@@ -7,28 +7,30 @@ export class Main extends Component {
         super();
         this.state = {
             products: [],
-            searchQuery: ''
+            // searchQuery: '' //for the 
         }
     }
 
-
-        
     // CallParentFunction = () => {
     //     this.props.changeParentState(false)
     //   }
 
     renderProducts = () => {
         const { products } = this.state
-        if (products.length)    {
+        if (products)    {
             return products.map(product=>{
                 return <ProductCard
+                // plus whatever else we get from the backend
                     name={product.name}
                     image= {product.image}
-                    description = {product.descr}
-                    prodId= {product.prodid}
-                    key= {product.prodid}
-                    addToBag={this.addToBag}
-                    addToFav={()=>this.addToFav(product.prodid)}
+                    description= {product.descr}
+                    sellerId= {product.seller}
+                    prodId= {product.prodId}
+                    key= {product.prodId}
+                    price= {product.price}
+                    // addToBag={this.addToBag}// more limited than addToFav below, works to send one props(propId)
+                    addToCart={()=>this.addToCart(product)}
+                    addToFav={()=>this.addToFav(product)}
                 />
             })
         } else {
@@ -46,47 +48,71 @@ export class Main extends Component {
         //   })
     }
 
+    //stretch goal for search function
     onInput = (event) => {
         this.setState({searchQuery: event.target.value})
     }
 
-    addToFav = (id) =>  {
-        //pass id's to backend to store in favs
-        console.log('fav', id);
+    addToFav = (item) =>  {
+        //pass whole item to backend to store in favs
+        // fetch("/fav", {
+        //     method: "POST",
+        //     body: JSON.stringify(item),
+        //   })
+        console.log('fav', item);
     }
-    addToBag = (id) =>  {
-        //pass id's to backend to store in bag
-        console.log('bag', id);
+    addToCart = (item) =>  {
+        //pass id's to backend to store in cart uncomment when backend is ready
+        // fetch("/cart", {
+        //     method: "POST",
+        //     body: JSON.stringify(item),
+        //   })
+        console.log('Cart', item);
     }
 
     componentDidMount() {
-        //for mock testing only
+        //fetch items from backend uncomment when backend is ready
+        // fetch("/items")
+        // .then(x=> x.text())
+        // .then(y=> JSON.parse(y))
+        // .then(lst=> this.setState({ products: lst}))
+
+        //for mock testing below
+
         const mockproducts = [
-            {prodid: 1,
+            {prodId: 1,
                 name: 'car',
                 descr: 'description of car',
-                image: 'image of car'},
-            {prodid: 2,
+                price: '$1000',
+                image: 'image of car',
+                sellerId: 'John'},
+            {prodId: 2,
                 name: 'boat',
                 descr: 'description of boat',
-                image: 'image of boat'},
-            {prodid: 3,
+                price: '$1000',
+                image: 'image of boat',
+                sellerId: 'sue'},
+            {prodId: 3,
                 name: 'shoes',
                 descr: 'description of shoes',
-                image: 'image of shoes'}
+                price: '$1000',
+                image: 'image of shoes',
+                sellerId: 'bob'}
             ]
+         
+
             this.setState({products: mockproducts})
     }
 
     render() {
         return(
-            <div>
-                <div>
-                    WELCOME
+            <div className='App'>
+                <div className='Main-items'>
+                    W E L C O M E
                 </div>
-                <div>
-                    <input 
-                        placeholder="Search for item..."
+                <div className='Main-items'>
+                    <input  
+                        placeholder="Does not work yet..."
                         value={this.state.searchQuery}
                         onChange={this.onInput}>
                     </input>
@@ -99,5 +125,4 @@ export class Main extends Component {
             </div>
         )
     }
-  }
-
+}

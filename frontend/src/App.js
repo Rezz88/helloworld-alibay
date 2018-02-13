@@ -10,8 +10,8 @@ class App extends Component {
   constructor() {
     super();
     this.state = {
-      active: '',
-      login: false,
+      active: 'Main',
+      login: true,
       error: false
     }
   }
