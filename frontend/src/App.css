@@ -21,9 +21,14 @@
   border: 1px solid white;
   padding: 5px;
   margin: 0 5px;
-  
 }
 
+.sold-item {
+  padding: 15px;
+  margin: 25px;
+  border: 1px solid grey;
+  
+}
 
 .App-title {
   font-size: 1.5em;

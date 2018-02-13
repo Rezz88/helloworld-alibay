@@ -3,7 +3,7 @@ import '../../App.css';
 import ProductCard from './productCard'
 
 export class Main extends Component {
-    constructor()   {
+    constructor() {
         super();
         this.state = {
             products: [],
@@ -12,23 +12,23 @@ export class Main extends Component {
     }
 
 
-        
+
     // CallParentFunction = () => {
     //     this.props.changeParentState(false)
     //   }
 
     renderProducts = () => {
         const { products } = this.state
-        if (products.length)    {
-            return products.map(product=>{
+        if (products.length) {
+            return products.map(product => {
                 return <ProductCard
                     name={product.name}
-                    image= {product.image}
-                    description = {product.descr}
-                    prodId= {product.prodid}
-                    key= {product.prodid}
+                    image={product.image}
+                    description={product.descr}
+                    prodId={product.prodid}
+                    key={product.prodid}
                     addToBag={this.addToBag}
-                    addToFav={()=>this.addToFav(product.prodid)}
+                    addToFav={() => this.addToFav(product.prodid)}
                 />
             })
         } else {
@@ -47,14 +47,14 @@ export class Main extends Component {
     }
 
     onInput = (event) => {
-        this.setState({searchQuery: event.target.value})
+        this.setState({ searchQuery: event.target.value })
     }
 
-    addToFav = (id) =>  {
+    addToFav = (id) => {
         //pass id's to backend to store in favs
         console.log('fav', id);
     }
-    addToBag = (id) =>  {
+    addToBag = (id) => {
         //pass id's to backend to store in bag
         console.log('bag', id);
     }
@@ -62,30 +62,36 @@ export class Main extends Component {
     componentDidMount() {
         //for mock testing only
         const mockproducts = [
-            {prodid: 1,
+            {
+                prodid: 1,
                 name: 'car',
                 descr: 'description of car',
-                image: 'image of car'},
-            {prodid: 2,
+                image: 'image of car'
+            },
+            {
+                prodid: 2,
                 name: 'boat',
                 descr: 'description of boat',
-                image: 'image of boat'},
-            {prodid: 3,
+                image: 'image of boat'
+            },
+            {
+                prodid: 3,
                 name: 'shoes',
                 descr: 'description of shoes',
-                image: 'image of shoes'}
-            ]
-            this.setState({products: mockproducts})
+                image: 'image of shoes'
+            }
+        ]
+        this.setState({ products: mockproducts })
     }
 
     render() {
-        return(
+        return (
             <div>
                 <div>
                     WELCOME
                 </div>
                 <div>
-                    <input 
+                    <input
                         placeholder="Search for item..."
                         value={this.state.searchQuery}
                         onChange={this.onInput}>
@@ -99,5 +105,5 @@ export class Main extends Component {
             </div>
         )
     }
-  }
+}
 
