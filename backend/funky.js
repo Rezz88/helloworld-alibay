@@ -3,8 +3,8 @@ const fs = require('fs-extra');
 
 const userDbPath = './database/userInfo.json';
 
-const userInfo = {}
-const forSaleItems = {}
+var usersLoggedIn = {}
+var forSaleItems = {}
 
 const signUp = async (userInfo) => {
     const emailValidate = (email) => {
@@ -27,6 +27,7 @@ const signUp = async (userInfo) => {
             email,
             password,
             cart: [],
+            itemsForSale: [],
             itemsSold: [],
             itemsBought: []
         };
@@ -41,7 +42,7 @@ const signUp = async (userInfo) => {
         .then(async data => {
             console.log('raw data: ', data)
             var result = JSON.parse(data.toString());
-            console.log(result)
+            console.log(result);
             if (result.length) {
                 let alreadyExist = false;
                 result.forEach((item) => {
@@ -59,8 +60,7 @@ const signUp = async (userInfo) => {
             } else {
                 return await buildObj();
             }
-        })
-        .catch(err => err);
+        }).catch(err => err);
     console.log(response)
     return response;
 }
@@ -83,6 +83,8 @@ const login = async (userInfo, users) => {
             if (item.password !== attemptPass) {
                 returnVal = false;
             } else {
+                usersLoggedIn["username"] = item.username;
+                console.log(usersLoggedIn);
                 returnVal = true;
             }
         }
@@ -93,24 +95,60 @@ const login = async (userInfo, users) => {
     return returnVal;
 }
 
-createListing = (user, price, blurb) => {
+const createListing = async (itemInfo) => {
     const dbForSalePath = './database/itemsForSale.json'
+    var username = itemInfo.username;
+    var price = itemInfo.price;
+    var blurb = itemInfo.blurb
+    console.log(itemInfo);
 
-    var dbForSale = fs.readFileSync(dbForSalePath, { String });
-    dbForSale = JSON.parse(dbForSale);
+    var dbForSale = await fs.readFile(dbForSalePath, { String });
+    dbForSale = JSON.parse(dbForSale.toString());
+    console.log(dbForSale)
 
-    newListingObj = () => {
-        if (!dbForSale[user]) dbForSale[user] = [];
-        dbForSale[user].push({
+    var newItem;
+    var match = false
+
+    dbForSale.forEach( (item) => {
+        if (item.username) {
+            console.log('check', "i")
+            match = true;
+            dbForSale[0].forSale.push(JSON.stringify({
+                productID: genPID(),
+                price: price,
+                blurb: blurb
+            }));
+            console.log('dbForSale:',dbForSale)
+            newItem = item.forSale
+            
+        }
+        })
+    if (match === false) {
+        newItem = {username: username, forSale: [{
             productID: genPID(),
-            price,
-            blurb
-        });
+            price: price,
+            blurb: blurb
+        }]}
     }
+    
+    rewriteDB = (toRead, dbForSale) => {
+        var data = JSON.stringify(dbForSale);
+        fs.writeFileSync(toRead, JSON.stringify(data));
+        // changed to only display the current user that signed up
+    };
 
-    addToFile()
+    rewriteDB('./database/itemsForSale.json', dbForSale);
+    
+
+ 
+
 
 }
+
+
+
+
+
 
 
 

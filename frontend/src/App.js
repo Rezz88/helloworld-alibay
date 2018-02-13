@@ -12,12 +12,12 @@ class App extends Component {
   constructor() {
     super();
     this.state = {
-      active: '',
+      active: 'Main',
       login: false,
       error: false,
       username: '',
       prodId: '',
-      itemPosted: false
+      itemPosted: false,
     }
   }
 
