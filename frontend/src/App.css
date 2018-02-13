@@ -41,6 +41,12 @@
   
 }
 
+.remove-button {
+  display: flex;
+  justify-content: flex-end;
+
+}
+
 .App-title {
   font-size: 1.5em;
 }

@@ -14,7 +14,21 @@ export class Profile extends Component {
             products: []
         }
     }
-    
+
+    //Will take info from backend
+    renderPerson = () => {
+        // fetch(""), {
+        //     method: 'post',
+        //     body: JSON.stringify({
+        //     username: user,
+        //     email: mail
+        //     })
+        // }
+        // .then(x => x.json())
+        // .then(console.log(x))
+    return <div>User Information</div>
+    }
+
     renderProducts = () => {
         const { products } = this.state
         if (products.length) {
@@ -73,7 +87,11 @@ export class Profile extends Component {
     render() {
         return (
             <div className="profile">
-                Profile Page  
+                <div>
+                    Profile Page  
+                    {this.renderPerson()}
+                    <button onClick={this.EditProfile}>Edit</button>
+                </div>
                     <div className="App-header">
                         <a onClick={() => this.ChangeComponent("SoldItem")}>SOLD</a>
                         <a onClick={() => this.ChangeComponent("FavItem")}>FAVORITE</a>
