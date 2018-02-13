@@ -27,6 +27,7 @@ export class Main extends Component {
                     description = {product.descr}
                     prodId= {product.prodid}
                     key= {product.prodid}
+                    price= {product.price}
                     addToBag={this.addToBag}
                     addToFav={()=>this.addToFav(product.prodid)}
                 />
