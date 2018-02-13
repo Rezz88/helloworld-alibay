@@ -3,13 +3,26 @@ import '../../App.css';
 
 export class ItemSold extends Component {
 
+    soldItem = () => {
+        // fetch(""), {
+        //     method: 'post',
+        //     body: JSON.stringify({
+        //     username: user,
+        //     email: mail
+        //     })
+        // }
+        // .then(x => x.json())
+        // .then(console.log(x))   
+    }
+
     render() {
-        const{ image, price, name, description, addToCart, addToFav} = this.props// de-structuring shit from perks
+        const{ image, price, name, description} = this.props// de-structuring shit from perks
         return (
             <div>
                 <h3>Sold item Page</h3>
             <div className='sold-item'>
                 <div>Image
+                    {/* {this.soldItem} */}
                     {image}
                 </div>
                 <div>Name

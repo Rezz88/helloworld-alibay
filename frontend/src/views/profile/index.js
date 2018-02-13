@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import '../../App.css';
+import ForSale from './Items-ForSale'
 import SoldItem from './Items-Sold'
 import FavItem from './Items-Favorite'
 import HistoryItem from './Items-History'
@@ -74,7 +75,9 @@ export class Profile extends Component {
             return <HistoryItem/>
         } else if ( active === "SoldItem") {
             return <SoldItem/>
-        } else {
+        } else if ( active === "ForSale") {
+            return <ForSale/>
+        }else {
             return <div></div>
         }
     };
@@ -93,6 +96,7 @@ export class Profile extends Component {
                     <button onClick={this.EditProfile}>Edit</button>
                 </div>
                     <div className="App-header">
+                        <a onClick={() => this.ChangeComponent("ForSale")}>FOR SALE</a>
                         <a onClick={() => this.ChangeComponent("SoldItem")}>SOLD</a>
                         <a onClick={() => this.ChangeComponent("FavItem")}>FAVORITE</a>
                         <a onClick={() => this.ChangeComponent("HistoryItem")}>HISTORY</a>

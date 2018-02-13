@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import '../../App.css';
 
-export class FavItem extends Component {
+export class ForSale extends Component {
 
-    favItem = () => {
+    saleItem = () => {
         // fetch(""), {
         //     method: 'post',
         //     body: JSON.stringify({
@@ -19,10 +19,10 @@ export class FavItem extends Component {
         const{ image, price, name, description} = this.props// de-structuring shit from perks
         return (
             <div>
-                <h3>Favorite item Page</h3>
+                <h3>Items for Sale</h3>
             <div className='sold-item'>
                 <div>Image
-                    {/* {this.favItem} */}
+                    {/* {this.forSale} */}
                     {image}
                 </div>
                 <div>Name
@@ -41,5 +41,6 @@ export class FavItem extends Component {
             </div>
         )
     }
-}   
-export default FavItem;
+} 
+
+export default ForSale;
