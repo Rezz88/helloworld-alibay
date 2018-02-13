@@ -10,18 +10,16 @@ app.use(bodyParser.raw({ type: '*/*' }))
 app.use(morgan('dev'));
 
 app.post('/signUp', async (req, res) => {
-    console.log('signup');
     res.send(await funky.signUp(JSON.parse(req.body.toString())));
 })
 
 app.post('/login', async (req, res) => {
     allUsers = fileread('./database/userInfo.json')
-    // console.log('test data read', allUsers)
     res.send(await funky.login(JSON.parse(req.body.toString()), allUsers))
  })
 
- app.post('/toSell', (req, res) => {
-      res.send(funky.createListing(JSON.parse(req.body.toString())))
+ app.post('/toSell', async (req, res) => {
+      res.send(await funky.createListing(JSON.parse(req.body.toString())));
  })
  
  app.post('/profile', (req, res) => {
