@@ -16,17 +16,16 @@ export class HistoryItem extends Component {
             <div>
                 <h3>History</h3>
             <div className='sold-item'>
-                <div>Image
-                    {/* {this.historyItem} */}
+                <div>
                     {image}
                 </div>
-                <div>Name
+                <div>
                     {name}
                 </div>
-                <div>Discription
+                <div>
                     {description}
                 </div>
-                <div>Price
+                <div>
                     {price}
                 </div>
             </div>

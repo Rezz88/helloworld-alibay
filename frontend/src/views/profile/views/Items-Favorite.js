@@ -26,17 +26,16 @@ export class FavItem extends Component {
             <div>
                 <h3>Favorite Items</h3>
             <div className='sold-item'>
-                <div>Image
-                    {/* {this.favItem} */}
+                <div>
                     {image}
                 </div>
-                <div>Name
+                <div>
                     {name}
                 </div>
-                <div>Discription
+                <div>
                     {description}
                 </div>
-                <div>Price
+                <div>
                     {price}
                 </div>
                 <div className="remove-button">

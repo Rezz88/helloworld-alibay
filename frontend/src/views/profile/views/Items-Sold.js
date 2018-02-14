@@ -16,17 +16,16 @@ export class ItemSold extends Component {
             <div>
                 <h3>Sold Items</h3>
             <div className='sold-item'>
-                <div>Image
-                    {/* {this.soldItem} */}
+                <div>
                     {image}
                 </div>
-                <div>Name
+                <div>
                     {name}
                 </div>
-                <div>Discription
+                <div>
                     {description}
                 </div>
-                <div>Price
+                <div>
                     {price}
                 </div>
             </div>
