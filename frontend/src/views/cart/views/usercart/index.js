@@ -60,7 +60,6 @@ export class Cartindex extends Component {
     //add every products.price together
     renderPrice = () => {
         const {products} = this.state
-        
         if (products)   {
             var total = 0
         for (var i = 0; i < products.length; i++)   {
@@ -73,13 +72,15 @@ export class Cartindex extends Component {
     }
 
     checkout = (item) =>  {
+        //pass username into the item with clickfunction
+        item.username = this.props.username
         //pass whole item to backend to proceed to checkout
         // fetch("/checkout", {
         //     method: "POST",
         //     body: JSON.stringify(item),
         //   })
         // this.setState({products: []})// 
-        item.username = this.props.username
+        
         let newArray = this.state.products
         let productsRemoved = newArray.filter(function(el) {
         return el.name !== item.name;  
@@ -89,15 +90,16 @@ export class Cartindex extends Component {
         console.log('checkout', item);
     }
     deleteItem = (item) =>  {
-
+        //pass username into the item with clickfunction
+        item.username = this.props.username
         //need to update backend to remove an item from cart
         // fetch("/delete", {
         //     method: "POST",
         //     body: JSON.stringify(item),
         //   })
-        item.username = this.props.username
-        let array = this.state.products
-        let newArray = array.filter(function(x) {
+        
+        let oldArray = this.state.products
+        let newArray = oldArray.filter(function(x) {
         return x.name !== item.name;  
         });
 
