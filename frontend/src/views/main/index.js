@@ -17,6 +17,7 @@ export class Main extends Component {
 
     renderProducts = () => {
         const { products } = this.state
+<<<<<<< HEAD
         if (products)    {
             return products.map(product=>{
                 return <ProductCard
@@ -31,6 +32,19 @@ export class Main extends Component {
                     // addToBag={this.addToBag}// more limited than addToFav below, works to send one props(propId)
                     addToCart={()=>this.addToCart(product)}
                     addToFav={()=>this.addToFav(product)}
+=======
+        if (products.length) {
+            return products.map(product => {
+                return <ProductCard
+                // plus whatever else we get from the backend
+                    name={product.name}
+                    image={product.image}
+                    description={product.descr}
+                    prodId={product.prodid}
+                    key={product.prodid}
+                    addToBag={this.addToBag}
+                    addToFav={() => this.addToFav(product.prodid)}
+>>>>>>> 8aead674933605d269df87f1c5847dd3a588d232
                 />
             })
         } else {
