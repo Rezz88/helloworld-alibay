@@ -17,7 +17,6 @@ export class Main extends Component {
 
     renderProducts = () => {
         const { products } = this.state
-<<<<<<< HEAD
         if (products.length)    {
             return products.map(product=>{
                 return <ProductCard
@@ -32,19 +31,6 @@ export class Main extends Component {
                     // addToBag={this.addToBag}// more limited than addToFav below, works to send one props(propId)
                     addToCart={()=>this.addToCart(product)}
                     addToFav={()=>this.addToFav(product)}
-=======
-        if (products.length) {
-            return products.map(product => {
-                return <ProductCard
-                // plus whatever else we get from the backend
-                    name={product.name}
-                    image={product.image}
-                    description={product.descr}
-                    prodId={product.prodid}
-                    key={product.prodid}
-                    addToBag={this.addToBag}
-                    addToFav={() => this.addToFav(product.prodid)}
->>>>>>> 9e2b4044c64c330f8ee4bb103917a92d39de1496
                 />
             })
         } else {
@@ -53,6 +39,7 @@ export class Main extends Component {
     }
     submitQuery = () => {
         //stretch goal for search form
+
         //fetch data from endpoint and pass it this.state.searchQuery
         // fetch('/search', {
         //     method: 'post',
@@ -68,21 +55,24 @@ export class Main extends Component {
     }
 
     addToFav = (item) =>  {
+        //pass username into the item with clickfunction
+        item.username = this.props.username
         //pass whole item to backend to store in favs
         // fetch("/fav", {
         //     method: "POST",
         //     body: JSON.stringify(item),
         //   })
-        item.username = this.props.username
+        
         console.log('fav', item);
     }
     addToCart = (item) =>  {
+        //pass username into the item with clickfunction
+        item.username = this.props.username
         //pass id's to backend to store in cart uncomment when backend is ready
         // fetch("/cart", {
         //     method: "POST",
         //     body: JSON.stringify(item),
         //   })
-        item.username = this.props.username
         console.log('Cart', item);
     }
 
