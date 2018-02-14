@@ -6,6 +6,9 @@ import { Profile } from './views/profile'
 import { Cart } from './views/cart'
 import { Login } from './views/login'
 import { Sell } from './views/sell'
+import { About } from './views/about'
+import { Contact } from './views/contact'
+
 // import {ImgVarName} from '../../backend/database/images/orchids.jpeg';
 
 class App extends Component {
@@ -18,6 +21,7 @@ class App extends Component {
       username: '',
       prodId: '',
       itemPosted: false,
+      footer: ''
     }
   }
 
@@ -26,28 +30,34 @@ class App extends Component {
   }
 
   renderComponent = () => {
-    const { active, login, error } = this.state;
-
+    const { active, login, error, itemPosted, username } = this.state;
     if (!login) {
       return <Login login={this.login} signUp={this.signUp} error={error} />  //this.login points at the function error points at the state
     } else {
       if (active === 'Main') {
-        return <Main />
+        return <Main username={username} />
       }
       else if (active === 'Profile') {
-        return <Profile />
+        return <Profile username={username} />
       }
       else if (active === 'Cart') {
-        return <Cart />
+        return <Cart username={username} />
       }
       else if (active === 'Sell') {
-        return <Sell addItem={this.addItem} />
+        return <Sell addItem={this.addItem} itemPosted={itemPosted} />
+      }
+      else if (active === 'About') {
+        return <About />
+      }
+      else if (active === 'ContactUs') {
+        return <Contact  />
       }
       else {
         return <div></div>
       }
     }
   }
+
 
   login = (username, password) => {
     this.setState({ username })
@@ -68,6 +78,7 @@ class App extends Component {
   }
 
   signUp = (user, pass, mail) => {
+    this.setState({ username: user })
     fetch('/signUp', {
       method: 'post',
       body: JSON.stringify({
@@ -90,27 +101,22 @@ class App extends Component {
     //change x to something more descriptive
   }
 
-  addItem = (name, description, price) => {
+  addItem = (name, blurb, price) => {
     fetch('/toSell', {
       method: 'post',
-      body: JSON.stringify({
-        name,
-        description,
+      body: JSON.stringify({   //send the suername instead of name
+        username: name,
+        blurb,
         price
       })
     })
       .then(x => x.text())
       .then(x => JSON.parse(x))
       .then(x => { console.log("new Item: ", x); return x })
-      .then(x => this.setState({
-        prodId: x.prodId,
-        itemPosted: x.itemPosted
-      }))
-      .then(() => {
-        if (this.state.itemPosted === false) {
-          return 'Your fields are incomplete'
-        }
-      })
+      .then(() =>
+        this.setState({
+          itemPosted: true
+        }))
   }
 
   render() {
@@ -135,7 +141,16 @@ class App extends Component {
         <div>
           {this.renderComponent()}
         </div>
+        <ul className='App-footer'>
+          <li>
+            <a onClick={() => this.ChangeComponent('About')}>a b o u t</a>
+          </li>
+          <li>
+            <a onClick={() => this.ChangeComponent('ContactUs')}>c o n t a c t </a>
+          </li>
+        </ul>
       </div>
+
     )
   }
 }

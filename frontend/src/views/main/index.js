@@ -11,35 +11,17 @@ export class Main extends Component {
         }
     }
 
-<<<<<<< HEAD
-
-
-=======
->>>>>>> f0ca7760ed154ea08887dfb36d454a7089ad2bd5
     // CallParentFunction = () => {
     //     this.props.changeParentState(false)
     //   }
 
     renderProducts = () => {
         const { products } = this.state
-<<<<<<< HEAD
-        if (products.length) {
-            return products.map(product => {
-=======
         if (products)    {
             return products.map(product=>{
->>>>>>> f0ca7760ed154ea08887dfb36d454a7089ad2bd5
                 return <ProductCard
                 // plus whatever else we get from the backend
                     name={product.name}
-<<<<<<< HEAD
-                    image={product.image}
-                    description={product.descr}
-                    prodId={product.prodid}
-                    key={product.prodid}
-                    addToBag={this.addToBag}
-                    addToFav={() => this.addToFav(product.prodid)}
-=======
                     image= {product.image}
                     description= {product.descr}
                     sellerId= {product.seller}
@@ -49,7 +31,6 @@ export class Main extends Component {
                     // addToBag={this.addToBag}// more limited than addToFav below, works to send one props(propId)
                     addToCart={()=>this.addToCart(product)}
                     addToFav={()=>this.addToFav(product)}
->>>>>>> f0ca7760ed154ea08887dfb36d454a7089ad2bd5
                 />
             })
         } else {
@@ -72,15 +53,6 @@ export class Main extends Component {
         this.setState({ searchQuery: event.target.value })
     }
 
-<<<<<<< HEAD
-    addToFav = (id) => {
-        //pass id's to backend to store in favs
-        console.log('fav', id);
-    }
-    addToBag = (id) => {
-        //pass id's to backend to store in bag
-        console.log('bag', id);
-=======
     addToFav = (item) =>  {
         //pass whole item to backend to store in favs
         // fetch("/fav", {
@@ -96,7 +68,6 @@ export class Main extends Component {
         //     body: JSON.stringify(item),
         //   })
         console.log('Cart', item);
->>>>>>> f0ca7760ed154ea08887dfb36d454a7089ad2bd5
     }
 
     componentDidMount() {
@@ -109,39 +80,6 @@ export class Main extends Component {
         //for mock testing below
 
         const mockproducts = [
-<<<<<<< HEAD
-            {
-                prodid: 1,
-                name: 'car',
-                descr: 'description of car',
-                image: 'image of car'
-            },
-            {
-                prodid: 2,
-                name: 'boat',
-                descr: 'description of boat',
-                image: 'image of boat'
-            },
-            {
-                prodid: 3,
-                name: 'shoes',
-                descr: 'description of shoes',
-                image: 'image of shoes'
-            }
-        ]
-        this.setState({ products: mockproducts })
-    }
-
-    render() {
-        return (
-            <div>
-                <div>
-                    WELCOME
-                </div>
-                <div>
-                    <input
-                        placeholder="Search for item..."
-=======
             {prodId: 1,
                 name: 'car',
                 descr: 'description of car',
@@ -175,7 +113,6 @@ export class Main extends Component {
                 <div className='Main-items'>
                     <input  
                         placeholder="Does not work yet..."
->>>>>>> f0ca7760ed154ea08887dfb36d454a7089ad2bd5
                         value={this.state.searchQuery}
                         onChange={this.onInput}>
                     </input>
@@ -188,9 +125,4 @@ export class Main extends Component {
             </div>
         )
     }
-<<<<<<< HEAD
 }
-
-=======
-}
->>>>>>> f0ca7760ed154ea08887dfb36d454a7089ad2bd5
