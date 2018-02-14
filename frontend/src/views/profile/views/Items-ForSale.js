@@ -3,6 +3,8 @@ import '../../../App.css';
 
 export class ForSale extends Component {
 
+
+
     saleItem = () => {
         // fetch(""), {
         //     method: 'post',
@@ -11,6 +13,7 @@ export class ForSale extends Component {
         // }
         // .then(x => x.json())
         // .then(console.log(x))   
+
     }
 
     removeSale = (item) =>  {
@@ -22,6 +25,16 @@ export class ForSale extends Component {
         this.setState({products: []})// 
         console.log('deleteItem', item);
     }
+
+    componentDidMount() {
+          // fetch(""), {
+        //     method: 'post',
+        //     body: JSON.stringify({
+        //     })
+        // }
+        this.setState({})
+    }
+
 
     render() {
         const{ image, price, name, description} = this.props// de-structuring shit from perks

@@ -96,7 +96,14 @@ export class Checkoutindex extends Component {
     render() {
         return  (
             <div className='App'>
-                <div>
+                <div className='Main-items'>
+                    SHIPPING INFO
+                </div>
+
+                <div className='Main-items'>
+                    ORDER SUMMARY
+                </div>
+                <div className='Main-items'>
                     Items in checkout: {this.state.products.length} 
                 </div>
                 
