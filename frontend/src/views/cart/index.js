@@ -7,7 +7,6 @@ export class Cart extends Component {
     constructor()   {
         super()
         this.state = { active: 'Cartindex'}
-
     }
 
     ChangeComponent = (component) => {
@@ -18,10 +17,14 @@ export class Cart extends Component {
         const { active } = this.state;
     
           if (active === 'Cartindex') {
-            return <Cartindex />
+            return <Cartindex 
+            username={this.props.username}
+            />
           }
           else if (active === 'Checkoutindex') {
-            return <Checkoutindex />
+            return <Checkoutindex
+            username={this.props.username}
+            />
           }
           else {
             return <div></div>
@@ -39,7 +42,7 @@ export class Cart extends Component {
                   <a onClick={() => this.ChangeComponent('Cartindex')}>  Cart</a>
                 </li>
                 <li>
-                  <a onClick={() => this.ChangeComponent('Checkoutindex')}>Buy</a>
+                  <a onClick={() => this.ChangeComponent('Checkoutindex')}>Checkout</a>
                 </li>
               </ul>
               <div>

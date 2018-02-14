@@ -24,9 +24,8 @@ export default class Cartcard extends Component {
                     <button onClick={checkout}>C H E C K O U T</button>
                     <button onClick={deleteItem}>D E L E T E</button>
                 </div>
-                
-
             </div>
+            
         )
     }
 

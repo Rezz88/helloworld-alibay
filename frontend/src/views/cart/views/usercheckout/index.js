@@ -20,17 +20,16 @@ export class Checkoutindex extends Component {
             {prodId: 1,
                 name: 'car //  mock data',
                 descr: 'description of car is mock data',
-                price: '$1000',
+                price: 1000,
                 image: 'image of car',
                 sellerId: 'John'},
             {prodId: 2,
                 name: 'boat //  mock data',
                 descr: 'description of boat',
-                price: '$2000',
+                price: 2000,
                 image: 'image of boat',
-                sellerId: 'mike'}
+                sellerId: 'barb'}
             ]
-            this.setState({counter: this.state.sounter })
             this.setState({products: mockCart})
     }
 
@@ -53,33 +52,32 @@ export class Checkoutindex extends Component {
                 />
             })
         } else {
-            return <div>nothing</div>
+            return <div>you have no items</div>
+        }
+    }
+    renderPrice = () => {
+        const {products} = this.state
+        
+        if (products)   {
+            var total = 0
+        for (var i = 0; i < products.length; i++)   {
+            total += products[i].price
+        }
+        return total}
+        else {
+            return <div>$0.00</div>
         }
     }
 
-    checkout = (item) =>  {
-        //pass whole item to backend to proceed to checkout
-        // fetch("/checkout", {
-        //     method: "POST",
-        //     body: JSON.stringify(item),
-        //   })
-        // this.setState({products: []})// 
-
-        let newArray = this.state.products
-        let productsRemoved = newArray.filter(function(el) {
-        return el.name !== item.name;  
-        });
-        this.setState({products: productsRemoved})// 
-
-        console.log('checkout', item);
-    }
     deleteItem = (item) =>  {
-
+        //pass username into the item with clickfunction
+        item.username = this.props.username
         //need to update backend to remove an item from cart
         // fetch("/delete", {
         //     method: "POST",
         //     body: JSON.stringify(item),
         //   })
+        
         let newArray = this.state.products
         let productsRemoved = newArray.filter(function(el) {
         return el.name !== item.name;  
@@ -104,6 +102,12 @@ export class Checkoutindex extends Component {
                 
                 <div>
                     {this.renderProducts()}
+                </div>
+                <div>
+                    {' YOUR TOTAL IS $'+this.renderPrice()}
+                </div>
+                <div>
+                    <button onClick={this.deleteItem}>B U Y</button>
                 </div>
             </div>
         )

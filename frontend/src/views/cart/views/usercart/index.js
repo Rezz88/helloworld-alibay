@@ -20,20 +20,19 @@ export class Cartindex extends Component {
             {prodId: 1,
                 name: 'car //  mock data',
                 descr: 'description of car is mock data',
-                price: '$1000',
+                price: 1000,
                 image: 'image of car',
                 sellerId: 'John'},
             {prodId: 2,
                 name: 'boat //  mock data',
                 descr: 'description of boat',
-                price: '$2000',
+                price: 2000,
                 image: 'image of boat',
-                sellerId: 'mike'}
+                sellerId: 'barb'}
             ]
-            this.setState({counter: this.state.sounter })
             this.setState({products: mockCart})
     }
-
+    
     renderProducts = () => {
         const { products } = this.state
         if (products)    {
@@ -46,25 +45,42 @@ export class Cartindex extends Component {
                     sellerId= {product.seller}
                     prodId= {product.prodId}
                     key= {product.prodId}
-                    price= {product.price}
-                    // addToBag={this.addToBag}// more limited than addToFav below, works to send one props(propId)
+                    price= {'$'+product.price}
                     checkout={()=>this.checkout(product)}
                     deleteItem={()=>this.deleteItem(product)}
                 />
+                
             })
+            
         } else {
-            return <div>nothing</div>
+            return <div>cart is empty</div>
+        }
+    }
+
+    //add every products.price together
+    renderPrice = () => {
+        const {products} = this.state
+        if (products)   {
+            var total = 0
+        for (var i = 0; i < products.length; i++)   {
+            total += products[i].price
+        }
+        return total}
+        else {
+            return <div>$0.00</div>
         }
     }
 
     checkout = (item) =>  {
+        //pass username into the item with clickfunction
+        item.username = this.props.username
         //pass whole item to backend to proceed to checkout
         // fetch("/checkout", {
         //     method: "POST",
         //     body: JSON.stringify(item),
         //   })
         // this.setState({products: []})// 
-
+        
         let newArray = this.state.products
         let productsRemoved = newArray.filter(function(el) {
         return el.name !== item.name;  
@@ -74,14 +90,16 @@ export class Cartindex extends Component {
         console.log('checkout', item);
     }
     deleteItem = (item) =>  {
-
+        //pass username into the item with clickfunction
+        item.username = this.props.username
         //need to update backend to remove an item from cart
         // fetch("/delete", {
         //     method: "POST",
         //     body: JSON.stringify(item),
         //   })
-        let array = this.state.products
-        let newArray = array.filter(function(x) {
+        
+        let oldArray = this.state.products
+        let newArray = oldArray.filter(function(x) {
         return x.name !== item.name;  
         });
 
@@ -103,7 +121,11 @@ export class Cartindex extends Component {
                 </div>
                 
                 <div>
+                    
                     {this.renderProducts()}
+                </div>
+                <div>
+                    {' YOUR TOTAL IS $'+this.renderPrice()}
                 </div>
             </div>
         )

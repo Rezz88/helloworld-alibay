@@ -4,7 +4,12 @@ import '../../App.css';
 export class Sell extends Component {
     constructor() {
         super();
-        this.state = { itemPosted: false, name: 'asd', description: 'asd', price: '123' }
+        this.state = { 
+            itemPosted: false,
+            name: 'asd',
+            description: 'asd', 
+            price: '123' 
+        }
     }
 
     setInputValue = (key, value) => {
