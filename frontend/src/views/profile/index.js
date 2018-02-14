@@ -16,40 +16,7 @@ export class Profile extends Component {
         }
     }
 
-    //Will take info from backend
-    renderPerson = () => {
-        // fetch(""), {
-        //     method: 'post',
-        //     body: JSON.stringify({
-        //     username: user,
-        //     email: mail
-        //     })
-        // }
-        // .then(x => x.json())
-        // .then(console.log(x))
-    return <div>User Information</div>
-    }
-
-    renderProducts = () => {
-        const { products } = this.state
-        if (products.length) {
-            return products.map(product => {
-                return <SoldItem
-                    name={product.name}
-                    image={product.image}
-                    description={product.descr}
-                    prodId={product.prodid}
-                    key={product.prodid}
-                    // Currently not required for profile
-                    // addToBag={this.addToBag}
-                    // addToFav={() => this.addToFav(product.prodid)}
-                />
-            })
-        } else {
-            return <div>nothing</div>
-        }
-    }
-
+    //Temp mockdata for testing
     componentDidMount(){
         const mockproducts = [
             {prodid: 1,
@@ -68,6 +35,40 @@ export class Profile extends Component {
         this.setState({ products: mockproducts })
     };
 
+    renderProducts = () => {
+        const { products } = this.state
+        if (products.length) {
+            return products.map(product => {
+                return <ForSale
+                    name={product.name}
+                    image={product.image}
+                    description={product.descr}
+                    prodId={product.prodId}
+                    key={product.prodId}
+                    // Currently not required for profile
+                    // addToBag={this.addToBag}
+                    // addToFav={() => this.addToFav(product.prodid)}
+                />
+            })
+        } else {
+            return <div>Nothing</div>
+        }
+    }
+
+    //Will take info from backend
+    renderPerson = () => {
+        // fetch(""), {
+        //     method: 'post',
+        //     body: JSON.stringify({
+        //     username: user,
+        //     email: mail
+        //     })
+        // }
+        // .then(x => x.json())
+        // .then(console.log(x))
+    return <div>User Information</div>
+    }
+
     renderComponent = () => {
         const {active} = this.state;
         if( active === "FavItem") {
@@ -83,11 +84,16 @@ export class Profile extends Component {
         }
     };
 
+    // displaySale = () => {
+    //     if (active = "ForSale") {
+    //         return 
+    //     }
+    // }
+
     ChangeComponent = (component) => {
         this.setState({ active: component })
       }
  
-
     render() {
         return (
             <div className="profile">
@@ -103,37 +109,10 @@ export class Profile extends Component {
                         <a onClick={() => this.ChangeComponent("HistoryItem")}>HISTORY</a>
                     </div>
                 <div>{this.renderComponent()}</div>
+                <div>{this.renderProducts()}</div>
             </div>
         );
     }
 }
 
 export default Profile;
-
-
-
-    // Currently not in use until functions are completed
-
-    // newItem = () => {
-    //     // fetch("")
-    //     // .then(x => x.json())
-    //     // .then(x => console.log(x))
-    // };
-
-    // soldItem = () => {
-    //     fetch("")
-    //     .then(x => x.json())
-    //     .then(x => console.log(x))
-    // };
-
-    // forSaleItem = () => {
-    //     fetch("")
-    //     .then(x => x.json())
-    //     .then(x => console.log(x))
-    // };
-
-    // history = () => {
-    //     fetch("")
-    //     .then(x => x.json())
-    //     .then(x => console.log(x))
-    // };

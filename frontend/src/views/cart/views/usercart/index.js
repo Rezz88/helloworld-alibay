@@ -74,6 +74,7 @@ export class Cartindex extends Component {
     checkout = (item) =>  {
         //pass username into the item with clickfunction
         item.username = this.props.username
+
         //pass whole item to backend to proceed to checkout
         // fetch("/checkout", {
         //     method: "POST",
@@ -81,6 +82,9 @@ export class Cartindex extends Component {
         //   })
         // this.setState({products: []})// 
         
+        //or
+        //this sends back the cart products array to the backend minus the item
+        //that was checked out -- to rewrite
         let newArray = this.state.products
         let productsRemoved = newArray.filter(function(el) {
         return el.name !== item.name;  
@@ -92,6 +96,7 @@ export class Cartindex extends Component {
     deleteItem = (item) =>  {
         //pass username into the item with clickfunction
         item.username = this.props.username
+
         //need to update backend to remove an item from cart
         // fetch("/delete", {
         //     method: "POST",
