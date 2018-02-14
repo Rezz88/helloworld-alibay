@@ -18,10 +18,14 @@ export class Cart extends Component {
         const { active } = this.state;
     
           if (active === 'Cartindex') {
-            return <Cartindex />
+            return <Cartindex 
+            username={this.props.username}
+            />
           }
           else if (active === 'Checkoutindex') {
-            return <Checkoutindex />
+            return <Checkoutindex
+            username={this.props.username}
+            />
           }
           else {
             return <div></div>

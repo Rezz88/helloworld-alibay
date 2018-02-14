@@ -20,17 +20,16 @@ export class Checkoutindex extends Component {
             {prodId: 1,
                 name: 'car //  mock data',
                 descr: 'description of car is mock data',
-                price: '$1000',
+                price: 1000,
                 image: 'image of car',
                 sellerId: 'John'},
             {prodId: 2,
                 name: 'boat //  mock data',
                 descr: 'description of boat',
-                price: '$2000',
+                price: 2000,
                 image: 'image of boat',
-                sellerId: 'mike'}
+                sellerId: 'barb'}
             ]
-            this.setState({counter: this.state.sounter })
             this.setState({products: mockCart})
     }
 
@@ -54,6 +53,19 @@ export class Checkoutindex extends Component {
             })
         } else {
             return <div>nothing</div>
+        }
+    }
+    renderPrice = () => {
+        const {products} = this.state
+        
+        if (products)   {
+            var total = 0
+        for (var i = 0; i < products.length; i++)   {
+            total += products[i].price
+        }
+        return total}
+        else {
+            return <div>$0.00</div>
         }
     }
 
@@ -80,6 +92,7 @@ export class Checkoutindex extends Component {
         //     method: "POST",
         //     body: JSON.stringify(item),
         //   })
+        item.username = this.props.username
         let newArray = this.state.products
         let productsRemoved = newArray.filter(function(el) {
         return el.name !== item.name;  
@@ -104,6 +117,12 @@ export class Checkoutindex extends Component {
                 
                 <div>
                     {this.renderProducts()}
+                </div>
+                <div>
+                    {' YOUR TOTAL IS $'+this.renderPrice()}
+                </div>
+                <div>
+                    <button onClick={this.deleteItem}>B U Y</button>
                 </div>
             </div>
         )

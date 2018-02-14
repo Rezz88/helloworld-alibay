@@ -17,8 +17,7 @@ export class Main extends Component {
 
     renderProducts = () => {
         const { products } = this.state
-<<<<<<< HEAD
-        if (products)    {
+        if (products.length)    {
             return products.map(product=>{
                 return <ProductCard
                 // plus whatever else we get from the backend
@@ -32,19 +31,6 @@ export class Main extends Component {
                     // addToBag={this.addToBag}// more limited than addToFav below, works to send one props(propId)
                     addToCart={()=>this.addToCart(product)}
                     addToFav={()=>this.addToFav(product)}
-=======
-        if (products.length) {
-            return products.map(product => {
-                return <ProductCard
-                // plus whatever else we get from the backend
-                    name={product.name}
-                    image={product.image}
-                    description={product.descr}
-                    prodId={product.prodid}
-                    key={product.prodid}
-                    addToBag={this.addToBag}
-                    addToFav={() => this.addToFav(product.prodid)}
->>>>>>> 8aead674933605d269df87f1c5847dd3a588d232
                 />
             })
         } else {
@@ -73,6 +59,7 @@ export class Main extends Component {
         //     method: "POST",
         //     body: JSON.stringify(item),
         //   })
+        item.username = this.props.username
         console.log('fav', item);
     }
     addToCart = (item) =>  {
@@ -81,17 +68,18 @@ export class Main extends Component {
         //     method: "POST",
         //     body: JSON.stringify(item),
         //   })
+        item.username = this.props.username
         console.log('Cart', item);
     }
 
     componentDidMount() {
-        //fetch items from backend uncomment when backend is ready
+        // fetch items from backend uncomment when backend is ready
         // fetch("/items")
         // .then(x=> x.text())
         // .then(y=> JSON.parse(y))
         // .then(lst=> this.setState({ products: lst}))
 
-        //for mock testing below
+        // for mock testing below
 
         const mockproducts = [
             {prodId: 1,
@@ -113,8 +101,7 @@ export class Main extends Component {
                 image: 'image of shoes',
                 sellerId: 'bob'}
             ]
-         
-
+            
             this.setState({products: mockproducts})
     }
 
