@@ -7,8 +7,6 @@ export class ItemSold extends Component {
         // fetch(""), {
         //     method: 'post',
         //     body: JSON.stringify({
-        //     username: user,
-        //     email: mail
         //     })
         // }
         // .then(x => x.json())
