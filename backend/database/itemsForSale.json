@@ -1,35 +1,58 @@
 [
   {
-    "username": "manny",
-    "forSale": []
-  },
-  {
     "username": "gleb",
     "forSale": [
       {
-        "productID": 73280240,
-        "price": "44",
-        "blurb": "russian hat"
+        "username": "gleb",
+        "productID": 29605786,
+        "price": "300",
+        "blurb": "a russian something"
+      },
+      {
+        "username": "gleb",
+        "productID": 63874095,
+        "price": "22",
+        "blurb": "llama"
+      },
+      {
+        "username": "gleb",
+        "productID": 56663704,
+        "price": "39",
+        "blurb": "a damn laptop"
       }
     ]
   },
   {
-    "username": "dre",
+    "username": "manny",
     "forSale": [
       {
-        "productID": 34423912,
-        "price": "990",
-        "blurb": "a damn car"
+        "username": "manny",
+        "productID": 90820147,
+        "price": "1000",
+        "blurb": "i dunno man.. things?"
+      },
+      {
+        "username": "manny",
+        "productID": 29775658,
+        "price": "21",
+        "blurb": "beer!!"
       }
     ]
   },
   {
-    "username": "bobby",
+    "username": "washy",
     "forSale": [
       {
-        "productID": 88316152,
-        "price": "776",
-        "blurb": "a damn boat"
+        "username": "washy",
+        "productID": 95213697,
+        "price": "2222",
+        "blurb": "riffle"
+      },
+      {
+        "username": "washy",
+        "productID": 98846714,
+        "price": "11",
+        "blurb": "retro hat"
       }
     ]
   }
