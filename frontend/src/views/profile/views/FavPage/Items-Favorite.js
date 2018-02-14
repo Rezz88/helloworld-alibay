@@ -1,20 +1,30 @@
 import React, { Component } from 'react';
-import '../../../App.css';
+import '../../../../App.css';
 
-export class HistoryItem extends Component {
+export class FavItem extends Component {
 
-    historyItem = () => {
+    favItem = () => {
     // fetch("")
         // .then(x=> x.text())
         // .then(y=> JSON.parse(y))
         // .then(lst=> this.setState({ products: lst}))
     }
 
+    removeFav = (item) =>  {
+        //Need to update backend to remove an item from favoirte page
+        // fetch("", {
+        //     method: "POST",
+        //     body: JSON.stringify(item),
+        //   })
+        this.setState({products: []})// 
+        console.log('deleteItem', item);
+    }
+
     render() {
         const{ image, price, name, description} = this.props// de-structuring shit from perks
         return (
             <div>
-                <h3>History</h3>
+                <h3>Favorite Items</h3>
             <div className='sold-item'>
                 <div>
                     {image}
@@ -28,9 +38,12 @@ export class HistoryItem extends Component {
                 <div>
                     {price}
                 </div>
+                <div className="remove-button">
+                    <button onClick={this.removeFav}>Remove</button>
+                </div>    
             </div>
             </div>
         )
     }
-} 
-export default HistoryItem;
+}   
+export default FavItem;
