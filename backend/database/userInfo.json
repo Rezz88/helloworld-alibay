@@ -43,18 +43,12 @@
     "email": "mmmsl@sdn.com",
     "password": "00kppp",
     "cart": [],
-    "itemsForSale": [
-      {
-        "productID": 69872745,
-        "price": "200", 
-        "blurb": "nice fuckin shoes"
-      }
-    ],
+    "itemsForSale": [],
     "itemsSold": [
       {
-        "productID": 30903942,
-        "price": "12",
-        "blurb": "ugly damn shorts"
+        "productID": 69872745,
+        "price": "200",
+        "blurb": "nice fuckin shoes"
       }
     ],
     "itemsBought": []
@@ -64,13 +58,19 @@
     "email": "asljasd@ass.com",
     "password": "jhkasdhk",
     "cart": [],
-    "itemsForSale": [],
+    "itemsForSale": [
+      {
+        "productID": 88316152,
+        "price": "776",
+        "blurb": "a damn boat"
+      }
+    ],
     "itemsSold": [],
     "itemsBought": [
       {
-        "productID": 30903942,
-        "price": "12",
-        "blurb": "ugly damn shorts"
+        "productID": 69872745,
+        "price": "200",
+        "blurb": "nice fuckin shoes"
       }
     ]
   }

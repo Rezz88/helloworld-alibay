@@ -1,18 +1,7 @@
 [
   {
     "username": "manny",
-    "forSale": [
-      {
-        "productID": 13180659,
-        "price": "200",
-        "blurb": "nice fuckin shoes"
-      },
-      {
-        "productID": 30903942,
-        "price": "12",
-        "blurb": "ugly damn shorts"
-      }
-    ]
+    "forSale": []
   },
   {
     "username": "gleb",

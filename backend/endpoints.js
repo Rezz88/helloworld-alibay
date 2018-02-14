@@ -26,6 +26,9 @@ app.post('/login', async (req, res) => {
      res.send(funky.buyItem(JSON.parse(req.body.toString())));
  })
  
+ app.post('/main', (req, res) => {
+    res.send(funky.mainPage(JSON.parse(req.body.toString())));   
+ })
  app.post('/profile', (req, res) => {
 
  })
@@ -34,9 +37,6 @@ app.post('/login', async (req, res) => {
      
 })
 
-app.post('/main', (req, res) => {
-     
-})
 
 
 app.listen(4000, console.log("We're a go!"))
