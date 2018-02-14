@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
-import '../../App.css';
+import '../../../../App.css';
 
-export default class Usercart extends Component {
+export default class Checkoutcard extends Component {
 
 
     render() {
-        const{ image, price, name, description, checkout, deleteItem} = this.props// de-structuring shit from perks
+        const{ image, price, name, description, deleteItem} = this.props// de-structuring shit from perks
         return (
             <div className='Main-items'>
                 <div>
@@ -21,7 +21,6 @@ export default class Usercart extends Component {
                     {price}
                 </div>
                 <div>
-                    <button onClick={checkout}>C H E C K O U T</button>
                     <button onClick={deleteItem}>D E L E T E</button>
                 </div>
                 
