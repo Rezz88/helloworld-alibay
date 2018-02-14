@@ -14,13 +14,13 @@ export default class ProductCard extends Component {
                     {username}
                 </div>
                 <div>
-                    {productID}
+                    {'product ID: ' +productID}
                 </div>
                 <div>
                     {description}
                 </div>
                 <div>
-                    {price}
+                    {"$ "+price}
                 </div>
                 <div>
                     {/* <button onClick={()=>addToBag(prodId)}>ADD</button> ** use 'prodId' in de-structuring above */}

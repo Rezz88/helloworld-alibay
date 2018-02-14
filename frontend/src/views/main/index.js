@@ -24,7 +24,7 @@ export class Main extends Component {
                 // plus whatever else we get from the backend
                     username={product.username}
                     productID= {product.productID}
-                    // description= {product.descr.descr}
+                    description= {product.blurb}
                     // sellerId= {product.seller}
                     // prodId= {product.prodId}
                     // key= {product.prodId}
@@ -79,30 +79,7 @@ export class Main extends Component {
     }
 
     componentDidMount() {
-        let forSaleProducts = []
-        // fetch items from backend uncomment when backend is ready
-        fetch("/items")
-        .then(x=> x.text())
-        .then(y=> JSON.parse(y))
-        .then(lst=> 
-            // this.setState({ products: lst})
-                lst.forEach(item=> {
-                forSaleProducts.push(item.forSale)
-            })
-        )
-            //concat these arrays
-            var forSaleAll = []
-            for (var i = 0; i < forSaleProducts.length; i++)   {
-                for (var j = 0; j < forSaleProducts[i].length; j++) {
-                    forSaleAll.push(forSaleProducts[i][j])
-            }}
-            
-            this.setState({products: forSaleAll})
-            
-            console.log('forsaleAll = ',forSaleAll)
 
-        // for mock testing below
-        
         // const lst = [
         //     {  
         //         username: 'john',
@@ -156,6 +133,37 @@ export class Main extends Component {
         //         ]
         //     }
         //     ]
+        let forSaleProducts = []
+        // fetching items from backend
+        fetch("/main")
+        .then(x=> x.text())
+        .then(y=> JSON.parse(y))
+        // .then(y=>{console.log('y=',y); return y})
+        .then(lst=>{
+                    lst.forEach(item=> {
+                        forSaleProducts.push(item.forSale)
+                        }
+                    )
+                    var forSaleAll = []
+            for (var i = 0; i < forSaleProducts.length; i++)   {
+                for (var j = 0; j < forSaleProducts[i].length; j++) {
+                    forSaleAll.push(forSaleProducts[i][j])
+            }}
+            console.log('forsaleAll = ',forSaleAll)
+            return this.setState({products: forSaleAll})
+                }
+            )
+            // this.setState({ products: lst})
+                
+        
+            //concat these arrays
+            
+            
+            
+
+        // for mock testing below
+        
+        
             // this.setState({products: mockproducts})
     }
 
