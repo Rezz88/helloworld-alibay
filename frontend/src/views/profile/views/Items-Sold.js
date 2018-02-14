@@ -1,28 +1,23 @@
 import React, { Component } from 'react';
-import '../../App.css';
+import '../../../App.css';
 
-export class HistoryItem extends Component {
+export class ItemSold extends Component {
 
-    historyItem = () => {
-        // fetch(""), {
-        //     method: 'post',
-        //     body: JSON.stringify({
-        //     username: user,
-        //     email: mail
-        //     })
-        // }
-        // .then(x => x.json())
-        // .then(console.log(x))   
+    soldItem = () => {
+    // fetch("")
+        // .then(x=> x.text())
+        // .then(y=> JSON.parse(y))
+        // .then(lst=> this.setState({ products: lst})) 
     }
 
     render() {
         const{ image, price, name, description} = this.props// de-structuring shit from perks
         return (
             <div>
-                <h3>History Page</h3>
+                <h3>Sold Items</h3>
             <div className='sold-item'>
                 <div>Image
-                    {/* {this.historyItem} */}
+                    {/* {this.soldItem} */}
                     {image}
                 </div>
                 <div>Name
@@ -38,5 +33,6 @@ export class HistoryItem extends Component {
             </div>
         )
     }
-} 
-export default HistoryItem;
+}     
+
+export default ItemSold;

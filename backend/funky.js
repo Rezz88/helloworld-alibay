@@ -179,7 +179,7 @@ const buyItem = (itemInfo) => {
             if (Number(things.productID) === Number(toBuyProductID)) {
                 soldItem = things
                 sellingUser = sellTempDB[pos].username
-                console.log('soldItem: ', soldItem);
+                // console.log('soldItem: ', soldItem);
             }
         });
     });
@@ -189,44 +189,50 @@ const buyItem = (itemInfo) => {
     userTempDB.forEach((item, pos) => {
         if (item.username === sellingUser) {
             userTempDB[pos].itemsSold.push(soldItem);
-            console.log('new sell: ',userTempDB[pos].itemsSold)
-            //*** figure out how to delete item from array */
-            // userTempDB[pos].itemsForSale.pop(soldItem);
         }
         if (item.username === buyerUsername) {
             userTempDB[pos].itemsBought.push(soldItem);
-            console.log('sold item to remove: ',userTempDB[pos].itemsBought.push(soldItem))
-            //*** figure out how to delete item from array */
-            // userTempDB[pos].cart.pop(soldItem);
         }
     })
+    sellTempDB.forEach((item, pos, arr) => {
+        if (item.username === sellingUser) {
+            sellTempDB[pos].forSale.forEach((things, posit) => {
+                if (Number(things.productID) === Number(toBuyProductID)){
+                    //deletes item from  all items 
+                    sellTempDB[pos].forSale.splice(posit, 1)
+                }
+            })
+        }
+    });
 
-    // sellTempDB.forEach((item, pos) => {
-    //     if (item.username === sellingUser) {
-    //         sellTempDB[pos].forSale
-    //         //*** figure out how to delete item from array */
-    //         //sellTempDB[pos].forsale.pop?(soldItem);
-    //     }
-    // })
-    console.log('sellingUser: ',sellingUser)
-    console.log('soldItem: ', soldItem)
-    tools.FileWriteSync(dbForSalePath, JSON.stringify(sellTempDB));
-    tools.FileWriteSync(userDbPath, JSON.stringify(userTempDB))
+    userTempDB.forEach((item, pos, arr) => {
+        if (item.username === sellingUser) {
+            userTempDB[pos].itemsForSale.forEach((things, posit) => {
+                if (Number(things.productID) === Number(toBuyProductID)){
+                    //deletes item from  all items 
+                    userTempDB[pos].itemsForSale.splice(posit, 1)
+                }
+            })
+            
+        }
+    });
 
-
+        console.log('sellingUser: ',sellingUser)
+        console.log('soldItem: ', soldItem)
+        tools.FileWriteSync(dbForSalePath, JSON.stringify(sellTempDB));
+        tools.FileWriteSync(userDbPath, JSON.stringify(userTempDB))
 }
 
-
-
-
-
-
-
+const mainPage = () => {
+    var allItems = JSON.parse(tools.FileReadSync(dbForSalePath));
+    return allItems;
+}
 
 module.exports = {
     login,
     signUp,
     createListing,
-    buyItem
+    buyItem,
+    mainPage
 }
 

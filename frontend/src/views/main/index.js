@@ -39,6 +39,7 @@ export class Main extends Component {
     }
     submitQuery = () => {
         //stretch goal for search form
+
         //fetch data from endpoint and pass it this.state.searchQuery
         // fetch('/search', {
         //     method: 'post',
@@ -54,21 +55,24 @@ export class Main extends Component {
     }
 
     addToFav = (item) =>  {
+        //pass username into the item with clickfunction
+        item.username = this.props.username
         //pass whole item to backend to store in favs
         // fetch("/fav", {
         //     method: "POST",
         //     body: JSON.stringify(item),
         //   })
-        item.username = this.props.username
+        
         console.log('fav', item);
     }
     addToCart = (item) =>  {
+        //pass username into the item with clickfunction
+        item.username = this.props.username
         //pass id's to backend to store in cart uncomment when backend is ready
         // fetch("/cart", {
         //     method: "POST",
         //     body: JSON.stringify(item),
         //   })
-        item.username = this.props.username
         console.log('Cart', item);
     }
 

@@ -52,7 +52,7 @@ export class Checkoutindex extends Component {
                 />
             })
         } else {
-            return <div>nothing</div>
+            return <div>you have no items</div>
         }
     }
     renderPrice = () => {
@@ -69,30 +69,15 @@ export class Checkoutindex extends Component {
         }
     }
 
-    checkout = (item) =>  {
-        //pass whole item to backend to proceed to checkout
-        // fetch("/checkout", {
-        //     method: "POST",
-        //     body: JSON.stringify(item),
-        //   })
-        // this.setState({products: []})// 
-
-        let newArray = this.state.products
-        let productsRemoved = newArray.filter(function(el) {
-        return el.name !== item.name;  
-        });
-        this.setState({products: productsRemoved})// 
-
-        console.log('checkout', item);
-    }
     deleteItem = (item) =>  {
-
+        //pass username into the item with clickfunction
+        item.username = this.props.username
         //need to update backend to remove an item from cart
         // fetch("/delete", {
         //     method: "POST",
         //     body: JSON.stringify(item),
         //   })
-        item.username = this.props.username
+        
         let newArray = this.state.products
         let productsRemoved = newArray.filter(function(el) {
         return el.name !== item.name;  
