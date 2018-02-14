@@ -26,7 +26,6 @@ const signUp = async (userInfo) => {
             username,
             email,
             password,
-            cart: [],
             itemsForSale: [],
             itemsSold: [],
             itemsBought: []
@@ -101,6 +100,8 @@ const createListing = (itemInfo) => {
     var username = itemInfo.username;
     var price = itemInfo.price;
     var blurb = itemInfo.blurb;
+    var category = itemInfo.category;
+    var title = itemInfo.title;
     // console.log('create listing test2: ', itemInfo);
     // console.log('create listing test2.0: ', username);
     // console.log('create listing test2.1: ', price);
@@ -112,14 +113,18 @@ const createListing = (itemInfo) => {
             username: username,
             productID: genPID(),
             price: price,
-            blurb: blurb
+            blurb: blurb,
+            category: category,
+            title: title
         }]
     }
     var newItem = {
         username: username,
         productID: genPID(),
         price: price,
-        blurb: blurb
+        blurb: blurb,
+        category: category,
+        title: title
     }
 
     //console.log('create listing test 3', newUser);
@@ -229,57 +234,53 @@ const mainPage = () => {
     return allItems;
 }
 
-//***********todo
-const profilePage = async (userInfo) => {
-//     var userDescription;
-//     var userActualName;
-//     //have the userdb manipulatable
-//     var userTempDB = JSON.parse(tools.FileReadSync(userDbPath));
-
- }
 
 const addToCart = (info) => {
-    var username = info.username;
+    var buyerUsername = info.username;
     var toBuyProductID = info.productID; 
-    console.log('username: ', username);
+    console.log('username: ', buyerUsername);
     console.log('toBuyProductID: ', toBuyProductID);
-
+    
     var sellTempDB = JSON.parse(tools.FileReadSync(dbForSalePath));
-
+    
     //get all items for sale
     var allItems = [];
     sellTempDB.forEach((item, pos) => {
         item.forSale.forEach((things, posit) => {
             allItems.push(things)
-            });
+        });
         });
     
-    //turn all items into an Object
+        //turn all items into an Object
     var allItemsObj = tools.toObject(allItems)
-        // console.log('allItems: ', allItems)
-        // console.log('allItemsObj:', allItemsObj)
 
-        var itemsInCart = [];
+        if (!cart[buyerUsername]) {
+            cart[buyerUsername] = [];
+        }
     allItems.forEach((item, pos) => {
-
         if (Number(item.productID) === Number(toBuyProductID)){
-            itemsInCart.push(item);
+            cart[buyerUsername].push(item);
         }
     })
-    //Puts items in cart
-    cart[username] = itemsInCart
-        
+
 }
 
 const inCart = (info) => {
     username = info.username
     
     var inMyCart = cart[username];
-
+    
     return inMyCart;
     console.log(inMyCart);
 }
 
+const profilePage = (userInfo) => {
+//     var userDescription;
+//     var userActualName;
+//     //have the userdb manipulatable
+//     var userTempDB = JSON.parse(tools.FileReadSync(userDbPath));
+
+ }
 
 module.exports = {
     login,
