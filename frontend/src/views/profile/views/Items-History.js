@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-import '../../App.css';
+import '../../../App.css';
 
-export class ItemSold extends Component {
+export class HistoryItem extends Component {
 
-    soldItem = () => {
+    historyItem = () => {
         // fetch(""), {
         //     method: 'post',
         //     body: JSON.stringify({
@@ -19,10 +19,10 @@ export class ItemSold extends Component {
         const{ image, price, name, description} = this.props// de-structuring shit from perks
         return (
             <div>
-                <h3>Sold item Page</h3>
+                <h3>History</h3>
             <div className='sold-item'>
                 <div>Image
-                    {/* {this.soldItem} */}
+                    {/* {this.historyItem} */}
                     {image}
                 </div>
                 <div>Name
@@ -38,6 +38,5 @@ export class ItemSold extends Component {
             </div>
         )
     }
-}     
-
-export default ItemSold;
+} 
+export default HistoryItem;

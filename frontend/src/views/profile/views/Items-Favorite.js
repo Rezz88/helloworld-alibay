@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import '../../App.css';
+import '../../../App.css';
 
 export class FavItem extends Component {
 
@@ -29,7 +29,7 @@ export class FavItem extends Component {
         const{ image, price, name, description} = this.props// de-structuring shit from perks
         return (
             <div>
-                <h3>Favorite item Page</h3>
+                <h3>Favorite Items</h3>
             <div className='sold-item'>
                 <div>Image
                     {/* {this.favItem} */}
