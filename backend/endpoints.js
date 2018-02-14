@@ -18,8 +18,12 @@ app.post('/login', async (req, res) => {
     res.send(await funky.login(JSON.parse(req.body.toString()), allUsers))
  })
 
- app.post('/toSell', async (req, res) => {
-      res.send(await funky.createListing(JSON.parse(req.body.toString())));
+ app.post('/toSell', (req, res) => {
+      res.send( funky.createListing(JSON.parse(req.body.toString())));
+ })
+
+ app.post('/toBuy', (req, res) => {
+     res.send(funky.buyItem(JSON.parse(req.body.toString())));
  })
  
  app.post('/profile', (req, res) => {

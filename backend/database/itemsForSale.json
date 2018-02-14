@@ -1,1 +1,47 @@
-"[]"
+[
+  {
+    "username": "manny",
+    "forSale": [
+      {
+        "productID": 13180659,
+        "price": "200",
+        "blurb": "nice fuckin shoes"
+      },
+      {
+        "productID": 30903942,
+        "price": "12",
+        "blurb": "ugly damn shorts"
+      }
+    ]
+  },
+  {
+    "username": "gleb",
+    "forSale": [
+      {
+        "productID": 73280240,
+        "price": "44",
+        "blurb": "russian hat"
+      }
+    ]
+  },
+  {
+    "username": "dre",
+    "forSale": [
+      {
+        "productID": 34423912,
+        "price": "990",
+        "blurb": "a damn car"
+      }
+    ]
+  },
+  {
+    "username": "bobby",
+    "forSale": [
+      {
+        "productID": 88316152,
+        "price": "776",
+        "blurb": "a damn boat"
+      }
+    ]
+  }
+]

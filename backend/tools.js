@@ -31,10 +31,24 @@ addToFile = (toRead, toAdd) => {
     return Math.floor(Math.random() * 100000000)
 }
 
+function FileReadSync(filePath){
+    var contents = fs.readFileSync(filePath);
+    return contents.toString();
+ }
+ function FileWriteSync(filePath,content){
+   fs.writeFileSync(filePath, content, 'utf8', function (err) {
+       if (err) {
+           return console.log(err);
+       }
+   });
+ }
+
 
 
 module.exports = {
     fileread,
     addToFile,
-    genPID
+    genPID,
+    FileReadSync,
+    FileWriteSync
 };

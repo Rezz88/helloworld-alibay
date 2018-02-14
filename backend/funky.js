@@ -1,7 +1,8 @@
 const { addToFile } = require('./tools');
 const fs = require('fs-extra');
-
+const tools = require('./tools')
 const userDbPath = './database/userInfo.json';
+const dbForSalePath = './database/itemsForSale.json';
 
 var usersLoggedIn = {}
 var forSaleItems = {}
@@ -95,52 +96,122 @@ const login = async (userInfo, users) => {
     return returnVal;
 }
 
-const createListing = async (itemInfo) => {
-    const dbForSalePath = './database/itemsForSale.json'
+const createListing = (itemInfo) => {
+    const dbForSalePath = './database/itemsForSale.json';
+    const userDB = './database/userInfo.json';
     var username = itemInfo.username;
     var price = itemInfo.price;
-    var blurb = itemInfo.blurb
-    console.log(itemInfo);
+    var blurb = itemInfo.blurb;
+    // console.log('create listing test2: ', itemInfo);
+    // console.log('create listing test2.0: ', username);
+    // console.log('create listing test2.1: ', price);
+    // console.log('create listing test2.2: ', blurb);
 
-    var dbForSale = await fs.readFile(dbForSalePath, { String });
-    dbForSale = JSON.parse(dbForSale.toString());
-    console.log(dbForSale)
-
-    var newItem;
-    var match = false
-
-    dbForSale.forEach( (item) => {
-        if (item.username) {
-            console.log('check', "i")
-            match = true;
-            dbForSale[0].forSale.push(JSON.stringify({
-                productID: genPID(),
-                price: price,
-                blurb: blurb
-            }));
-            console.log('dbForSale:',dbForSale)
-            newItem = item.forSale
-            
-        }
-        })
-    if (match === false) {
-        newItem = {username: username, forSale: [{
+    var newUser = {
+        username: username,
+        forSale: [{
             productID: genPID(),
             price: price,
             blurb: blurb
-        }]}
+        }]
     }
-    
-    rewriteDB = (toRead, dbForSale) => {
-        var data = JSON.stringify(dbForSale);
-        fs.writeFileSync(toRead, JSON.stringify(data));
-        // changed to only display the current user that signed up
-    };
+    var newItem = {
+        productID: genPID(),
+        price: price,
+        blurb: blurb
+    }
 
-    rewriteDB('./database/itemsForSale.json', dbForSale);
-    
+    //console.log('create listing test 3', newUser);
 
- 
+
+    // for debbugging we create an empty database with the line below.     
+    // tools.FileWriteSync(dbForSalePath,JSON.stringify([]))
+
+    var sellTempDB = JSON.parse(tools.FileReadSync(dbForSalePath));
+    var userTempDB = JSON.parse(tools.FileReadSync(userDB));
+    // console.log('create listing test 4: ', tempDB);
+
+    var match = false
+
+    sellTempDB.forEach((item, pos) => {
+        // console.log("iii",item)
+        // console.log('aaa', item.username)
+        if (item.username === username) {
+            match = true;
+            // console.log('create listing 4.1', item.username)
+            sellTempDB[pos].forSale.push(newItem);
+        }
+    });
+
+    if (match === false) {
+        sellTempDB.push(newUser);
+    }
+
+    userTempDB.forEach((item, pos) => {
+        if (item.username === username) {
+            userTempDB[pos].itemsForSale.push(newItem);
+        }
+    });
+
+
+    //console.log('create listing test 5: ', tempDB);
+    tools.FileWriteSync(dbForSalePath, JSON.stringify(sellTempDB));
+    tools.FileWriteSync(userDB, JSON.stringify(userTempDB))
+    return true;
+}
+
+const buyItem = (itemInfo) => {
+    var buyerUsername = itemInfo.username;
+    var toBuyProductID = itemInfo.productID;
+    console.log('buyerUsername: ',buyerUsername);
+    console.log('product: ', toBuyProductID);
+
+    var sellTempDB = JSON.parse(tools.FileReadSync(dbForSalePath));
+    var userTempDB = JSON.parse(tools.FileReadSync(userDbPath));
+    
+    //looking for buyers productID to match db productID and get username of seller
+    var sellingUser;
+    var soldItem;
+    sellTempDB.forEach((item, pos) => {
+      
+        item.forSale.forEach((things, posit) => {
+     
+            if (Number(things.productID) === Number(toBuyProductID)) {
+                soldItem = things
+                sellingUser = sellTempDB[pos].username
+                console.log('soldItem: ', soldItem);
+            }
+        });
+    });
+    
+    //rewrite dbs accordingly
+    //itemsforsaledb
+    userTempDB.forEach((item, pos) => {
+        if (item.username === sellingUser) {
+            userTempDB[pos].itemsSold.push(soldItem);
+            console.log('new sell: ',userTempDB[pos].itemsSold)
+            //*** figure out how to delete item from array */
+            // userTempDB[pos].itemsForSale.pop(soldItem);
+        }
+        if (item.username === buyerUsername) {
+            userTempDB[pos].itemsBought.push(soldItem);
+            console.log('sold item to remove: ',userTempDB[pos].itemsBought.push(soldItem))
+            //*** figure out how to delete item from array */
+            // userTempDB[pos].cart.pop(soldItem);
+        }
+    })
+
+    // sellTempDB.forEach((item, pos) => {
+    //     if (item.username === sellingUser) {
+    //         sellTempDB[pos].forSale
+    //         //*** figure out how to delete item from array */
+    //         //sellTempDB[pos].forsale.pop?(soldItem);
+    //     }
+    // })
+    console.log('sellingUser: ',sellingUser)
+    console.log('soldItem: ', soldItem)
+    tools.FileWriteSync(dbForSalePath, JSON.stringify(sellTempDB));
+    tools.FileWriteSync(userDbPath, JSON.stringify(userTempDB))
 
 
 }
@@ -152,10 +223,10 @@ const createListing = async (itemInfo) => {
 
 
 
-
 module.exports = {
     login,
     signUp,
-    createListing
+    createListing,
+    buyItem
 }
 
