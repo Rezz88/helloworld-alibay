@@ -21,22 +21,21 @@ export class ForSale extends Component {
     }
 
     render() {
-        const{ image, price, name, description} = this.props// de-structuring shit from perks
+        const{ image, price, name, description} = this.props// De-tructuring
         return (
             <div>
                 <h3>Items for Sale</h3>
             <div className='sold-item'>
-                <div>Image
-                    {/* {this.forSale} */}
+                <div>
                     {image}
                 </div>
-                <div>Name
+                <div>
                     {name}
                 </div>
-                <div>Discription
+                <div>
                     {description}
                 </div>
-                <div>Price
+                <div>
                     {price}
                 </div>
                 <div className="remove-button">
