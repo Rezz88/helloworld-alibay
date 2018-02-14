@@ -27,7 +27,7 @@ export class Main extends Component {
                     prodId={product.prodid}
                     key={product.prodid}
                     addToBag={this.addToBag}
-                    addToFav={() => this.addToFav(product.prodid)}
+                    addToFav={() => this.addToFavThing(product.prodid)}
                 />
             })
         } else {
