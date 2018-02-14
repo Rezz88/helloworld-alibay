@@ -114,7 +114,7 @@ export class Main extends Component {
                         onChange={this.onInput}>
                     </input>
                     {/* <button onClick={this.submitQuery}>submit</button> ********stretch goal for a search function */}
-                    <button>submit</button>
+                    <button>search</button>
                 </div>
                 <div>
                     {this.renderProducts()}
