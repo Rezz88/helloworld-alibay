@@ -275,11 +275,22 @@ const inCart = (info) => {
 }
 
 const profilePage = (userInfo) => {
-//     var userDescription;
-//     var userActualName;
-//     //have the userdb manipulatable
-//     var userTempDB = JSON.parse(tools.FileReadSync(userDbPath));
+    var username = userInfo.username
+    console.log('username: ', username)
+    //userDB
+    var userTempDB = JSON.parse(tools.FileReadSync(userDbPath));
 
+    var selectedUserPos;
+    userTempDB.forEach((item, pos) => {
+        if (item.username === username) {
+            selectedUserPos = pos
+        }
+    })
+
+    var userInfoToSend = userTempDB[selectedUserPos];
+    userInfoToSend.password = 'xxxxxxxxx';
+
+    return userInfoToSend;
  }
 
 module.exports = {
