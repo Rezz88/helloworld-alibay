@@ -11,12 +11,11 @@ const signUp = async (userInfo) => {
         const regex = /\S+@\S+\.\S+/;
         return regex.test(email);
     }
-
     //sorts user data coming in
     var username = userInfo.username;
     var email = userInfo.email;
     var password = userInfo.password;
-
+    console.log(userInfo)
     //test to see if legit email else fuck you 
     if (!emailValidate(email)) {
         return ('Invalid email');
@@ -32,12 +31,6 @@ const signUp = async (userInfo) => {
             itemsSold: [],
             itemsBought: []
         };
-        // obj.username = username;
-        // obj.email = email;
-        // obj.password = password;
-        // obj.cart = [];
-        // obj.itemsSold = [];
-        // obj.itemsBought = [];
 
         addToFile(userDbPath, obj);
         console.log('test')
@@ -47,6 +40,7 @@ const signUp = async (userInfo) => {
     //creates new user with all info to be filled on the site 
     const response = await fs.readFile(userDbPath, { String })
         .then(async data => {
+            console.log('raw data: ', data)
             var result = JSON.parse(data.toString());
             console.log(result);
             if (result.length) {

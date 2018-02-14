@@ -3,7 +3,7 @@ import '../../App.css';
 import ProductCard from './productCard'
 
 export class Main extends Component {
-    constructor()   {
+    constructor() {
         super();
         this.state = {
             products: [],
@@ -17,20 +17,17 @@ export class Main extends Component {
 
     renderProducts = () => {
         const { products } = this.state
-        if (products)    {
-            return products.map(product=>{
+        if (products.length) {
+            return products.map(product => {
                 return <ProductCard
                 // plus whatever else we get from the backend
                     name={product.name}
-                    image= {product.image}
-                    description= {product.descr}
-                    sellerId= {product.seller}
-                    prodId= {product.prodId}
-                    key= {product.prodId}
-                    price= {product.price}
-                    // addToBag={this.addToBag}// more limited than addToFav below, works to send one props(propId)
-                    addToCart={()=>this.addToCart(product)}
-                    addToFav={()=>this.addToFav(product)}
+                    image={product.image}
+                    description={product.descr}
+                    prodId={product.prodid}
+                    key={product.prodid}
+                    addToBag={this.addToBag}
+                    addToFav={() => this.addToFav(product.prodid)}
                 />
             })
         } else {
@@ -50,7 +47,7 @@ export class Main extends Component {
 
     //stretch goal for search function
     onInput = (event) => {
-        this.setState({searchQuery: event.target.value})
+        this.setState({ searchQuery: event.target.value })
     }
 
     addToFav = (item) =>  {
