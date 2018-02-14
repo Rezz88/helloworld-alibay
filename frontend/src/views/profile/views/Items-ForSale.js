@@ -6,14 +6,10 @@ export class ForSale extends Component {
 
 
     saleItem = () => {
-        // fetch(""), {
-        //     method: 'post',
-        //     body: JSON.stringify({
-        //     })
-        // }
-        // .then(x => x.json())
-        // .then(console.log(x))   
-
+    // fetch("")
+    //     .then(x=> x.text())
+    //     .then(y=> JSON.parse(y))
+    //     .then(lst=> this.setState({ products: lst}))
     }
 
     removeSale = (item) =>  {

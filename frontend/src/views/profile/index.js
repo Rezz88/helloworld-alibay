@@ -40,6 +40,7 @@ export class Profile extends Component {
                     description={product.descr}
                     prodId={product.prodid}
                     key={product.prodid}
+                    // Currently not required for profile
                     // addToBag={this.addToBag}
                     // addToFav={() => this.addToFav(product.prodid)}
                 />

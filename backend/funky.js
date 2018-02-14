@@ -4,8 +4,7 @@ const tools = require('./tools')
 const userDbPath = './database/userInfo.json';
 const dbForSalePath = './database/itemsForSale.json';
 
-var usersLoggedIn = {}
-var forSaleItems = {}
+var cart = {}
 
 const signUp = async (userInfo) => {
     const emailValidate = (email) => {
@@ -110,12 +109,14 @@ const createListing = (itemInfo) => {
     var newUser = {
         username: username,
         forSale: [{
+            username: username,
             productID: genPID(),
             price: price,
             blurb: blurb
         }]
     }
     var newItem = {
+        username: username,
         productID: genPID(),
         price: price,
         blurb: blurb
@@ -179,7 +180,7 @@ const buyItem = (itemInfo) => {
             if (Number(things.productID) === Number(toBuyProductID)) {
                 soldItem = things
                 sellingUser = sellTempDB[pos].username
-                console.log('soldItem: ', soldItem);
+                // console.log('soldItem: ', soldItem);
             }
         });
     });
@@ -189,44 +190,105 @@ const buyItem = (itemInfo) => {
     userTempDB.forEach((item, pos) => {
         if (item.username === sellingUser) {
             userTempDB[pos].itemsSold.push(soldItem);
-            console.log('new sell: ',userTempDB[pos].itemsSold)
-            //*** figure out how to delete item from array */
-            // userTempDB[pos].itemsForSale.pop(soldItem);
         }
         if (item.username === buyerUsername) {
             userTempDB[pos].itemsBought.push(soldItem);
-            console.log('sold item to remove: ',userTempDB[pos].itemsBought.push(soldItem))
-            //*** figure out how to delete item from array */
-            // userTempDB[pos].cart.pop(soldItem);
         }
     })
+    sellTempDB.forEach((item, pos, arr) => {
+        if (item.username === sellingUser) {
+            sellTempDB[pos].forSale.forEach((things, posit) => {
+                if (Number(things.productID) === Number(toBuyProductID)){
+                    //deletes item from  all items 
+                    sellTempDB[pos].forSale.splice(posit, 1)
+                }
+            })
+        }
+    });
 
-    // sellTempDB.forEach((item, pos) => {
-    //     if (item.username === sellingUser) {
-    //         sellTempDB[pos].forSale
-    //         //*** figure out how to delete item from array */
-    //         //sellTempDB[pos].forsale.pop?(soldItem);
-    //     }
-    // })
-    console.log('sellingUser: ',sellingUser)
-    console.log('soldItem: ', soldItem)
-    tools.FileWriteSync(dbForSalePath, JSON.stringify(sellTempDB));
-    tools.FileWriteSync(userDbPath, JSON.stringify(userTempDB))
+    userTempDB.forEach((item, pos, arr) => {
+        if (item.username === sellingUser) {
+            userTempDB[pos].itemsForSale.forEach((things, posit) => {
+                if (Number(things.productID) === Number(toBuyProductID)){
+                    //deletes item from  all items 
+                    userTempDB[pos].itemsForSale.splice(posit, 1)
+                }
+            })
+            
+        }
+    });
 
-
+        console.log('sellingUser: ',sellingUser)
+        console.log('soldItem: ', soldItem)
+        tools.FileWriteSync(dbForSalePath, JSON.stringify(sellTempDB));
+        tools.FileWriteSync(userDbPath, JSON.stringify(userTempDB))
 }
 
+const mainPage = () => {
+    var allItems = JSON.parse(tools.FileReadSync(dbForSalePath));
+    return allItems;
+}
 
+//***********todo
+const profilePage = async (userInfo) => {
+//     var userDescription;
+//     var userActualName;
+//     //have the userdb manipulatable
+//     var userTempDB = JSON.parse(tools.FileReadSync(userDbPath));
 
+ }
 
+const addToCart = (info) => {
+    var username = info.username;
+    var toBuyProductID = info.productID; 
+    console.log('username: ', username);
+    console.log('toBuyProductID: ', toBuyProductID);
 
+    var sellTempDB = JSON.parse(tools.FileReadSync(dbForSalePath));
 
+    //get all items for sale
+    var allItems = [];
+    sellTempDB.forEach((item, pos) => {
+        item.forSale.forEach((things, posit) => {
+            allItems.push(things)
+            });
+        });
+    
+    //turn all items into an Object
+    var allItemsObj = tools.toObject(allItems)
+        // console.log('allItems: ', allItems)
+        // console.log('allItemsObj:', allItemsObj)
+
+        var itemsInCart = [];
+    allItems.forEach((item, pos) => {
+
+        if (Number(item.productID) === Number(toBuyProductID)){
+            itemsInCart.push(item);
+        }
+    })
+    //Puts items in cart
+    cart[username] = itemsInCart
+        
+}
+
+const inCart = (info) => {
+    username = info.username
+    
+    var inMyCart = cart[username];
+
+    return inMyCart;
+    console.log(inMyCart);
+}
 
 
 module.exports = {
     login,
     signUp,
     createListing,
-    buyItem
+    buyItem,
+    mainPage,
+    profilePage,
+    addToCart,
+    inCart
 }
 

@@ -43,6 +43,13 @@ function FileReadSync(filePath){
    });
  }
 
+ toObject = (arr) => {
+    var rv = {};
+    for (var i = 0; i < arr.length; ++i)
+      if (arr[i] !== undefined) rv[i] = arr[i];
+      return rv;
+  }
+
 
 
 module.exports = {
@@ -50,5 +57,6 @@ module.exports = {
     addToFile,
     genPID,
     FileReadSync,
-    FileWriteSync
+    FileWriteSync,
+    toObject
 };
