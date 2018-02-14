@@ -15,6 +15,16 @@ export class FavItem extends Component {
         // .then(console.log(x))   
     }
 
+    removeFav = (item) =>  {
+        //Need to update backend to remove an item from favoirte page
+        // fetch("", {
+        //     method: "POST",
+        //     body: JSON.stringify(item),
+        //   })
+        this.setState({products: []})// 
+        console.log('deleteItem', item);
+    }
+
     render() {
         const{ image, price, name, description} = this.props// de-structuring shit from perks
         return (

@@ -15,6 +15,16 @@ export class ForSale extends Component {
         // .then(console.log(x))   
     }
 
+    removeSale = (item) =>  {
+        //Need to update backend to remove an item from favoirte page
+        // fetch("", {
+        //     method: "POST",
+        //     body: JSON.stringify(item),
+        //   })
+        this.setState({products: []})// 
+        console.log('deleteItem', item);
+    }
+
     render() {
         const{ image, price, name, description} = this.props// de-structuring shit from perks
         return (
@@ -35,7 +45,7 @@ export class ForSale extends Component {
                     {price}
                 </div>
                 <div className="remove-button">
-                    <button onClick={this.removeFav}>Remove</button>
+                    <button onClick={this.removeSale}>Remove</button>
                 </div>    
             </div>
             </div>
