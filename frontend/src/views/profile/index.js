@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import '../../App.css';
-import ForSale from './Items-ForSale'
-import SoldItem from './Items-Sold'
-import FavItem from './Items-Favorite'
-import HistoryItem from './Items-History'
+import ForSale from './views/Items-ForSale'
+import SoldItem from './views/Items-Sold'
+import FavItem from './views/Items-Favorite'
+import HistoryItem from './views/Items-History'
 
 
 export class Profile extends Component {
