@@ -17,7 +17,6 @@ export class Main extends Component {
 
     renderProducts = () => {
         const { products } = this.state
-<<<<<<< HEAD
         if (products.length)    {
             return products.map(product=>{
                 return <ProductCard
@@ -32,19 +31,6 @@ export class Main extends Component {
                     // addToBag={this.addToBag}// more limited than addToFav below, works to send one props(propId)
                     addToCart={()=>this.addToCart(product)}
                     addToFav={()=>this.addToFav(product)}
-=======
-        if (products.length) {
-            return products.map(product => {
-                return <ProductCard
-                // plus whatever else we get from the backend
-                    name={product.name}
-                    image={product.image}
-                    description={product.descr}
-                    prodId={product.prodid}
-                    key={product.prodid}
-                    addToBag={this.addToBag}
-                    addToFav={() => this.addToFav(product.prodid)}
->>>>>>> 9e2b4044c64c330f8ee4bb103917a92d39de1496
                 />
             })
         } else {
@@ -87,36 +73,38 @@ export class Main extends Component {
     }
 
     componentDidMount() {
-        // fetch items from backend uncomment when backend is ready
-        // fetch("/items")
-        // .then(x=> x.text())
-        // .then(y=> JSON.parse(y))
-        // .then(lst=> this.setState({ products: lst}))
+        //fetch items from backend uncomment when backend is ready
+        fetch("/items", {
+            method: 'post'
+        })
+        .then(x=> x.text())
+        .then(y=> JSON.parse(y))
+        .then(lst=> this.setState({ products: lst}))
 
         // for mock testing below
 
-        const mockproducts = [
-            {prodId: 1,
-                name: 'car',
-                descr: 'description of car',
-                price: '$1000',
-                image: 'image of car',
-                sellerId: 'John'},
-            {prodId: 2,
-                name: 'boat',
-                descr: 'description of boat',
-                price: '$1000',
-                image: 'image of boat',
-                sellerId: 'sue'},
-            {prodId: 3,
-                name: 'shoes',
-                descr: 'description of shoes',
-                price: '$1000',
-                image: 'image of shoes',
-                sellerId: 'bob'}
-            ]
+        // const mockproducts = [
+        //     {prodId: 1,
+        //         name: 'car',
+        //         descr: 'description of car',
+        //         price: '$1000',
+        //         image: 'image of car',
+        //         sellerId: 'John'},
+        //     {prodId: 2,
+        //         name: 'boat',
+        //         descr: 'description of boat',
+        //         price: '$1000',
+        //         image: 'image of boat',
+        //         sellerId: 'sue'},
+        //     {prodId: 3,
+        //         name: 'shoes',
+        //         descr: 'description of shoes',
+        //         price: '$1000',
+        //         image: 'image of shoes',
+        //         sellerId: 'bob'}
+        //     ]
             
-            this.setState({products: mockproducts})
+           // this.setState({products: mockproducts})
     }
 
     render() {

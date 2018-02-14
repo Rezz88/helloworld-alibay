@@ -6,9 +6,10 @@ export class Sell extends Component {
         super();
         this.state = { 
             itemPosted: false,
-            name: 'asd',
-            description: 'asd', 
-            price: '123' 
+            username: '',
+            name: '',
+            blurb: '', 
+            price: '' 
         }
     }
 
@@ -32,22 +33,22 @@ export class Sell extends Component {
 
 
     sellPage = () => {
-        const { name, description, price } = this.state
+        const { blurb, price } = this.state //put name in
 
         var addItem = () => {
-            this.props.addItem(name, description, price)
+            this.props.addItem( blurb, price) //put name in
         }
         return (
             <div className='App'>
-                <input className="itemName" placeholder="Item Name" value={name} onChange={(e) => this.setInputValue('name', e.target.value)}></input>
-                <input className="itemDescription" placeholder="Description" value={description} onChange={(e) => this.setInputValue('description', e.target.value)}></input>
+                
+                <input className="blurb" placeholder="Description" value={blurb} onChange={(e) => this.setInputValue('blurb', e.target.value)}></input>
                 <input className="price" type="number" placeholder="Price" value={price} onChange={(e) => this.setInputValue('price', e.target.value)}></input>
                 <button onClick={addItem}>Sell Item!</button>
             </div>)
     }
 
     componentWillReceiveProps(nextProps) {
-        this.setState({ itemPosted: nextProps.itemPosted }) 
+        this.setState({ itemPosted: nextProps.itemPosted, username: nextProps.username }) 
     }
     render() {
         console.log(this.state)
@@ -58,3 +59,5 @@ export class Sell extends Component {
         )
     }
 }
+
+//<input className="itemName" placeholder="Item Name" value={name} onChange={(e) => this.setInputValue('name', e.target.value)}></input>

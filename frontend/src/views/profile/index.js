@@ -93,7 +93,7 @@ export class Profile extends Component {
                 <div>
                     Profile Page  
                     {this.renderPerson()}
-                    <button onClick={this.EditProfile}>Edit</button>
+                    <button onClick={this.editProfile}>Edit</button>
                 </div>
                     <div className="App-header">
                         <a onClick={() => this.ChangeComponent("ForSale")}>FOR SALE</a>
