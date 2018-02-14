@@ -4,8 +4,7 @@ const tools = require('./tools')
 const userDbPath = './database/userInfo.json';
 const dbForSalePath = './database/itemsForSale.json';
 
-var usersLoggedIn = {}
-var forSaleItems = {}
+var cart = {}
 
 const signUp = async (userInfo) => {
     const emailValidate = (email) => {
@@ -110,12 +109,14 @@ const createListing = (itemInfo) => {
     var newUser = {
         username: username,
         forSale: [{
+            username: username,
             productID: genPID(),
             price: price,
             blurb: blurb
         }]
     }
     var newItem = {
+        username: username,
         productID: genPID(),
         price: price,
         blurb: blurb
@@ -228,11 +229,66 @@ const mainPage = () => {
     return allItems;
 }
 
+//***********todo
+const profilePage = async (userInfo) => {
+//     var userDescription;
+//     var userActualName;
+//     //have the userdb manipulatable
+//     var userTempDB = JSON.parse(tools.FileReadSync(userDbPath));
+
+ }
+
+const addToCart = (info) => {
+    var username = info.username;
+    var toBuyProductID = info.productID; 
+    console.log('username: ', username);
+    console.log('toBuyProductID: ', toBuyProductID);
+
+    var sellTempDB = JSON.parse(tools.FileReadSync(dbForSalePath));
+
+    //get all items for sale
+    var allItems = [];
+    sellTempDB.forEach((item, pos) => {
+        item.forSale.forEach((things, posit) => {
+            allItems.push(things)
+            });
+        });
+    
+    //turn all items into an Object
+    var allItemsObj = tools.toObject(allItems)
+        // console.log('allItems: ', allItems)
+        // console.log('allItemsObj:', allItemsObj)
+
+        var itemsInCart = [];
+    allItems.forEach((item, pos) => {
+
+        if (Number(item.productID) === Number(toBuyProductID)){
+            itemsInCart.push(item);
+        }
+    })
+    //Puts items in cart
+    cart[username] = itemsInCart
+        
+}
+
+const inCart = (info) => {
+    username = info.username
+    
+    var inMyCart = cart[username];
+
+    return inMyCart;
+    console.log(inMyCart);
+}
+
+
 module.exports = {
     login,
     signUp,
     createListing,
     buyItem,
-    mainPage
+    mainPage,
+    profilePage,
+    addToCart,
+    inCart
 }
 

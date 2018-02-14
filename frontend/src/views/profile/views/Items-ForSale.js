@@ -3,6 +3,8 @@ import '../../../App.css';
 
 export class ForSale extends Component {
 
+
+
     saleItem = () => {
     // fetch("")
     //     .then(x=> x.text())
@@ -19,6 +21,16 @@ export class ForSale extends Component {
         this.setState({products: []})// 
         console.log('deleteItem', item);
     }
+
+    componentDidMount() {
+          // fetch(""), {
+        //     method: 'post',
+        //     body: JSON.stringify({
+        //     })
+        // }
+        this.setState({})
+    }
+
 
     render() {
         const{ image, price, name, description} = this.props// De-tructuring
