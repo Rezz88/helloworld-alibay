@@ -1,1 +1,87 @@
-[{"username":"gleb","email":"asdljd@sjdhjsh.com","password":"akssjkj","cart":[],"itemsForSale":[],"itemsSold":[],"itemsBought":[]}]
+[
+  {
+    "username": "dre",
+    "email": "asjdn@sdn.com",
+    "password": "pwd113",
+    "cart": [],
+    "itemsForSale": [
+      {
+        "productID": 16340666,
+        "price": "990",
+        "blurb": "a damn car"
+      }
+    ],
+    "itemsSold": [],
+    "itemsBought": []
+  },
+  {
+    "username": "wash",
+    "email": "aa@sdn.com",
+    "password": "sasd",
+    "cart": [],
+    "itemsForSale": [],
+    "itemsSold": [],
+    "itemsBought": []
+  },
+  {
+    "username": "gleb",
+    "email": "pppl@sdn.com",
+    "password": "cvbvbb",
+    "cart": [],
+    "itemsForSale": [
+      {
+        "productID": 87033778,
+        "price": "44",
+        "blurb": "russian hat"
+      }
+    ],
+    "itemsSold": [],
+    "itemsBought": []
+  },
+  {
+    "username": "manny",
+    "email": "mmmsl@sdn.com",
+    "password": "00kppp",
+    "cart": [],
+    "itemsForSale": [
+      {
+        "productID": 69872745,
+        "price": "200",
+        "blurb": "nice fuckin shoes"
+      },
+      {
+        "productID": 30903942,
+        "price": "12",
+        "blurb": "ugly damn shorts"
+      }
+    ],
+    "itemsSold": [
+      {
+        "productID": 30903942,
+        "price": "12",
+        "blurb": "ugly damn shorts"
+      }
+    ],
+    "itemsBought": []
+  },
+  {
+    "username": "bobby",
+    "email": "asljasd@ass.com",
+    "password": "jhkasdhk",
+    "cart": [],
+    "itemsForSale": [
+      {
+        "productID": 63698579,
+        "price": "776"
+      }
+    ],
+    "itemsSold": [],
+    "itemsBought": [
+      {
+        "productID": 30903942,
+        "price": "12",
+        "blurb": "ugly damn shorts"
+      }
+    ]
+  }
+]
