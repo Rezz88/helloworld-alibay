@@ -19,15 +19,16 @@ app.post('/login', async (req, res) => {
  })
 
  app.post('/toSell', (req, res) => {
-      res.send( funky.createListing(JSON.parse(req.body.toString())));
+      res.send(funky.createListing(JSON.parse(req.body.toString())));
  })
 
  app.post('/toBuy', (req, res) => {
      res.send(funky.buyItem(JSON.parse(req.body.toString())));
  })
  
- app.post('/main', (req, res) => {
-    res.send(funky.mainPage(JSON.parse(req.body.toString())));   
+ app.get('/main', (req, res) => {
+    console.log(req.body);
+    res.send(funky.mainPage());   
  })
  app.post('/profile', (req, res) => {
 

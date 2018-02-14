@@ -18,7 +18,7 @@ class App extends Component {
       active: 'Main',
       login: true, //Temp marked as true. 
       error: false,
-      username: 'mike',
+      username: '',
       prodId: '',
       itemPosted: false,
       footer: ''
@@ -60,7 +60,7 @@ class App extends Component {
 
 
   login = (username, password) => {
-    this.setState({ username: 'john' })
+    this.setState({ username })
     fetch('/login', {
       method: 'post',
       body: JSON.stringify({
@@ -139,7 +139,7 @@ class App extends Component {
   //       <input> </input>
   //     </div>
   //   )
-  // }
+  // }s
 
   render() {
     console.log(this.state)
