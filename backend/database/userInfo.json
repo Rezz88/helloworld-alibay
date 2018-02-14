@@ -46,13 +46,8 @@
     "itemsForSale": [
       {
         "productID": 69872745,
-        "price": "200",
+        "price": "200", 
         "blurb": "nice fuckin shoes"
-      },
-      {
-        "productID": 30903942,
-        "price": "12",
-        "blurb": "ugly damn shorts"
       }
     ],
     "itemsSold": [
@@ -69,12 +64,7 @@
     "email": "asljasd@ass.com",
     "password": "jhkasdhk",
     "cart": [],
-    "itemsForSale": [
-      {
-        "productID": 63698579,
-        "price": "776"
-      }
-    ],
+    "itemsForSale": [],
     "itemsSold": [],
     "itemsBought": [
       {

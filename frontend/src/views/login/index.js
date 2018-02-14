@@ -10,7 +10,6 @@ export class Login extends Component {
     this.setState({[key]: value})
   }
 
-
   signupNow = () => {
     this.setState({ signIn: true })
   }

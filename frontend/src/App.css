@@ -21,9 +21,47 @@
   border: 1px solid white;
   padding: 5px;
   margin: 0 5px;
-  
 }
 
+.App-footer {
+  display: flex; 
+  justify-content: center;
+  background-color: rgb(73, 73, 73);
+  padding: 5px;
+  color: white;
+}
+
+.App-footer > li {
+  text-decoration: none;
+  display: inline-block;
+  border: 1px solid white;
+  padding: 2px;
+  margin: 0 50px;
+}
+
+
+.App-header > a {
+  font-size: 90%;
+  text-decoration: none;
+  display: inline-block;
+  border: 1px solid white;
+  border-style: outset;
+  padding: 4px;
+  margin: 0 5px;
+}
+
+.sold-item {
+  padding: 15px;
+  margin: 25px;
+  border: 1px solid grey;
+  border-style: outset; 
+}
+
+.remove-button {
+  display: flex;
+  justify-content: flex-end;
+
+}
 
 .App-title {
   font-size: 1.5em;
