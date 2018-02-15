@@ -146,7 +146,7 @@ class App extends Component {
   //       <input> </input>
   //     </div>
   //   )
-  // }s
+  // }
 
   render() {
     console.log(this.state)
