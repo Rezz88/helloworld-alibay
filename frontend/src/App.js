@@ -18,7 +18,7 @@ class App extends Component {
       active: 'Main',
       login: true, //Temp marked as true. 
       error: false,
-      username: 'mike',
+      username: '',
       prodId: '',
       itemPosted: false,
       footer: ''
@@ -38,13 +38,13 @@ class App extends Component {
         return <Main username={username} />
       }
       else if (active === 'Profile') {
-        return <Profile username={username} />
+        return <Profile username={username} editProfile={this.editProfile}/>
       }
       else if (active === 'Cart') {
         return <Cart username={username} />
       }
       else if (active === 'Sell') {
-        return <Sell addItem={this.addItem} itemPosted={itemPosted} />
+        return <Sell addItem={this.addItem} itemPosted={itemPosted} username={username} />
       }
       else if (active === 'About') {
         return <About />
@@ -67,7 +67,7 @@ class App extends Component {
 
 
   login = (username, password) => {
-    this.setState({ username: 'john' })
+    this.setState({ username })
     fetch('/login', {
       method: 'post',
       body: JSON.stringify({
@@ -80,18 +80,18 @@ class App extends Component {
       .then(x => this.setState({
         login: x,
         error: !x
-      })
-      )
+      }))
+      .then(() => console.log(this.state))
   }
-
-  signUp = (user, pass, mail) => {
-    this.setState({ username: user })
+  
+  signUp = (username, password, email) => {
+    this.setState({ username })
     fetch('/signUp', {
       method: 'post',
       body: JSON.stringify({
-        username: user,
-        password: pass,
-        email: mail
+        username,
+        password,
+        email
       })
     })
       .then(x => x.text())
@@ -108,11 +108,11 @@ class App extends Component {
     //change x to something more descriptive
   }
 
-  addItem = (name, blurb, price) => {
+  addItem = ( blurb, price) => {
     fetch('/toSell', {
       method: 'post',
       body: JSON.stringify({   //send the suername instead of name
-        username: name,
+        username: this.state.username,
         blurb,
         price
       })
@@ -125,6 +125,28 @@ class App extends Component {
           itemPosted: true
         }))
   }
+
+  // editProfile = () => {
+  //   const myProfile = {}
+  //   fetch('/profile', {
+  //     method: 'post',
+  //     body: JSON.stringify({
+  //       username: this.state.username
+  //     })
+  //   })
+  //   .then(x => x.text())
+  //   .then(x => JSON.parse(x))
+  //   .then(x => myProfile = x)
+  //   return (
+  //     <div>
+  //       <input> </input>
+  //       <input> </input>
+  //       <input> </input>
+  //       <input> </input>
+  //       <input> </input>
+  //     </div>
+  //   )
+  // }s
 
   render() {
     console.log(this.state)
@@ -150,10 +172,10 @@ class App extends Component {
         </div>
         <ul className='App-footer'>
           <li>
-            <a onClick={() => this.ChangeComponent('About')}>a b o u t</a>
+            <a onClick={() => this.ChangeComponent('About')}>| a b o u t |</a>
           </li>
           <li>
-            <a onClick={() => this.ChangeComponent('ContactUs')}>c o n t a c t </a>
+            <a onClick={() => this.ChangeComponent('ContactUs')}>| c o n t a c t |</a>
           </li>
         </ul>
       </div>

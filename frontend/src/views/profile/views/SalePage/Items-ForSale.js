@@ -1,10 +1,8 @@
 import React, { Component } from 'react';
-import '../../../App.css';
+import '../../../../App.css';
 
 export class ForSale extends Component {
-
-
-
+    
     saleItem = () => {
     // fetch("")
     //     .then(x=> x.text())
@@ -51,7 +49,7 @@ export class ForSale extends Component {
                     {price}
                 </div>
                 <div className="remove-button">
-                    <button onClick={this.removeSale}>Remove</button>
+                    <button onClick={this.remove}>Remove</button>
                 </div>    
             </div>
             </div>
