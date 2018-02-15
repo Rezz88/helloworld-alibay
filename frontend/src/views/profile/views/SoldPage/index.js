@@ -48,6 +48,28 @@ class SoldItemPage extends Component {
         }
     }
 
+    remove = (item) =>  {
+        //pass username into the item with clickfunction
+        item.username = this.props.username
+        //need to update backend to remove an item from cart
+        // fetch("/delete", {
+        //     method: "POST",
+        //     body: JSON.stringify(item),
+        //   })
+        
+        let newArray = this.state.products
+        let productsRemoved = newArray.filter(function(el) {
+        return el.name !== item.name;  
+        });
+
+        console.log('new array =', productsRemoved);
+        console.log('old array =', this.state.products)
+
+        this.setState({products: productsRemoved})// 
+        console.log(' delete this item only =' ,item)
+        
+    }
+
     render () {
         return (
             <div>

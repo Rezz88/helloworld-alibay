@@ -49,7 +49,7 @@ export class ForSale extends Component {
                     {price}
                 </div>
                 <div className="remove-button">
-                    <button onClick={this.removeSale}>Remove</button>
+                    <button onClick={this.remove}>Remove</button>
                 </div>    
             </div>
             </div>
