@@ -7,9 +7,10 @@ export class Sell extends Component {
         this.state = { 
             itemPosted: false,
             username: '',
-            name: '',
+            title: '',
             blurb: '', 
-            price: '' 
+            price: ''
+            
         }
     }
 
@@ -33,14 +34,14 @@ export class Sell extends Component {
 
 
     sellPage = () => {
-        const { blurb, price } = this.state //put name in
+        const { title, blurb, price } = this.state //put name in
 
         var addItem = () => {
-            this.props.addItem( blurb, price) //put name in
+            this.props.addItem( title, blurb, price ) //put name in
         }
         return (
             <div className='App'>
-                
+                <input className="title" placeholder="Item Name" value={title} onChange={(e) => this.setInputValue('title', e.target.value)}></input>
                 <input className="blurb" placeholder="Description" value={blurb} onChange={(e) => this.setInputValue('blurb', e.target.value)}></input>
                 <input className="price" type="number" placeholder="Price" value={price} onChange={(e) => this.setInputValue('price', e.target.value)}></input>
                 <button onClick={addItem}>Sell Item!</button>
