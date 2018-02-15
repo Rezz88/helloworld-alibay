@@ -22,9 +22,10 @@ export class Main extends Component {
                 // console.log(product)
                 return <ProductCard
                 // plus whatever else we get from the backend
-                    username={product.username}
+                    seller={product.seller}
                     productID= {product.productID}
                     description= {product.blurb}
+                    username={product.username}
                     // sellerId= {product.seller}
                     // prodId= {product.prodId}
                     // key= {product.prodId}
@@ -36,7 +37,7 @@ export class Main extends Component {
                 
             })
         } else {
-            return <div>nothing</div>
+            return <div>Nothing available</div>
         }
     }
     submitQuery = () => {
@@ -71,10 +72,10 @@ export class Main extends Component {
         //pass username into the item with clickfunction
         item.username = this.props.username
         //pass id's to backend to store in cart uncomment when backend is ready
-        // fetch("/cart", {
-        //     method: "POST",
-        //     body: JSON.stringify(item),
-        //   })
+        fetch("/addToCart", {
+            method: "POST",
+            body: JSON.stringify(item),
+          })
         console.log('Cart', item);
     }
 
@@ -135,7 +136,7 @@ export class Main extends Component {
         //     ]
         let forSaleProducts = []
         // fetching items from backend
-        fetch("/main")
+        fetch('/main')
         .then(x=> x.text())
         .then(y=> JSON.parse(y))
         // .then(y=>{console.log('y=',y); return y})
@@ -180,7 +181,7 @@ export class Main extends Component {
                         onChange={this.onInput}>
                     </input>
                     {/* <button onClick={this.submitQuery}>submit</button> ********stretch goal for a search function */}
-                    <button>search</button>
+                    <button className="button2">Search</button>
                 </div>
                 <div>
                     {this.renderProducts()}

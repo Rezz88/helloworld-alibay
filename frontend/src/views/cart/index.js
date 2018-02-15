@@ -6,7 +6,7 @@ import {Checkoutindex} from './views/usercheckout'
 export class Cart extends Component {
     constructor()   {
         super()
-        this.state = { active: 'Cartindex'}
+        this.state = { active: ''}
     }
 
     ChangeComponent = (component) => {
@@ -38,12 +38,8 @@ export class Cart extends Component {
         return (
             <div>
               <ul className="App-header">
-                <li>
-                  <a onClick={() => this.ChangeComponent('Cartindex')}>  Cart</a>
-                </li>
-                <li>
-                  <a onClick={() => this.ChangeComponent('Checkoutindex')}>Checkout</a>
-                </li>
+                  <a className="flash" onClick={() => this.ChangeComponent('Cartindex')}>  Cart</a>
+                  <a className="flash" onClick={() => this.ChangeComponent('Checkoutindex')}>Checkout</a>
               </ul>
               <div>
                 {this.renderComponent()}

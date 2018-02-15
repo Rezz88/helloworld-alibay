@@ -18,7 +18,7 @@ class App extends Component {
       active: 'Main',
       login: true, //Temp marked as true. 
       error: false,
-      username: '',
+      username: 'washy',
       prodId: '',
       itemPosted: false,
       footer: ''
@@ -58,12 +58,6 @@ class App extends Component {
     }
   }
 
-  cartClick =()=> {
-    fetch('/cart', {
-      method: 'post',
-      body: JSON.stringify({username: this.state.username})
-    })
-  }
 
 
   login = (username, password) => {
@@ -154,28 +148,20 @@ class App extends Component {
     return (
       <div>
         <ul className="App-header">
-          <li>
-            <a onClick={() => this.ChangeComponent('Main')}>M A I N</a>
-          </li>
-          <li>
-            <a onClick={() => this.ChangeComponent('Profile')}>P R O F I L E</a>
-          </li>
-          <li>
-            <a onClick={() => this.ChangeComponent('Cart') && this.cartClick()}>C A R T</a>
-          </li>
-          <li>
-            <a onClick={() => this.ChangeComponent('Sell')}>S E L L</a>
-          </li>
+            <a className="flash" onClick={() => this.ChangeComponent('Main')}>M A I N</a>
+            <a className="flash" onClick={() => this.ChangeComponent('Profile')}>P R O F I L E</a>
+            <a className="flash" onClick={() => this.ChangeComponent('Cart') && this.cartClick()}>C A R T</a>
+            <a className="flash" onClick={() => this.ChangeComponent('Sell')}>S E L L</a>
         </ul>
         <div>
           {this.renderComponent()}
         </div>
         <ul className='App-footer'>
           <li>
-            <a onClick={() => this.ChangeComponent('About')}>| a b o u t |</a>
+            <a className="curse" onClick={() => this.ChangeComponent('About')}>| a b o u t |</a>
           </li>
           <li>
-            <a onClick={() => this.ChangeComponent('ContactUs')}>| c o n t a c t |</a>
+            <a className="curse" onClick={() => this.ChangeComponent('ContactUs')}>| c o n t a c t |</a>
           </li>
         </ul>
       </div>
