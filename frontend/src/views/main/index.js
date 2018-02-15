@@ -25,12 +25,12 @@ export class Main extends Component {
             return products.map(product => {
                 // console.log(product)
                 return <ProductCard
-                    // plus whatever else we get from the backend
-                    
+                // plus whatever else we get from the backend
+                    seller={product.seller}
+                    productID= {product.productID}
+                    description= {product.blurb}
                     username={product.username}
-                    productID={product.productID}
                     title={products.title}
-                    description={product.blurb}
                     // sellerId= {product.seller}
                     // prodId= {product.prodId}
                     // key= {product.prodId}
@@ -89,10 +89,10 @@ export class Main extends Component {
         //pass username into the item with clickfunction
         item.username = this.props.username
         //pass id's to backend to store in cart uncomment when backend is ready
-        // fetch("/cart", {
-        //     method: "POST",
-        //     body: JSON.stringify(item),
-        //   })
+        fetch("/addToCart", {
+            method: "POST",
+            body: JSON.stringify(item),
+          })
         console.log('Cart', item);
     }
     sortPrice = () => {

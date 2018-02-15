@@ -6,7 +6,7 @@ import {Checkoutindex} from './views/usercheckout'
 export class Cart extends Component {
     constructor()   {
         super()
-        this.state = { active: 'Cartindex'}
+        this.state = { active: ''}
     }
 
     ChangeComponent = (component) => {

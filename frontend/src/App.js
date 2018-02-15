@@ -18,7 +18,7 @@ class App extends Component {
       active: 'Main',
       login: false, //Temp marked as true. 
       error: false,
-      username: '',
+      username: 'washy',
       prodId: '',
       itemPosted: false,
       footer: ''
@@ -58,12 +58,6 @@ class App extends Component {
     }
   }
 
-  cartClick =()=> {
-    fetch('/cart', {
-      method: 'post',
-      body: JSON.stringify({username: this.state.username})
-    })
-  }
 
 
   login = (username, password) => {
