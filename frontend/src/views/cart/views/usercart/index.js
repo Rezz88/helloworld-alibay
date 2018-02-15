@@ -16,9 +16,10 @@ export class Cartindex extends Component {
        .then(lst=> this.setState({ products: lst}))
    }
    
+   
    renderProducts = () => {
        const { products } = this.state
-       
+
        if (products)    {
            return products.map(product=>{
                return <Cartcard
