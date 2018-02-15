@@ -11,7 +11,9 @@
         "blurb": "averagely used bad ass laptop",
         "category": "electronics",
         "title": "LapTop"
-      },
+      }
+    ],
+    "itemsSold": [
       {
         "seller": "washy",
         "productID": 31068348,
@@ -21,7 +23,6 @@
         "title": "Gloves"
       }
     ],
-    "itemsSold": [],
     "itemsBought": []
   },
   {
@@ -47,6 +48,22 @@
         "blurb": "nice damn shoes",
         "category": "clothing",
         "title": "shoes"
+      },
+      {
+        "seller": "bobby",
+        "productID": 98659908,
+        "price": "44",
+        "blurb": "an okay sweater",
+        "category": "clothing",
+        "title": "sweater"
+      },
+      {
+        "seller": "washy",
+        "productID": 31068348,
+        "price": "12",
+        "blurb": "ok pair of gloves",
+        "category": "clothing",
+        "title": "Gloves"
       }
     ]
   },
@@ -104,14 +121,6 @@
         "blurb": "nice damn shoes",
         "category": "clothing",
         "title": "shoes"
-      },
-      {
-        "seller": "bobby",
-        "productID": 98659908,
-        "price": "44",
-        "blurb": "an okay sweater",
-        "category": "clothing",
-        "title": "sweater"
       }
     ],
     "itemsSold": [
@@ -122,6 +131,14 @@
         "blurb": "nice damn shoes",
         "category": "clothing",
         "title": "shoes"
+      },
+      {
+        "seller": "bobby",
+        "productID": 98659908,
+        "price": "44",
+        "blurb": "an okay sweater",
+        "category": "clothing",
+        "title": "sweater"
       }
     ],
     "itemsBought": []
