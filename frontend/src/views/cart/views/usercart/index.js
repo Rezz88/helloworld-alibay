@@ -16,6 +16,7 @@ export class Cartindex extends Component {
         // .then(y=> JSON.parse(y))
         // .then(lst=> this.setState({ products: lst}))
 
+<<<<<<< HEAD
         const mockCart = [
             {
                 prodId: 1,
@@ -43,6 +44,23 @@ export class Cartindex extends Component {
             }
         ]
         this.setState({ products: mockCart })
+=======
+
+        const mackCart = 
+            [ { username: 'washy',
+                productID: 98846714,
+                price: 11,
+                blurb: 'retro hat' },
+              { username: 'manny',
+                productID: 29775658,
+                price: 26,
+                blurb: 'beer!!' } ] 
+            
+
+            this.setState({products: mackCart})
+
+            
+>>>>>>> 8d793727da579432f7d378223717d7c95c73e2cb
     }
 
     renderProducts = () => {
@@ -50,6 +68,7 @@ export class Cartindex extends Component {
         if (products) {
             return products.map(product => {
                 return <Cartcard
+<<<<<<< HEAD
                     // plus whatever else we get from the backend
                     name={product.name}
                     image={product.image}
@@ -60,6 +79,19 @@ export class Cartindex extends Component {
                     price={'$' + product.price}
                     checkout={() => this.checkout(product)}
                     deleteItem={() => this.deleteItem(product)}
+=======
+                // plus whatever else we get from the backend
+                    username={product.username}
+                    productID= {product.productID}
+                    description= {product.blurb}
+                    name={product.name}
+                    image= {product.image}
+                    sellerId= {product.seller}
+                    key= {product.prodId}
+                    price= {product.price}
+                    checkout={()=>this.checkout(product)}
+                    deleteItem={()=>this.deleteItem(product)}
+>>>>>>> 8d793727da579432f7d378223717d7c95c73e2cb
                 />
 
             })
@@ -123,12 +155,17 @@ export class Cartindex extends Component {
             return x.name !== item.name;
         });
 
+<<<<<<< HEAD
        // console.log('new array =', newArray);
        // console.log('old array =', this.state.products)
 
         this.setState({ products: newArray })// 
        // console.log(' delete this item only =', item)
 
+=======
+        this.setState({products: newArray})// 
+        
+>>>>>>> 8d793727da579432f7d378223717d7c95c73e2cb
     }
 
 

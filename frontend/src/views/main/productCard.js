@@ -11,7 +11,7 @@ export default class ProductCard extends Component {
         return (
             <div className='Main-items'>
                 <div>
-                    {username}
+                    {'sellerID: '+username}
                 </div>
                 <div>
                     {'product ID: ' + productID}
@@ -28,7 +28,7 @@ export default class ProductCard extends Component {
                 <div>
                     {/* <button onClick={()=>addToBag(prodId)}>ADD</button> ** use 'prodId' in de-structuring above */}
                     <button onClick={addToCart}>C A R T</button>
-                    <button onClick={addToFav}>F A V</button>
+                    
                 </div>
 
 

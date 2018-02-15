@@ -42,6 +42,10 @@ app.post('/profile', (req, res) => {
     res.send(funky.profilePage(JSON.parse(req.body.toString())));
 })
 
+app.post('/removeFromCart', (req, res) => {
+    res.send(funky.removeFromCart(JSON.parse(req.body.toString())));
+})
 
-app.listen(4000, console.log("We're a go!"))
+
+app.listen(4001, console.log("We're a go!"))
 

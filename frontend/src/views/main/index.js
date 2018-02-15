@@ -42,7 +42,7 @@ export class Main extends Component {
 
             })
         } else {
-            return <div>nothing</div>
+            return <div>Nothing available</div>
         }
     }
     submitQuery = () => {

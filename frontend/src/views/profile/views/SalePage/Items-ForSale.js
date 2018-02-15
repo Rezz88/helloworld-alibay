@@ -1,10 +1,8 @@
 import React, { Component } from 'react';
-import '../../../App.css';
+import '../../../../App.css';
 
 export class ForSale extends Component {
-
-
-
+    
     saleItem = () => {
     // fetch("")
     //     .then(x=> x.text())
@@ -33,7 +31,7 @@ export class ForSale extends Component {
 
 
     render() {
-        const{ image, price, name, description} = this.props// De-tructuring
+        const{ image, price, name, description, deleteItem} = this.props// De-structuring
         return (
             <div>
                 <h3>Items for Sale</h3>
@@ -51,7 +49,7 @@ export class ForSale extends Component {
                     {price}
                 </div>
                 <div className="remove-button">
-                    <button onClick={this.removeSale}>Remove</button>
+                    <button className="button" onClick={deleteItem}>Remove</button>
                 </div>    
             </div>
             </div>
