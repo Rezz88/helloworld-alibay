@@ -36,7 +36,7 @@ class HisItemPage extends Component {
                 />
             })
         } else {
-            return <div>Nothing</div>
+            return <h4>No History</h4>
         }
     }
 

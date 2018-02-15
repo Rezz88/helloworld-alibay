@@ -45,7 +45,7 @@ class SoldItemPage extends Component {
                 />
             })
         } else {
-            return <div>Nothing</div>
+            return <h4>Nothing sold...</h4>
         }
     }
 

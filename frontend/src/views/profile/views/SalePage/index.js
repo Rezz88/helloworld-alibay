@@ -41,7 +41,7 @@ class ForSalePage extends Component {
                 />
             })
         } else {
-            return <div>Nothing</div>
+            return <h4>Nothing for sale...</h4>
         }
     }
 

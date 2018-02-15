@@ -164,10 +164,10 @@ class App extends Component {
         </div>
         <ul className='App-footer'>
           <li>
-            <a onClick={() => this.ChangeComponent('About')}>| a b o u t |</a>
+            <a className="curse" onClick={() => this.ChangeComponent('About')}>| a b o u t |</a>
           </li>
           <li>
-            <a onClick={() => this.ChangeComponent('ContactUs')}>| c o n t a c t |</a>
+            <a className="curse" onClick={() => this.ChangeComponent('ContactUs')}>| c o n t a c t |</a>
           </li>
         </ul>
       </div>
