@@ -110,7 +110,7 @@ const createListing = (itemInfo) => {
     var newUser = {
         username: username,
         forSale: [{
-            username: username,
+            seller: username,
             productID: genPID(),
             price: price,
             blurb: blurb,
@@ -119,7 +119,7 @@ const createListing = (itemInfo) => {
         }]
     }
     var newItem = {
-        username: username,
+        seller: username,
         productID: genPID(),
         price: price,
         blurb: blurb,
@@ -169,19 +169,19 @@ const createListing = (itemInfo) => {
 const buyItem = (itemInfo) => {
     var buyerUsername = itemInfo.username;
     var toBuyProductID = itemInfo.productID;
-    console.log('buyerUsername: ',buyerUsername);
+    console.log('buyerUsername: ', buyerUsername);
     console.log('product: ', toBuyProductID);
 
     var sellTempDB = JSON.parse(tools.FileReadSync(dbForSalePath));
     var userTempDB = JSON.parse(tools.FileReadSync(userDbPath));
-    
+
     //looking for buyers productID to match db productID and get username of seller
     var sellingUser;
     var soldItem;
     sellTempDB.forEach((item, pos) => {
-      
+
         item.forSale.forEach((things, posit) => {
-     
+
             if (Number(things.productID) === Number(toBuyProductID)) {
                 soldItem = things
                 sellingUser = sellTempDB[pos].username
@@ -189,7 +189,7 @@ const buyItem = (itemInfo) => {
             }
         });
     });
-    
+
     //rewrite dbs accordingly
     //itemsforsaledb
     userTempDB.forEach((item, pos) => {
@@ -203,7 +203,7 @@ const buyItem = (itemInfo) => {
     sellTempDB.forEach((item, pos, arr) => {
         if (item.username === sellingUser) {
             sellTempDB[pos].forSale.forEach((things, posit) => {
-                if (Number(things.productID) === Number(toBuyProductID)){
+                if (Number(things.productID) === Number(toBuyProductID)) {
                     //deletes item from  all items 
                     sellTempDB[pos].forSale.splice(posit, 1)
                 }
@@ -214,19 +214,19 @@ const buyItem = (itemInfo) => {
     userTempDB.forEach((item, pos, arr) => {
         if (item.username === sellingUser) {
             userTempDB[pos].itemsForSale.forEach((things, posit) => {
-                if (Number(things.productID) === Number(toBuyProductID)){
+                if (Number(things.productID) === Number(toBuyProductID)) {
                     //deletes item from  all items 
                     userTempDB[pos].itemsForSale.splice(posit, 1)
                 }
             })
-            
+
         }
     });
 
-        console.log('sellingUser: ',sellingUser)
-        console.log('soldItem: ', soldItem)
-        tools.FileWriteSync(dbForSalePath, JSON.stringify(sellTempDB));
-        tools.FileWriteSync(userDbPath, JSON.stringify(userTempDB))
+    console.log('sellingUser: ', sellingUser)
+    console.log('soldItem: ', soldItem)
+    tools.FileWriteSync(dbForSalePath, JSON.stringify(sellTempDB));
+    tools.FileWriteSync(userDbPath, JSON.stringify(userTempDB))
 }
 
 const mainPage = () => {
@@ -237,41 +237,46 @@ const mainPage = () => {
 
 const addToCart = (info) => {
     var buyerUsername = info.username;
-    var toBuyProductID = info.productID; 
+    var toBuyProductID = info.productID;
     console.log('username: ', buyerUsername);
     console.log('toBuyProductID: ', toBuyProductID);
-    
+
     var sellTempDB = JSON.parse(tools.FileReadSync(dbForSalePath));
-    
+
     //get all items for sale
     var allItems = [];
     sellTempDB.forEach((item, pos) => {
         item.forSale.forEach((things, posit) => {
             allItems.push(things)
         });
-        });
-    
-        //turn all items into an Object
-    var allItemsObj = tools.toObject(allItems)
+    });
 
-        if (!cart[buyerUsername]) {
-            cart[buyerUsername] = [];
-        }
+    //turn all items into an Object
+    // var allItemsObj = tools.toObject(allItems)
+
+    if (!cart[buyerUsername]) {
+        cart[buyerUsername] = [];
+    }
     allItems.forEach((item, pos) => {
-        if (Number(item.productID) === Number(toBuyProductID)){
+        if (Number(item.productID) === Number(toBuyProductID)) {
             cart[buyerUsername].push(item);
+        } else {
+            return ('item has already been sold')
         }
     })
 
+    console.log('added to cart:', cart)
 }
 
 const inCart = (info) => {
     username = info.username
-    
+
     var inMyCart = cart[username];
-    
+
     return inMyCart;
-    console.log(inMyCart);
+    console.log('inMyCart:', inMyCart);
+    console.log('all in cart:', cart)
+
 }
 
 const profilePage = (userInfo) => {
@@ -291,7 +296,25 @@ const profilePage = (userInfo) => {
     userInfoToSend.password = 'xxxxxxxxx';
 
     return userInfoToSend;
- }
+}
+
+const removeFromCart = (userInfo) => {
+
+    var username = userInfo.username
+    var toRemoveID = userInfo.productID
+    console.log('username:', username)
+    // console.log('cart: ', cart)
+
+    if (cart[username]) {
+        cart[username].forEach((item, pos) => {
+            if (Number(item.productID) === Number(toRemoveID)) {
+                cart[username].splice(pos, 1);
+            }
+        })
+    }
+
+}
+
 
 module.exports = {
     login,
@@ -301,6 +324,7 @@ module.exports = {
     mainPage,
     profilePage,
     addToCart,
-    inCart
+    inCart,
+    removeFromCart,
 }
 

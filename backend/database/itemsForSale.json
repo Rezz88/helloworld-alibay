@@ -1,41 +1,14 @@
 [
   {
-    "username": "gleb",
+    "username": "bobby",
     "forSale": [
       {
-        "username": "gleb",
-        "productID": 29605786,
-        "price": "300",
-        "blurb": "a russian something"
-      },
-      {
-        "username": "gleb",
-        "productID": 63874095,
-        "price": "22",
-        "blurb": "llama"
-      },
-      {
-        "username": "gleb",
-        "productID": 56663704,
-        "price": "39",
-        "blurb": "a damn laptop"
-      }
-    ]
-  },
-  {
-    "username": "manny",
-    "forSale": [
-      {
-        "username": "manny",
-        "productID": 90820147,
-        "price": "1000",
-        "blurb": "i dunno man.. things?"
-      },
-      {
-        "username": "manny",
-        "productID": 29775658,
-        "price": "21",
-        "blurb": "beer!!"
+        "seller": "bobby",
+        "productID": 98659908,
+        "price": "44",
+        "blurb": "an okay sweater",
+        "category": "clothing",
+        "title": "sweater"
       }
     ]
   },
@@ -43,16 +16,67 @@
     "username": "washy",
     "forSale": [
       {
-        "username": "washy",
-        "productID": 95213697,
-        "price": "2222",
-        "blurb": "riffle"
+        "seller": "washy",
+        "productID": 9396844,
+        "price": "235",
+        "blurb": "averagely used bad ass laptop",
+        "category": "electronics",
+        "title": "LapTop"
       },
       {
-        "username": "washy",
-        "productID": 98846714,
-        "price": "11",
-        "blurb": "retro hat"
+        "seller": "washy",
+        "productID": 31068348,
+        "price": "12",
+        "blurb": "ok pair of gloves",
+        "category": "clothing",
+        "title": "Gloves"
+      }
+    ]
+  },
+  {
+    "username": "gleb",
+    "forSale": [
+      {
+        "seller": "gleb",
+        "productID": 5983497,
+        "price": "3",
+        "blurb": "a case of good ol' PBR",
+        "category": "other",
+        "title": "BEER"
+      },
+      {
+        "seller": "gleb",
+        "productID": 27481389,
+        "price": "22",
+        "blurb": "mild mannered friend",
+        "category": "other",
+        "title": "Llama"
+      }
+    ]
+  },
+  {
+    "username": "manny",
+    "forSale": [
+      {
+        "seller": "manny",
+        "productID": 75026872,
+        "price": "120",
+        "blurb": "a damn sandbox",
+        "category": "toys",
+        "title": "Kids Toys"
+      }
+    ]
+  },
+  {
+    "username": "dre",
+    "forSale": [
+      {
+        "seller": "dre",
+        "productID": 45828781,
+        "price": "1200",
+        "blurb": "a winter beater",
+        "category": "cars",
+        "title": "Mazda 3"
       }
     ]
   }
