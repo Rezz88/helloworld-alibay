@@ -18,6 +18,7 @@ export class Cartindex extends Component {
    
    renderProducts = () => {
        const { products } = this.state
+       
        if (products)    {
            return products.map(product=>{
                return <Cartcard
