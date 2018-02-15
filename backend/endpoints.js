@@ -20,8 +20,8 @@ app.post('/login', async (req, res) => {
     res.send(await funky.login(JSON.parse(req.body.toString()), allUsers))
 })
 
-app.post('/toSell', (req, res) => {
-    res.send(funky.createListing(JSON.parse(req.body.toString())));
+app.post(3, (req, res) => {
+    res.send(funky.createListing(JSON.parse(req.body.toString()),req ,res ));
 })
 
 app.post('/toBuy', (req, res) => {
@@ -48,10 +48,10 @@ app.post('/removeFromCart', (req, res) => {
     res.send(funky.removeFromCart(JSON.parse(req.body.toString())));
 })
 
-// app.post('/addImage', (req, res) => {
-//     res.send(funky.addImg(JSON.parse(req.body.toString())));
-// })
+app.post('/upics', (req, res) => {
+    res.send(funky.addImg(req, res));
+})
 
 
-app.listen(4000, console.log("We're a go!"))
+app.listen(4001, console.log("We're a go!"))
 
