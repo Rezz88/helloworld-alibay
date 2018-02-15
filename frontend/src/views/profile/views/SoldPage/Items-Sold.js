@@ -1,20 +1,30 @@
 import React, { Component } from 'react';
 import '../../../../App.css';
 
-export class ItemSold extends Component {
-
+export class SoldItem extends Component {
+    
     soldItem = () => {
     // fetch("")
-        // .then(x=> x.text())
-        // .then(y=> JSON.parse(y))
-        // .then(lst=> this.setState({ products: lst})) 
+    //     .then(x=> x.text())
+    //     .then(y=> JSON.parse(y))
+    //     .then(lst=> this.setState({ products: lst}))
     }
 
+    componentDidMount() {
+          // fetch(""), {
+        //     method: 'post',
+        //     body: JSON.stringify({
+        //     })
+        // }
+        this.setState({})
+    }
+
+
     render() {
-        const{ image, price, name, description} = this.props// de-structuring shit from perks
+        const{ image, price, name, description} = this.props// De-tructuring
         return (
             <div>
-                <h3>Sold Items</h3>
+                <h3>Items Sold</h3>
             <div className='sold-item'>
                 <div>
                     {image}
@@ -28,10 +38,13 @@ export class ItemSold extends Component {
                 <div>
                     {price}
                 </div>
+                <div className="remove-button">
+                    <button onClick={this.removeSale}>Remove</button>
+                </div>    
             </div>
             </div>
         )
     }
-}     
+} 
 
-export default ItemSold;
+export default SoldItem;

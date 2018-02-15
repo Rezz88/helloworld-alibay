@@ -2,9 +2,7 @@ import React, { Component } from 'react';
 import '../../../../App.css';
 
 export class ForSale extends Component {
-
-
-
+    
     saleItem = () => {
     // fetch("")
     //     .then(x=> x.text())
