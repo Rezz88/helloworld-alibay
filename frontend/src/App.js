@@ -8,6 +8,7 @@ import { Login } from './views/login'
 import { Sell } from './views/sell'
 import { About } from './views/about'
 import { Contact } from './views/contact'
+import TEST from './test.js'
 
 // import {ImgVarName} from '../../backend/database/images/orchids.jpeg';
 
@@ -16,7 +17,7 @@ class App extends Component {
     super();
     this.state = {
       active: 'Main',
-      login: true, //Temp marked as true. 
+      login: false, //Temp marked as true. 
       error: false,
       username: 'washy',
       prodId: '',
@@ -147,6 +148,7 @@ class App extends Component {
     // const { active } = this.state;
     return (
       <div>
+      <TEST/>ghvgvvfvdddvdvdvf
         <ul className="App-header">
             <a className="flash" onClick={() => this.ChangeComponent('Main')}>M A I N</a>
             <a className="flash" onClick={() => this.ChangeComponent('Profile')}>P R O F I L E</a>
