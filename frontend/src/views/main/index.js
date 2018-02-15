@@ -37,7 +37,7 @@ export class Main extends Component {
                 
             })
         } else {
-            return <div>nothing</div>
+            return <div>Nothing available</div>
         }
     }
     submitQuery = () => {
@@ -181,7 +181,7 @@ export class Main extends Component {
                         onChange={this.onInput}>
                     </input>
                     {/* <button onClick={this.submitQuery}>submit</button> ********stretch goal for a search function */}
-                    <button>search</button>
+                    <button className="button2">Search</button>
                 </div>
                 <div>
                     {this.renderProducts()}

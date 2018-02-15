@@ -114,7 +114,7 @@ export class Checkoutindex extends Component {
                     {' YOUR TOTAL IS $'+this.renderPrice()}
                 </div>
                 <div>
-                    <button onClick={this.deleteItem}>B U Y</button>
+                    <button className="button" onClick={this.deleteItem}>B U Y</button>
                 </div>
             </div>
         )

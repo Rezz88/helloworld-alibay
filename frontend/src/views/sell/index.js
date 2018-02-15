@@ -43,7 +43,7 @@ export class Sell extends Component {
                 
                 <input className="blurb" placeholder="Description" value={blurb} onChange={(e) => this.setInputValue('blurb', e.target.value)}></input>
                 <input className="price" type="number" placeholder="Price" value={price} onChange={(e) => this.setInputValue('price', e.target.value)}></input>
-                <button onClick={addItem}>Sell Item!</button>
+                <button className="button2" onClick={addItem}>Sell Item</button>
             </div>)
     }
 

@@ -82,3 +82,66 @@
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
 }
+
+.button {
+  background-color: white;
+  color: black;
+  border: 1px solid #555555;
+  cursor: pointer
+}
+
+.button:hover {
+  background-color: #555555;
+  color: white;
+}
+
+.button2 {
+  background-color: white;
+  color: black;
+  border: 2px solid #555555;
+  cursor: pointer
+}
+
+.button2:hover {
+  background-color: #555555;
+  color: white;
+}
+
+.flash {
+  position: relative;
+  background-color: #222;
+  border-style: outset;
+  padding: 4px;
+  margin: 0 5px;
+  color: #FFFFFF;
+  text-align: center;
+  -webkit-transition-duration: 0.4s; /* Safari */
+  transition-duration: 0.4s;
+  text-decoration: none;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.flash:after {
+  content: "";
+  background: #f1f1f1;
+  display: block;
+  position: absolute;
+  padding-top: 300%;
+  padding-left: 350%;
+  margin-left: -20px !important;
+  margin-top: -120%;
+  opacity: 0;
+  transition: all 0.8s
+}
+
+.flash:active:after {
+  padding: 0;
+  margin: 0;
+  opacity: 1;
+  transition: 0s
+}
+
+.curse {
+  cursor: pointer
+}

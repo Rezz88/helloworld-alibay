@@ -21,7 +21,7 @@ export default class Checkoutcard extends Component {
                     {price}
                 </div>
                 <div>
-                    <button onClick={deleteItem}>D E L E T E</button>
+                    <button className="button" onClick={deleteItem}>D E L E T E</button>
                 </div>
                 
 
