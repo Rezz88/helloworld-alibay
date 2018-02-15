@@ -5,20 +5,20 @@ export default class Cartcard extends Component {
 
 
     render() {
-        const{ image, price, name, description, checkout, deleteItem} = this.props// de-structuring shit from perks
+        const{ username ,price, productID, description, checkout, deleteItem} = this.props// de-structuring shit from perks
         return (
             <div className='Main-items'>
                 <div>
-                    {image}
+                    {'seller: '+username}
                 </div>
                 <div>
-                    {name}
+                    {'productID: '+productID}
                 </div>
                 <div>
-                    {description}
+                    {'description: '+description}
                 </div>
                 <div>
-                    {price}
+                    {'$ '+price}
                 </div>
                 <div>
                     <button onClick={checkout}>C H E C K O U T</button>

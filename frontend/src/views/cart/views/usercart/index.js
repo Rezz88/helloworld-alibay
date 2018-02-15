@@ -16,21 +16,21 @@ export class Cartindex extends Component {
         // .then(y=> JSON.parse(y))
         // .then(lst=> this.setState({ products: lst}))
 
-        const mockCart = [
-            {prodId: 1,
-                name: 'car //  mock data',
-                descr: 'description of car is mock data',
-                price: 1000,
-                image: 'image of car',
-                sellerId: 'John'},
-            {prodId: 2,
-                name: 'boat //  mock data',
-                descr: 'description of boat',
-                price: 2000,
-                image: 'image of boat',
-                sellerId: 'barb'}
-            ]
-            this.setState({products: mockCart})
+
+        const mackCart = 
+            [ { username: 'washy',
+                productID: 98846714,
+                price: 11,
+                blurb: 'retro hat' },
+              { username: 'manny',
+                productID: 29775658,
+                price: 26,
+                blurb: 'beer!!' } ] 
+            
+
+            this.setState({products: mackCart})
+
+            
     }
     
     renderProducts = () => {
@@ -39,13 +39,14 @@ export class Cartindex extends Component {
             return products.map(product=>{
                 return <Cartcard
                 // plus whatever else we get from the backend
+                    username={product.username}
+                    productID= {product.productID}
+                    description= {product.blurb}
                     name={product.name}
                     image= {product.image}
-                    description= {product.descr}
                     sellerId= {product.seller}
-                    prodId= {product.prodId}
                     key= {product.prodId}
-                    price= {'$'+product.price}
+                    price= {product.price}
                     checkout={()=>this.checkout(product)}
                     deleteItem={()=>this.deleteItem(product)}
                 />
@@ -108,11 +109,7 @@ export class Cartindex extends Component {
         return x.name !== item.name;  
         });
 
-        console.log('new array =', newArray);
-        console.log('old array =', this.state.products)
-
         this.setState({products: newArray})// 
-        console.log(' delete this item only =' ,item)
         
     }
 
