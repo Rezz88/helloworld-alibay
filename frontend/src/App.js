@@ -18,7 +18,7 @@ class App extends Component {
       active: 'Main',
       login: true, //Temp marked as true. 
       error: false,
-      username: '',
+      username: 'washy',
       prodId: '',
       itemPosted: false,
       footer: ''
@@ -58,12 +58,6 @@ class App extends Component {
     }
   }
 
-  cartClick =()=> {
-    fetch('/cart', {
-      method: 'post',
-      body: JSON.stringify({username: this.state.username})
-    })
-  }
 
 
   login = (username, password) => {
@@ -161,7 +155,7 @@ class App extends Component {
             <a onClick={() => this.ChangeComponent('Profile')}>P R O F I L E</a>
           </li>
           <li>
-            <a onClick={() => this.ChangeComponent('Cart') && this.cartClick()}>C A R T</a>
+            <a onClick={() => {this.ChangeComponent('Cart')}}>C A R T</a>
           </li>
           <li>
             <a onClick={() => this.ChangeComponent('Sell')}>S E L L</a>
