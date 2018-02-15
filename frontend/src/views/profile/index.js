@@ -56,9 +56,9 @@ export class Profile extends Component {
                     <button onClick={this.editProfile}>Edit</button>
                 </div>
                     <div className="App-header">
-                        <a onClick={() => this.ChangeComponent("ForSale")}>FOR SALE</a>
-                        <a onClick={() => this.ChangeComponent("SoldItem")}>SOLD</a>
-                        <a onClick={() => this.ChangeComponent("HistoryItem")}>HISTORY</a>
+                        <a className="flash" onClick={() => this.ChangeComponent("ForSale")}>FOR SALE</a>
+                        <a className="flash" onClick={() => this.ChangeComponent("SoldItem")}>SOLD</a>
+                        <a className="flash" onClick={() => this.ChangeComponent("HistoryItem")}>HISTORY</a>
                     </div>
                 <div>{this.renderComponent()}</div>
                 {/* <div>{this.renderProducts()}</div> */}

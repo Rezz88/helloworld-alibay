@@ -21,7 +21,7 @@ export class SoldItem extends Component {
 
 
     render() {
-        const{ image, price, name, description} = this.props// De-tructuring
+        const{ image, price, name, description, deleteItem} = this.props// De-tructuring
         return (
             <div>
                 <h3>Items Sold</h3>
@@ -39,7 +39,7 @@ export class SoldItem extends Component {
                     {price}
                 </div>
                 <div className="remove-button">
-                    <button onClick={this.remove}>Remove</button>
+                    <button className="button" onClick={deleteItem}>Remove</button>
                 </div>    
             </div>
             </div>

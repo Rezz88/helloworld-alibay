@@ -13,17 +13,13 @@ class ForSalePage extends Component {
     componentDidMount(){
         const mockproducts = [
             {prodid: 1,
-                name: 'car',
-                descr: 'description of car',
-                image: 'img of car'},
+                name: 'Blue jeans',
+                descr: 'description of jeans',
+                image: 'img of jeans'},
             {prodid: 2,
-                name: 'boat',
-                descr: 'description of boat',
-                image: 'img of boat'},
-            {prodid: 3,
-                name: 'shoes',
-                descr: 'description of shoes',
-                image: 'img of shoes'}
+                name:  'MacBook',
+                descr: 'description of MacBook',
+                image: 'img of MacBook'},
         ]
         this.setState({ products: mockproducts })
     };
@@ -38,6 +34,7 @@ class ForSalePage extends Component {
                     description={product.descr}
                     prodId={product.prodId}
                     key={product.prodId}
+                    deleteItem={()=>this.deleteItem(product)}
                     // Currently not required for profile
                     // addToBag={this.addToBag}
                     // addToFav={() => this.addToFav(product.prodid)}
@@ -48,27 +45,27 @@ class ForSalePage extends Component {
         }
     }
 
-    remove = (item) =>  {
+    deleteItem = (item) =>  {
         //pass username into the item with clickfunction
         item.username = this.props.username
-
         //need to update backend to remove an item from cart
         // fetch("/delete", {
         //     method: "POST",
         //     body: JSON.stringify(item),
         //   })
         
-        let oldArray = this.state.products
-        let newArray = oldArray.filter(function(x) {
-        return x.name !== item.name;  
+        let newArray = this.state.products
+        let productsRemoved = newArray.filter(function(el) {
+        return el.name !== item.name;  
         });
 
-        console.log('new array =', newArray);
+        console.log('new array =', productsRemoved);
         console.log('old array =', this.state.products)
 
-        this.setState({products: newArray})// 
+        this.setState({products: productsRemoved})// 
         console.log(' delete this item only =' ,item)
     }
+        
 
     render () {
         return (

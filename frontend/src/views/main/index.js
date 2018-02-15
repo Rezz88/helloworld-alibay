@@ -135,24 +135,24 @@ export class Main extends Component {
         //     ]
         let forSaleProducts = []
         // fetching items from backend
-        fetch("/main")
-        .then(x=> x.text())
-        .then(y=> JSON.parse(y))
-        // .then(y=>{console.log('y=',y); return y})
-        .then(lst=>{
-                    lst.forEach(item=> {
-                        forSaleProducts.push(item.forSale)
-                        }
-                    )
-                    var forSaleAll = []
-            for (var i = 0; i < forSaleProducts.length; i++)   {
-                for (var j = 0; j < forSaleProducts[i].length; j++) {
-                    forSaleAll.push(forSaleProducts[i][j])
-            }}
-            console.log('forsaleAll = ',forSaleAll)
-            return this.setState({products: forSaleAll})
-                }
-            )
+        // fetch("/main")
+        // .then(x=> x.text())
+        // .then(y=> JSON.parse(y))
+        // // .then(y=>{console.log('y=',y); return y})
+        // .then(lst=>{
+        //             lst.forEach(item=> {
+        //                 forSaleProducts.push(item.forSale)
+        //                 }
+        //             )
+        //             var forSaleAll = []
+        //     for (var i = 0; i < forSaleProducts.length; i++)   {
+        //         for (var j = 0; j < forSaleProducts[i].length; j++) {
+        //             forSaleAll.push(forSaleProducts[i][j])
+        //     }}
+        //     console.log('forsaleAll = ',forSaleAll)
+        //     return this.setState({products: forSaleAll})
+        //         }
+        //     )
             // this.setState({ products: lst})
                 
         

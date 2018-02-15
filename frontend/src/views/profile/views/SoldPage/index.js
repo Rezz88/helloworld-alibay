@@ -38,6 +38,7 @@ class SoldItemPage extends Component {
                     description={product.descr}
                     prodId={product.prodId}
                     key={product.prodId}
+                    deleteItem={()=>this.deleteItem(product)}
                     // Currently not required for profile
                     // addToBag={this.addToBag}
                     // addToFav={() => this.addToFav(product.prodid)}
@@ -48,7 +49,7 @@ class SoldItemPage extends Component {
         }
     }
 
-    remove = (item) =>  {
+    deleteItem = (item) =>  {
         //pass username into the item with clickfunction
         item.username = this.props.username
         //need to update backend to remove an item from cart
@@ -67,8 +68,8 @@ class SoldItemPage extends Component {
 
         this.setState({products: productsRemoved})// 
         console.log(' delete this item only =' ,item)
-        
     }
+        
 
     render () {
         return (

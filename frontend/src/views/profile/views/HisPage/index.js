@@ -12,18 +12,10 @@ class HisItemPage extends Component {
     //Temp mockdata for testing
     componentDidMount(){
         const mockproducts = [
-            {prodid: 1,
-                name: 'car',
-                descr: 'description of car',
-                image: 'img of car'},
-            {prodid: 2,
-                name: 'boat',
-                descr: 'description of boat',
-                image: 'img of boat'},
             {prodid: 3,
-                name: 'shoes',
-                descr: 'description of shoes',
-                image: 'img of shoes'}
+                name: 'Bike',
+                descr: 'description of bike',
+                image: 'img of bike'}
         ]
         this.setState({ products: mockproducts })
     };

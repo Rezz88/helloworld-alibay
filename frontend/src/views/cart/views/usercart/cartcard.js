@@ -21,8 +21,8 @@ export default class Cartcard extends Component {
                     {'$ '+price}
                 </div>
                 <div>
-                    <button onClick={checkout}>C H E C K O U T</button>
-                    <button onClick={deleteItem}>D E L E T E</button>
+                    <button className="button" onClick={checkout}>C H E C K O U T</button>
+                    <button className="button" onClick={deleteItem}>D E L E T E</button>
                 </div>
             </div>
             
