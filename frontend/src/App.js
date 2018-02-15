@@ -103,13 +103,15 @@ class App extends Component {
     //change x to something more descriptive
   }
 
-  addItem = ( blurb, price) => {
+  addItem = ( title, blurb, price) => {
     fetch('/toSell', {
       method: 'post',
       body: JSON.stringify({   //send the suername instead of name
         username: this.state.username,
+        title,
         blurb,
-        price
+        price,
+        timeStamp: new Date()
       })
     })
       .then(x => x.text())
@@ -121,6 +123,8 @@ class App extends Component {
         }))
   }
 
+
+  
   // editProfile = () => {
   //   const myProfile = {}
   //   fetch('/profile', {

@@ -7,27 +7,30 @@ import '../../App.css';
 export default class ProductCard extends Component {
 
     render() {
-        const{ productID, price, seller, description, addToCart} = this.props// de-structuring shit from perks
+        const{ productID, price, seller, description, addToCart, title} = this.props// de-structuring shit from perks
         return (
             <div className='Main-items'>
                 <div>
                     {'sellerID: '+seller}
                 </div>
                 <div>
-                    {'product ID: ' +productID}
+                    {'product ID: ' + productID}
+                </div>
+                <div>
+                    <h2>{title}</h2>
                 </div>
                 <div>
                     {description}
                 </div>
                 <div>
-                    {"$ "+price}
+                    {'$: '}{price}
                 </div>
                 <div>
                     {/* <button onClick={()=>addToBag(prodId)}>ADD</button> ** use 'prodId' in de-structuring above */}
                     <button onClick={addToCart}>ADD to C A R T</button>
                     
                 </div>
-                
+
 
             </div>
         )
