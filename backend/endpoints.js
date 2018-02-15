@@ -4,9 +4,11 @@ const express = require('express');
 const morgan = require('morgan');
 const app = express()
 
+app.use(express.static('images'))
+
 var fs = require('fs');
 var bodyParser = require('body-parser');
-app.use(bodyParser.raw({ type: '*/*' }))
+app.use(bodyParser.raw({ type: '*/*', limit: '50mb' }))
 app.use(morgan('dev'));
 
 app.post('/signUp', async (req, res) => {
@@ -46,6 +48,10 @@ app.post('/removeFromCart', (req, res) => {
     res.send(funky.removeFromCart(JSON.parse(req.body.toString())));
 })
 
+// app.post('/addImage', (req, res) => {
+//     res.send(funky.addImg(JSON.parse(req.body.toString())));
+// })
 
-app.listen(4001, console.log("We're a go!"))
+
+app.listen(4000, console.log("We're a go!"))
 

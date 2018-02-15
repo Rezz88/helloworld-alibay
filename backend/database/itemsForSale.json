@@ -1,16 +1,7 @@
 [
   {
     "username": "bobby",
-    "forSale": [
-      {
-        "seller": "bobby",
-        "productID": 98659908,
-        "price": "44",
-        "blurb": "an okay sweater",
-        "category": "clothing",
-        "title": "sweater"
-      }
-    ]
+    "forSale": []
   },
   {
     "username": "washy",
@@ -22,14 +13,6 @@
         "blurb": "averagely used bad ass laptop",
         "category": "electronics",
         "title": "LapTop"
-      },
-      {
-        "seller": "washy",
-        "productID": 31068348,
-        "price": "12",
-        "blurb": "ok pair of gloves",
-        "category": "clothing",
-        "title": "Gloves"
       }
     ]
   },
