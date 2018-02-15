@@ -3,6 +3,7 @@ const fs = require('fs-extra');
 const tools = require('./tools')
 const userDbPath = './database/userInfo.json';
 const dbForSalePath = './database/itemsForSale.json';
+const dbImagesPath = './database/images';
 
 var cart = {}
 
@@ -85,7 +86,7 @@ const login = async (userInfo, users) => {
                 usersLoggedIn["username"] = item.username;
                 console.log(usersLoggedIn);
                 returnVal = true;
-            }
+        }
         }
     });
     if (!usernameExists) {
@@ -115,7 +116,8 @@ const createListing = (itemInfo) => {
             price: price,
             blurb: blurb,
             category: category,
-            title: title
+            title: title,
+          timeStamp: timeStamp
         }]
     }
     var newItem = {
@@ -124,7 +126,8 @@ const createListing = (itemInfo) => {
         price: price,
         blurb: blurb,
         category: category,
-        title: title
+        title: title,
+        timeStamp: timeStamp
     }
 
     //console.log('create listing test 3', newUser);
@@ -167,10 +170,24 @@ const createListing = (itemInfo) => {
 }
 
 const buyItem = (itemInfo) => {
-    var buyerUsername = itemInfo.username;
-    var toBuyProductID = itemInfo.productID;
-    console.log('buyerUsername: ', buyerUsername);
-    console.log('product: ', toBuyProductID);
+    console.log("itemInfo: ", itemInfo);
+    
+    //get control over buyer username
+    var userObj = itemInfo[0]
+    var buyerUsername = userObj.username;
+    itemInfo.splice(0,1)
+    
+    var products = itemInfo
+    console.log('products: ', products)
+
+
+   const purchase = (item, buyerUsernameArg) => { 
+       
+    
+    var buyerUsername = buyerUsernameArg;
+    var toBuyProductID = item.productID;
+     console.log('buyerUsername: ', buyerUsername);
+     console.log('product: ', toBuyProductID);
 
     var sellTempDB = JSON.parse(tools.FileReadSync(dbForSalePath));
     var userTempDB = JSON.parse(tools.FileReadSync(userDbPath));
@@ -227,6 +244,12 @@ const buyItem = (itemInfo) => {
     console.log('soldItem: ', soldItem)
     tools.FileWriteSync(dbForSalePath, JSON.stringify(sellTempDB));
     tools.FileWriteSync(userDbPath, JSON.stringify(userTempDB))
+    }
+
+    for (var i = 0; i < products.length; i++) {
+        purchase(products[i], buyerUsername);
+    }
+     
 }
 
 const mainPage = () => {
@@ -271,6 +294,9 @@ const addToCart = (info) => {
 const inCart = (info) => {
     username = info.username
 
+    if (!cart[username]){
+        return false
+    }
     var inMyCart = cart[username];
 
     return inMyCart;
@@ -312,8 +338,18 @@ const removeFromCart = (userInfo) => {
             }
         })
     }
-
 }
+
+// const addImg = (info) => {
+//     var username = info.username
+//     // var tempImgDB = fs.readFileSync(dbImagesPath);
+
+//     var extension = req.query.ext.split('.').pop();
+//     var randomString = '' +  Math.floor(Math.random() * 10000000)
+//     var randomFilename = randomString + '.' + extension
+//     fs.writeFileSync('./database/images/' +  randomFilename, req.body);
+//     res.send(randomFilename)
+// }
 
 
 module.exports = {
