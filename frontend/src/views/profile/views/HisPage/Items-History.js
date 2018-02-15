@@ -1,20 +1,20 @@
 import React, { Component } from 'react';
-import '../../../App.css';
+import '../../../../App.css';
 
-export class ItemSold extends Component {
+export class HistoryItem extends Component {
 
-    soldItem = () => {
+    historyItem = () => {
     // fetch("")
         // .then(x=> x.text())
         // .then(y=> JSON.parse(y))
-        // .then(lst=> this.setState({ products: lst})) 
+        // .then(lst=> this.setState({ products: lst}))
     }
 
     render() {
         const{ image, price, name, description} = this.props// de-structuring shit from perks
         return (
             <div>
-                <h3>Sold Items</h3>
+                <h3>History</h3>
             <div className='sold-item'>
                 <div>
                     {image}
@@ -32,6 +32,5 @@ export class ItemSold extends Component {
             </div>
         )
     }
-}     
-
-export default ItemSold;
+} 
+export default HistoryItem;
