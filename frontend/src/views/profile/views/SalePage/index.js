@@ -5,47 +5,47 @@ import ForSale from './Items-ForSale'
 class ForSalePage extends Component {
     constructor() {
         super()
-        this.state = { products: [] }
-
-    }
-
-    //Temp mockdata for testing
-    componentDidMount() {
-        const mockproducts = [
-            {prodid: 1,
-                name: 'Blue jeans',
-                descr: 'description of jeans',
-                image: 'img of jeans'
-            },
-            {prodid: 2,
-                name: 'MacBook',
-                descr: 'description of MacBook',
-                image: 'img of MacBook'
-            },
-        ]
-        this.setState({ products: mockproducts })
+        this.state = { 
+            products: [],
+            username: ""
+         }
     };
 
+    componentWillMount() {
+        this.setState({ username: this.props.username });
+    };
+
+    componentDidMount() {
+        console.log("ForSalePage test -", this.state.username)
+        fetch("/profile", {
+            method: 'post',
+            body: JSON.stringify({ username: this.state.username })
+        })
+            .then(x => x.text())
+            .then(y => JSON.parse(y))
+            .then(items =>items.itemsForSale)
+            .then(z=> {this.setState({products: z})})
+    };
+    
+
     renderProducts = () => {
+        console.log("Current issue - ", this.state.products)
         const { products } = this.state
         if (products.length) {
-            return products.map(product => {
+            return products.map(item => {
                 return <ForSale
-                    name={product.name}
-                    image={product.image}
-                    description={product.descr}
-                    prodId={product.prodId}
-                    key={product.prodId}
-                    deleteItem={() => this.deleteItem(product)}
-                // Currently not required for profile
-                // addToBag={this.addToBag}
-                // addToFav={() => this.addToFav(product.prodid)}
+                    seller={item.seller}
+                    productID={item.productID}
+                    price={item.price}
+                    blurb={item.blurb}
+                    category={item.category}
+                    title={item.title}
                 />
             })
         } else {
-            return <h4>Nothing for sale...</h4>
+            return <h4>Products</h4>
         }
-    }
+    };
 
     deleteItem = (item) => {
         //pass username into the item with clickfunction
@@ -66,7 +66,7 @@ class ForSalePage extends Component {
 
         this.setState({ products: productsRemoved })// 
         console.log(' delete this item only =', item)
-    }
+    };
 
 
     render() {

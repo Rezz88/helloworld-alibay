@@ -3,37 +3,20 @@ import '../../../../App.css';
 
 export class SoldItem extends Component {
 
-    soldItem = () => {
-        // fetch("")
-        //     .then(x=> x.text())
-        //     .then(y=> JSON.parse(y))
-        //     .then(lst=> this.setState({ products: lst}))
-    }
-
-    componentDidMount() {
-        // fetch(""), {
-        //     method: 'post',
-        //     body: JSON.stringify({
-        //     })
-        // }
-        this.setState({})
-    }
-
-
     render() {
-        const { image, price, name, description, deleteItem } = this.props// De-tructuring
+        const { seller, price, title, blurb, deleteItem } = this.props// De-structuring
         return (
             <div>
                 <h3>Items Sold</h3>
                 <div className='sold-item'>
                     <div>
-                        {image}
+                        {title}
                     </div>
                     <div>
-                        {name}
+                        {blurb}
                     </div>
                     <div>
-                        {description}
+                        {seller}
                     </div>
                     <div>
                         {price}

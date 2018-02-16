@@ -18,15 +18,14 @@ export class Profile extends Component {
             username: "",
             profile: {}
         }
-    }
+    };
 
     componentWillMount() {
         this.setState({ username: this.props.username });
     };
 
-
     componentDidMount() {
-
+        console.log("Profile Index -", this.state.username)
         fetch("/profile", {
             method: 'post',
             body: JSON.stringify({ username: this.state.username })
@@ -52,22 +51,20 @@ export class Profile extends Component {
         } else {
             return <h4>User Info</h4>
         }
-    }
+    };
 
     renderComponent = () => {
         const { active } = this.state;
         if (active === "HistoryItem") {
-            return <HisItemPage />
+            return <HisItemPage username={this.state.username} />
         } else if (active === "SoldItem") {
-            return <SoldItemPage />
+            return <SoldItemPage username={this.state.username} />
         } else if (active === "ForSale") {
-            return <ForSalePage />
+            return <ForSalePage username={this.state.username} />
         } else {
             return <div></div>
         }
     };
-
-    // //Will take info from backend
 
 
     render() {

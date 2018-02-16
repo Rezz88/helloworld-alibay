@@ -3,47 +3,20 @@ import '../../../../App.css';
 
 export class ForSale extends Component {
 
-    saleItem = () => {
-        // fetch("")
-        //     .then(x=> x.text())
-        //     .then(y=> JSON.parse(y))
-        //     .then(lst=> this.setState({ products: lst}))
-    }
-
-    removeSale = (item) => {
-        //Need to update backend to remove an item from favoirte page
-        // fetch("", {
-        //     method: "POST",
-        //     body: JSON.stringify(item),
-        //   })
-        this.setState({ products: [] })// 
-        console.log('deleteItem', item);
-    }
-
-    componentDidMount() {
-        // fetch(""), {
-        //     method: 'post',
-        //     body: JSON.stringify({
-        //     })
-        // }
-        this.setState({})
-    }
-
-
     render() {
-        const { image, price, name, description, deleteItem } = this.props// De-structuring
+        const { seller, price, title, blurb, deleteItem } = this.props// De-structuring
         return (
             <div>
                 <h3>Items for Sale</h3>
                 <div className='sold-item'>
                     <div>
-                        {image}
+                        {title}
                     </div>
                     <div>
-                        {name}
+                        {blurb}
                     </div>
                     <div>
-                        {description}
+                        {seller}
                     </div>
                     <div>
                         {price}
