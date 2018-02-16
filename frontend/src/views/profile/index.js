@@ -20,10 +20,11 @@ export class Profile extends Component {
         }
     }
 
-    componentWillMount () {
-        this.setState({username: this.props.username});
+    componentWillMount() {
+        this.setState({ username: this.props.username });
     };
 
+<<<<<<< HEAD
     componentDidMount () {
         // fetch("/profile", {
         //     method: 'POST',
@@ -33,6 +34,17 @@ export class Profile extends Component {
         // .then(y => JSON.parse(y))
         // .then(user => this.setState({ profile: user}))
         };
+=======
+    // componentDidMount() {
+    //     fetch("/profile", {
+    //         method: 'POST',
+    //         body: JSON.stringify({ username: this.state.username })
+    //     })
+    //         .then(x => x.text())
+    //         .then(y => JSON.parse(y))
+    //         .then(user => this.setState({ profile: user }))
+    // };
+>>>>>>> ba6e731ec7e1e35eac89f981f338bf22b480c87b
 
     ChangeComponent = (component) => {
         this.setState({ active: component })
@@ -48,7 +60,7 @@ export class Profile extends Component {
                 />
             })
         } else {
-            return <h4>Nothing sold...</h4>
+            return <h4>User Info</h4>
         }
     }
 
@@ -66,7 +78,7 @@ export class Profile extends Component {
     };
 
     // //Will take info from backend
- 
+
 
     render() {
         return (

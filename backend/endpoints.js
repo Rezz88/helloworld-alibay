@@ -16,7 +16,6 @@ app.post('/signUp', async (req, res) => {
 })
 
 app.post('/login', async (req, res) => {
-    console.log('>>>>>>>>>>>>>>>>>>>>>>', JSON.parse(req.body.toString()))
     allUsers = fileread('./database/userInfo.json')
     res.send(await funky.login(JSON.parse(req.body.toString()), allUsers))
 })
@@ -53,6 +52,9 @@ app.post('/upics', (req, res) => {
     res.send(funky.addImg(req, res));
 })
 
+app.post('/editProfile', (req, res) => {
+    res.send(funky.editProfile(JSON.parse(req.body.toString())));
+})
 
 app.listen(4001, console.log("We're a go!"))
 

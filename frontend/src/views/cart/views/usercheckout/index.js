@@ -58,7 +58,7 @@ export class Checkoutindex extends Component {
         return (
             <div>
                 <div>TOTAL ${total} </div>
-                <button onClick={this.checkout}>CHECKOUT</button>
+                <button className="button2" onClick={this.checkout}>CHECKOUT</button>
             </div>
             )
         } else if (!products){
