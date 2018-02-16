@@ -254,11 +254,7 @@ const buyItem = (itemInfo) => {
     for (var i = 0; i < products.length; i++) {
         purchase(products[i], buyerUsername);
     }
-<<<<<<< HEAD
-    cart[username]=[];
-=======
     cart[username] = [];
->>>>>>> ba6e731ec7e1e35eac89f981f338bf22b480c87b
 
 }
 
