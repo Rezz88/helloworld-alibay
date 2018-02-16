@@ -9,28 +9,19 @@ export class Checkoutindex extends Component {
 
     }
 
-    componentDidMount() {
-        //fetch items from backend uncomment when backend is ready
-        // fetch("/checkout")
-        // .then(x=> x.text())
-        // .then(y=> JSON.parse(y))
-        // .then(lst=> this.setState({ products: lst}))
+    componentWillMount()    {
+        this.setState({username: this.props.username})
+    }
 
-        const mockCart = [
-            {prodId: 1,
-                name: 'car //  mock data',
-                descr: 'description of car is mock data',
-                price: 1000,
-                image: 'image of car',
-                sellerId: 'John'},
-            {prodId: 2,
-                name: 'boat //  mock data',
-                descr: 'description of boat',
-                price: 2000,
-                image: 'image of boat',
-                sellerId: 'barb'}
-            ]
-            this.setState({products: mockCart})
+
+    componentDidMount() {
+        fetch("/cart", {
+            method: 'post',
+            body: JSON.stringify({username: this.state.username})
+          })
+        .then(x=> x.text())
+        .then(y=> JSON.parse(y))
+        .then(lst=> this.setState({ products: lst}))
     }
 
     renderProducts = () => {
@@ -39,56 +30,86 @@ export class Checkoutindex extends Component {
             return products.map(product=>{
                 return <Checkoutcard
                 // plus whatever else we get from the backend
+                    seller={product.seller}
+                    productID= {product.productID}
+                    description= {product.blurb}
                     name={product.name}
                     image= {product.image}
-                    description= {product.descr}
                     sellerId= {product.seller}
-                    prodId= {product.prodId}
                     key= {product.prodId}
-                    price= {product.price}
-                    // addToBag={this.addToBag}// more limited than addToFav below, works to send one props(propId)
-                    checkout={()=>this.checkout(product)}
+                    price= {(product.price)}
                     deleteItem={()=>this.deleteItem(product)}
-                />
+                />  
             })
-        } else {
-            return <div>you have no items</div>
+        } else if (!products){
+            return <div>cart is empty</div>
         }
     }
+
+
     renderPrice = () => {
         const {products} = this.state
         
         if (products)   {
             var total = 0
-        for (var i = 0; i < products.length; i++)   {
-            total += products[i].price
+            for (var i = 0; i < products.length; i++)   {
+                total += parseInt(products[i].price, 10)
         }
-        return total}
-        else {
-            return <div>$0.00</div>
+        return (
+            <div>
+                <div>TOTAL ${total} </div>
+                <button onClick={this.checkout}>CHECKOUT</button>
+            </div>
+            )
+        } else if (!products){
+            return <div>TOTAL $0.00</div>
         }
+    }
+
+    checkout = () =>  {
+        const { products, username } = this.state
+
+
+        var toSend = [{username: username}]
+        products.forEach((item, pos) => {
+            if (item.productID) {
+                toSend.push(item)
+            }
+        } )
+        //pass whole array to backend to proceed to checkout
+        fetch("/toBuy", {
+            method: "POST",
+            body: JSON.stringify(toSend)
+          })
+            //   fetch("/cart", {
+            //     method: 'post',
+            //     body: JSON.stringify({username: this.state.username})
+            //   })
+            // .then(x=> x.text())
+            // .then(y=> JSON.parse(y))
+            // .then(lst=> this.setState({ products: lst}))
+        
+            
+
     }
 
     deleteItem = (item) =>  {
         //pass username into the item with clickfunction
         item.username = this.props.username
-        //need to update backend to remove an item from cart
-        // fetch("/delete", {
-        //     method: "POST",
-        //     body: JSON.stringify(item),
-        //   })
-        
-        let newArray = this.state.products
-        let productsRemoved = newArray.filter(function(el) {
-        return el.name !== item.name;  
-        });
 
-        console.log('new array =', productsRemoved);
-        console.log('old array =', this.state.products)
+        let oldArray = this.state.products
+            let newArray = oldArray.filter(function(x) {
+            return x.name !== item.name;  
+            });
 
-        this.setState({products: productsRemoved})// 
-        console.log(' delete this item only =' ,item)
-        
+            this.setState({products: newArray})// 
+        //pass id's to backend to store in cart uncomment when backend is ready
+        fetch("/removeFromCart", {
+            method: "POST",
+            body: JSON.stringify(item),
+          })
+        console.log('Cart', item);
+
     }
 
 
@@ -108,13 +129,11 @@ export class Checkoutindex extends Component {
                 </div>
                 
                 <div>
+                    
                     {this.renderProducts()}
                 </div>
                 <div>
-                    {' YOUR TOTAL IS $'+this.renderPrice()}
-                </div>
-                <div>
-                    <button className="button" onClick={this.deleteItem}>B U Y</button>
+                    {this.renderPrice()}
                 </div>
             </div>
         )

@@ -59,8 +59,6 @@ class App extends Component {
     }
   }
 
-
-
   login = (username, password) => {
     this.setState({ username })
     fetch('/login', {
@@ -145,7 +143,7 @@ class App extends Component {
   //       <input> </input>
   //     </div>
   //   )
-  // }s
+  // }
 
   render() {
     console.log(this.state)

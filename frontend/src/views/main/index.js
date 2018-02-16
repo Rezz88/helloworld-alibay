@@ -117,7 +117,7 @@ export class Main extends Component {
                 var y = a.blurb.toLowerCase();
                 if (x < y) { return -1; }
                 if (x > y) { return 1; }
-                return 0;;
+                return 0;
             })
         } else {
             products.sort(function (a, b) {
@@ -125,7 +125,7 @@ export class Main extends Component {
                 var y = b.blurb.toLowerCase();
                 if (x < y) { return -1; }
                 if (x > y) { return 1; }
-                return 0;;
+                return 0;
             })
         }
     }
@@ -138,7 +138,7 @@ export class Main extends Component {
                 var y = new Date(a.timeStamp);
                 if (x < y) { return -1; }
                 if (x > y) { return 1; }
-                return 0;;
+                return 0;
             })
         } else {
             products.sort(function (a, b) {
@@ -146,7 +146,7 @@ export class Main extends Component {
                 var y = new Date(b.timeStamp); 
                 if (x < y) { return -1; }
                 if (x > y) { return 1; }
-                return 0;;
+                return 0;
             })
         }
     }
