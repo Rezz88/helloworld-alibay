@@ -8,7 +8,6 @@ import ProfileCard from './views/ProfileCard'
 
 //Parent App.js
 //Child ProfileCard.js
-
 export class Profile extends Component {
 
     constructor() {
@@ -26,14 +25,14 @@ export class Profile extends Component {
     };
 
     componentDidMount () {
-        fetch("/profile"), {
+        fetch("/profile", {
             method: 'POST',
             body: JSON.stringify({username: this.state.username})
         }
         .then(x => x.text())
         .then(y => JSON.parse(y))
         .then(user => this.setState({ profile: user}))
-    };
+        )};
 
     ChangeComponent = (component) => {
         this.setState({ active: component })
