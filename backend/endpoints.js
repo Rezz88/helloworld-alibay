@@ -16,11 +16,12 @@ app.post('/signUp', async (req, res) => {
 })
 
 app.post('/login', async (req, res) => {
+    console.log('>>>>>>>>>>>>>>>>>>>>>>', JSON.parse(req.body.toString()))
     allUsers = fileread('./database/userInfo.json')
     res.send(await funky.login(JSON.parse(req.body.toString()), allUsers))
 })
 
-app.post(3, (req, res) => {
+app.post('/toSell', (req, res) => {
     res.send(funky.createListing(JSON.parse(req.body.toString()),req ,res ));
 })
 

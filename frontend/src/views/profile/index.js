@@ -32,7 +32,7 @@ export class Profile extends Component {
         .then(x => x.text())
         .then(y => JSON.parse(y))
         .then(user => this.setState({ profile: user}))
-        )};
+        };
 
     ChangeComponent = (component) => {
         this.setState({ active: component })
