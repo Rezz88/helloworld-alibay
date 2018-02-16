@@ -58,8 +58,6 @@ class App extends Component {
     }
   }
 
-
-
   login = (username, password) => {
     this.setState({ username })
     fetch('/login', {

@@ -3,7 +3,11 @@ import '../../App.css';
 import ForSalePage from './views/SalePage'
 import SoldItemPage from './views/SoldPage'
 import HisItemPage from './views/HisPage'
+import ProfileCard from './views/ProfileCard'
 
+
+//Parent App.js
+//Child ProfileCard.js
 
 export class Profile extends Component {
 
@@ -11,12 +15,42 @@ export class Profile extends Component {
         super();
         this.state = {
             active: "",
-            products: []
+            products: [],
+            username: "",
+            profile: {}
         }
     }
 
+    componentWillMount () {
+        this.setState({username: this.props.username});
+    };
+
+    componentDidMount () {
+        fetch("/profile"), {
+            method: 'POST',
+            body: JSON.stringify({username: this.state.username})
+        }
+        .then(x => x.text())
+        .then(y => JSON.parse(y))
+        .then(user => this.setState({ profile: user}))
+    };
+
     ChangeComponent = (component) => {
         this.setState({ active: component })
+    };
+
+    renderProfile = () => {
+        const { profile } = this.state
+        if (profile.length) {
+            return profile.map(info => {
+                return <ProfileCard
+                    name={info.username}
+                    mail={info.email}
+                />
+            })
+        } else {
+            return <h4>Nothing sold...</h4>
+        }
     }
 
     renderComponent = () => {
@@ -33,25 +67,14 @@ export class Profile extends Component {
     };
 
     // //Will take info from backend
-    renderPerson = () => {
-            // fetch(""), {
-            //     method: 'post',
-            //     body: JSON.stringify({
-            //     username: user,
-            //     email: mail
-            //     })
-            // }
-            // .then(x => x.json())
-            // .then(console.log(x))
-        return <div>User Information</div>
-    }
+ 
 
     render() {
         return (
             <div className="profile">
                 <h4>Profile Page</h4>
                 <div>
-                    {this.renderPerson()}
+                    {this.renderProfile()}
                     <button className="button" onClick={this.editProfile}>Edit</button>
                 </div>
                 <div className="App-header">
