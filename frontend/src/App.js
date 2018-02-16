@@ -43,7 +43,7 @@ class App extends Component {
         return <Profile username={username} editProfile={this.editProfile} />
       }
       else if (active === 'Cart') {
-        return <Cart username={username} />
+        return <Cart username={username} ChangeComponent={this.ChangeComponent} />
       }
       else if (active === 'Sell') {
         return <Sell addItem={this.addItem} itemPosted={itemPosted} username={username} uploadFile={this.uploadFile} imageName={imageName}/>
@@ -51,8 +51,8 @@ class App extends Component {
       else if (active === 'About') {
         return <About />
       }
-      else if (active === 'ContactUs') {
-        return <Contact />
+      else if (active === 'Contact') {
+        return <Contact/>
       }
       else {
         return <div></div>
@@ -152,6 +152,7 @@ class App extends Component {
       <div>
         <TEST />ghvgvvfvdddvdvdvf
         <ul className="App-header">
+          <a>{'logged in as: '+this.state.username}</a>
           <a className="flash" onClick={() => this.ChangeComponent('Main')}>M A I N</a>
           <a className="flash" onClick={() => this.ChangeComponent('Profile')}>P R O F I L E</a>
           <a className="flash" onClick={() => this.ChangeComponent('Cart') && this.cartClick()}>C A R T</a>
@@ -165,7 +166,7 @@ class App extends Component {
             <a className="curse" onClick={() => this.ChangeComponent('About')}>| a b o u t |</a>
           </li>
           <li>
-            <a className="curse" onClick={() => this.ChangeComponent('ContactUs')}>| c o n t a c t |</a>
+            <a className="curse" onClick={() => this.ChangeComponent('Contact')}>| c o n t a c t |</a>
           </li>
         </ul>
       </div>
