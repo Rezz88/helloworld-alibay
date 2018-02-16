@@ -379,6 +379,8 @@ const editProfile = (info) => {
     var username = info.username;
     var address = info.address;
     var payment = info.payment;
+    var newPass = info.newPass;
+    var newEmail = info.newEmail;
     var userTempDB = JSON.parse(tools.FileReadSync(userDbPath));
 
     var selectedUser;
@@ -390,6 +392,13 @@ const editProfile = (info) => {
 
     selectedUser['shippingAddress'] = address;
     selectedUser['paymentInfo'] = payment; 
+
+    if (newPass) {
+        selectedUser[password] = newPass;
+    }
+    if (newEmail) {
+        selectedUser[email] = newEmail;
+    }
 
     userTempDB.forEach((item, pos) => {
         if (item.username === username) {
