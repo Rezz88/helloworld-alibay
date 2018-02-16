@@ -34,8 +34,6 @@ export class Sell extends Component {
         )
     }
 
-
-
     sellPage = () => {
         const { title, blurb, price, category } = this.state //put name in
 
