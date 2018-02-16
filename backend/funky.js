@@ -287,14 +287,19 @@ const addToCart = (info) => {
         cart[buyerUsername] = [];
     }
 
+    var alreadyMatched;
     cart[buyerUsername].forEach((item, pos) => {
         if (Number(item.productID) === Number(toBuyProductID)) {
-            return true;
+            alreadyMatched = true;
         }
     })
 
+    if (alreadyMatched){
+        return true;
+    }
+
     allItems.forEach((item, pos) => {
-        if (Number(item.productID) === Number(toBuyProductID)) {
+        if (!alreadyMatched && Number(item.productID) === Number(toBuyProductID)) {
             cart[buyerUsername].push(item);
         } else {
             return ('item has already been sold')
