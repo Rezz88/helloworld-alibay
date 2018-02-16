@@ -16,6 +16,7 @@ app.post('/signUp', async (req, res) => {
 })
 
 app.post('/login', async (req, res) => {
+    console.log('>>>>>>>>>>>>>>>>>>>>>>', JSON.parse(req.body.toString()))
     allUsers = fileread('./database/userInfo.json')
     res.send(await funky.login(JSON.parse(req.body.toString()), allUsers))
 })
