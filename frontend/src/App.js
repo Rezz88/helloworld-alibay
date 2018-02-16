@@ -70,11 +70,17 @@ class App extends Component {
     })
       .then(x => x.text())
       .then(x => JSON.parse(x))
-      .then(x => this.setState({
-        login: x,
-        error: !x
-      }))
-      .then(() => console.log(this.state))
+      .then(x => {
+        this.setState({
+          login: x,
+          error: !x
+        }, () => {
+          if (typeof (this.state.login) !== "boolean") {
+            this.setState({ login: false, username: '' })
+          }
+        })
+      })
+
   }
 
   signUp = (username, password, email) => {
@@ -89,11 +95,12 @@ class App extends Component {
     })
       .then(x => x.text())
       .then(x => JSON.parse(x))
-      .then(x => this.setState({
-        login: x,
-        error: !x
-      }))
-      .then(() => console.log(this.state))
+      .then(x => {
+        this.setState({
+          login: x,
+          error: !x
+        })
+      })
       .catch((err) => {
         console.log(err)
         this.setState({ error: true })
@@ -102,6 +109,9 @@ class App extends Component {
   }
 
   addItem = (title, blurb, price) => {
+    if(typeof(price) !== 'number'){
+      return this.setState({itemPosted: false})
+    }
     fetch('/toSell', {
       method: 'post',
       body: JSON.stringify({   //send the suername instead of name
