@@ -8,6 +8,7 @@ import { Login } from './views/login'
 import { Sell } from './views/sell'
 import { About } from './views/about'
 import { Contact } from './views/contact'
+import TEST from './test.js'
 
 // import {ImgVarName} from '../../backend/database/images/orchids.jpeg';
 
@@ -16,7 +17,7 @@ class App extends Component {
     super();
     this.state = {
       active: 'Main',
-      login: true, //Temp marked as true. 
+      login: false, //Temp marked as true. 
       error: false,
       username: 'washy',
       prodId: '',
@@ -57,8 +58,6 @@ class App extends Component {
       }
     }
   }
-
-
 
   login = (username, password) => {
     this.setState({ username })
@@ -102,13 +101,15 @@ class App extends Component {
     //change x to something more descriptive
   }
 
-  addItem = ( blurb, price) => {
+  addItem = ( title, blurb, price) => {
     fetch('/toSell', {
       method: 'post',
       body: JSON.stringify({   //send the suername instead of name
         username: this.state.username,
+        title,
         blurb,
-        price
+        price,
+        timeStamp: new Date()
       })
     })
       .then(x => x.text())
@@ -120,6 +121,8 @@ class App extends Component {
         }))
   }
 
+
+  
   // editProfile = () => {
   //   const myProfile = {}
   //   fetch('/profile', {
@@ -140,13 +143,14 @@ class App extends Component {
   //       <input> </input>
   //     </div>
   //   )
-  // }s
+  // }
 
   render() {
     console.log(this.state)
     // const { active } = this.state;
     return (
       <div>
+      <TEST/>ghvgvvfvdddvdvdvf
         <ul className="App-header">
             <a className="flash" onClick={() => this.ChangeComponent('Main')}>M A I N</a>
             <a className="flash" onClick={() => this.ChangeComponent('Profile')}>P R O F I L E</a>
