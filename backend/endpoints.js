@@ -56,5 +56,9 @@ app.post('/editProfile', (req, res) => {
     res.send(funky.editProfile(JSON.parse(req.body.toString())));
 })
 
+app.post('/deleteItem', (req, res) => {
+    res.send(funky.deleteItem(JSON.parse(req.body.toString())));
+})
+
 app.listen(4001, console.log("We're a go!"))
 
