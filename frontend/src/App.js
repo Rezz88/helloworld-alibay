@@ -19,7 +19,7 @@ class App extends Component {
       active: 'Main',
       login: true, //Temp marked as true. 
       error: false,
-      username: '',
+      username: 'washy',
       prodId: '',
       itemPosted: false,
       footer: ''

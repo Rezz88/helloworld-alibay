@@ -24,15 +24,16 @@ export class Profile extends Component {
         this.setState({ username: this.props.username });
     };
 
-    // componentDidMount() {
-    //     fetch("/profile", {
-    //         method: 'POST',
-    //         body: JSON.stringify({ username: this.state.username })
-    //     })
-    //         .then(x => x.text())
-    //         .then(y => JSON.parse(y))
-    //         .then(user => this.setState({ profile: user }))
-    // };
+    componentDidMount() {
+        
+        fetch("/profile", {
+            method: 'post',
+            body: JSON.stringify({ username: this.state.username })
+        })
+            .then(x => x.text())
+            .then(y => JSON.parse(y))
+            .then(user => this.setState({ profile: [user] }))
+    };
 
     ChangeComponent = (component) => {
         this.setState({ active: component })
