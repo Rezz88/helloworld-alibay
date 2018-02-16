@@ -24,6 +24,7 @@ export class Profile extends Component {
         this.setState({ username: this.props.username });
     };
 
+
     componentDidMount() {
         
         fetch("/profile", {
