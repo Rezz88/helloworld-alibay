@@ -5,10 +5,10 @@ import SoldItem from './Items-Sold'
 class SoldItemPage extends Component {
     constructor() {
         super()
-        this.state = { 
+        this.state = {
             products: [],
             username: ""
-         }
+        }
     };
 
     componentWillMount() {
@@ -23,10 +23,10 @@ class SoldItemPage extends Component {
         })
             .then(x => x.text())
             .then(y => JSON.parse(y))
-            .then(items =>items.itemsSold)
-            .then(z=> {this.setState({products: z})})
+            .then(items => items.itemsSold)
+            .then(z => { this.setState({ products: z }) })
     };
-    
+
     renderProducts = () => {
         console.log("Current issue - ", this.state.products)
         const { products } = this.state
@@ -45,20 +45,6 @@ class SoldItemPage extends Component {
             return <h4>No Products</h4>
         }
     };
-
-    deleteItem = (item) =>  {
-        //pass username into the item with clickfunction
-        item.username = this.props.username
-        //pass id's to backend to store in cart uncomment when backend is ready
-        fetch("/delteItem", {
-            method: "POST",
-            body: JSON.stringify(item),
-          })
-        .then(x=> x.text())
-        .then(y=> JSON.parse(y))
-        .then(lst=> this.setState({ products: lst }))
-    };
-
 
     render() {
         return (

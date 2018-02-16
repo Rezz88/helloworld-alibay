@@ -5,10 +5,10 @@ import ForSale from './Items-ForSale'
 class ForSalePage extends Component {
     constructor() {
         super()
-        this.state = { 
+        this.state = {
             products: [],
             username: ""
-         }
+        }
     };
 
     componentWillMount() {
@@ -23,10 +23,10 @@ class ForSalePage extends Component {
         })
             .then(x => x.text())
             .then(y => JSON.parse(y))
-            .then(items =>items.itemsForSale)
-            .then(z=> {this.setState({products: z})})
+            .then(items => items.itemsForSale)
+            .then(z => { this.setState({ products: z }) })
     };
-    
+
     renderProducts = () => {
         console.log("Current issue - ", this.state.products)
         const { products } = this.state
@@ -47,22 +47,13 @@ class ForSalePage extends Component {
         }
     };
 
-    deleteItem = (item) =>  {
-        //pass username into the item with clickfunction
+    deleteItem = (item) => {
         item.username = this.props.username
-        //pass id's to backend to store in cart uncomment when backend is ready
         fetch("/deleteItem", {
             method: "POST",
             body: JSON.stringify(item),
-          })
-          let oldArr = this.state.products;
-          let newArr = oldArr.filter(function(x) {
-              return x.productID !== item.productID;
-          })
-          this.setState({ products: this.newArr})
-        // .then(x=> x.text())
-        // .then(y=> JSON.parse(y))
-        // .then(lst=> this.setState({ products: lst }))
+        })
+        this.setState({ products: this.newArr })
         this.componentDidMount()
     };
 

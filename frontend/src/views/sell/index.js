@@ -45,12 +45,14 @@ export class Sell extends Component {
         console.log(this.props.imageName)
         return (
             <div className='App'>
-                <input type="file" id="input" onChange={e => uploadFile(e.target.files[0])} />
                 <img src= {this.props.imageName} alt='Product' />
                 <input className="title" placeholder="Item Name" value={title} onChange={(e) => this.setInputValue('title', e.target.value)}></input>
                 <input className="blurb" placeholder="Description" value={blurb} onChange={(e) => this.setInputValue('blurb', e.target.value)}></input>
                 <input className="price" type="number" placeholder="Price" value={Number(price)} onChange={(e) => this.setInputValue('price', e.target.value)}></input>
                 <button className="button2" onClick={addItem}>Sell Item</button>
+                <div>
+                <input className="button" type="file" id="input" onChange={e => uploadFile(e.target.files[0])} />
+                </div>
             </div>)
     }
 
