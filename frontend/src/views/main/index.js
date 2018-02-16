@@ -171,8 +171,9 @@ export class Main extends Component {
         // fetching items from backend
         fetch("/main")
             .then(x => x.text())
+            .then(y=>{console.log('y=',y); return y})
             .then(y => JSON.parse(y))
-            // .then(y=>{console.log('y=',y); return y})
+            
             .then(lst => {
                 lst.forEach(item => {
                     forSaleProducts.push(item.forSale)
