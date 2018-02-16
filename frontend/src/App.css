@@ -111,6 +111,12 @@
   cursor: pointer
 }
 
+.button3 {
+  background-color: white;
+  color: black;
+  border: 3px solid #555555;
+}
+
 .button2:hover {
   background-color: #555555;
   color: white;

@@ -152,7 +152,7 @@ class App extends Component {
       <div>
         <TEST />ghvgvvfvdddvdvdvf
         <ul className="App-header">
-          <a>{'logged in as: '+this.state.username}</a>
+          <a>{'Logged in as : '+this.state.username}</a>
           <a className="flash" onClick={() => this.ChangeComponent('Main')}>M A I N</a>
           <a className="flash" onClick={() => this.ChangeComponent('Profile')}>P R O F I L E</a>
           <a className="flash" onClick={() => this.ChangeComponent('Cart') && this.cartClick()}>C A R T</a>
