@@ -87,7 +87,6 @@ class App extends Component {
           }
         })
       })
-
   }
 
   signUp = (username, password, email) => {
@@ -139,42 +138,13 @@ class App extends Component {
         }))
   }
 
-
-  //Still in the works
-
-  // editProfile = () => {
-  //   const myProfile = {}
-  //   fetch('/profile', {
-  //     method: 'post',
-  //     body: JSON.stringify({
-  //       username: this.state.username
-  //     })
-  //   })
-  //   .then(x => x.text())
-  //   .then(x => JSON.parse(x))
-  //   .then(x => myProfile = x)
-  //   return (
-  //     <div>
-  //       <input> </input>
-  //       <input> </input>
-  //       <input> </input>
-  //       <input> </input>
-  //       <input> </input>
-  //     </div>
-  //   )
-  // }
-
- 
-
-
-
   render() {
     console.log(this.state.imageName)
     // const { active } = this.state;
     return (
       <div>
         <ul className="App-header">
-          <a>{'logged in as: '+this.state.username}</a>
+          <a>{'Logged in as : '+this.state.username}</a>
           <a className="flash" onClick={() => this.ChangeComponent('Main')}>M A I N</a>
           <a className="flash" onClick={() => this.ChangeComponent('Profile')}>P R O F I L E</a>
           <a className="flash" onClick={() => this.ChangeComponent('Cart') && this.cartClick()}>C A R T</a>

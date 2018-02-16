@@ -46,6 +46,7 @@ export class Profile extends Component {
                 return <ProfileCard
                     name={info.username}
                     mail={info.email}
+                    edit={this.editProfile}
                 />
             })
         } else {
@@ -65,6 +66,28 @@ export class Profile extends Component {
             return <div></div>
         }
     };
+
+    // editProfile = () => {
+    //     const myProfile = {}
+    //     fetch('/editProfile', {
+    //         method: 'post',
+    //         body: JSON.stringify({
+    //             username: this.state.username
+    //         })
+    //     })
+    //         .then(x => x.text())
+    //         .then(x => JSON.parse(x))
+    //         .then(x => myProfile = x)
+    //     return (
+    //         <div>
+    //             <input> </input>
+    //             <input> </input>
+    //             <input> </input>
+    //             <input> </input>
+    //             <input> </input>
+    //         </div>
+    //     )
+    // }
 
 
     render() {
