@@ -43,13 +43,14 @@ class HisItemPage extends Component {
                 />
             })
         } else {
-            return <h4>Products</h4>
+            return <h4>No Products</h4>
         }
     };
 
     render() {
         return (
             <div>
+                <h3>Items Bought</h3>
                 <div>{this.renderProducts()}</div>
             </div>
 
