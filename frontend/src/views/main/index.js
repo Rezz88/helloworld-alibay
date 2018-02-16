@@ -206,7 +206,7 @@ export class Main extends Component {
                         value={this.state.searchQuery}
                         onChange={this.onInput}>
                     </input>
-                    <button className="button2" onClick={this.submitQuery}>submit</button>
+                    <button className="button2" onClick={this.submitQuery}>Submit</button>
 
                 </div>
                 <div>

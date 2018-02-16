@@ -2,26 +2,26 @@ import React, { Component } from 'react';
 import '../../../../App.css';
 
 export class ForSale extends Component {
-    
+
     saleItem = () => {
-    // fetch("")
-    //     .then(x=> x.text())
-    //     .then(y=> JSON.parse(y))
-    //     .then(lst=> this.setState({ products: lst}))
+        // fetch("")
+        //     .then(x=> x.text())
+        //     .then(y=> JSON.parse(y))
+        //     .then(lst=> this.setState({ products: lst}))
     }
 
-    removeSale = (item) =>  {
+    removeSale = (item) => {
         //Need to update backend to remove an item from favoirte page
         // fetch("", {
         //     method: "POST",
         //     body: JSON.stringify(item),
         //   })
-        this.setState({products: []})// 
+        this.setState({ products: [] })// 
         console.log('deleteItem', item);
     }
 
     componentDidMount() {
-          // fetch(""), {
+        // fetch(""), {
         //     method: 'post',
         //     body: JSON.stringify({
         //     })
@@ -31,30 +31,30 @@ export class ForSale extends Component {
 
 
     render() {
-        const{ image, price, name, description, deleteItem} = this.props// De-structuring
+        const { image, price, name, description, deleteItem } = this.props// De-structuring
         return (
             <div>
                 <h3>Items for Sale</h3>
-            <div className='sold-item'>
-                <div>
-                    {image}
+                <div className='sold-item'>
+                    <div>
+                        {image}
+                    </div>
+                    <div>
+                        {name}
+                    </div>
+                    <div>
+                        {description}
+                    </div>
+                    <div>
+                        {price}
+                    </div>
+                    <div className="remove-button">
+                        <button className="button" onClick={deleteItem}>Remove</button>
+                    </div>
                 </div>
-                <div>
-                    {name}
-                </div>
-                <div>
-                    {description}
-                </div>
-                <div>
-                    {price}
-                </div>
-                <div className="remove-button">
-                    <button className="button" onClick={deleteItem}>Remove</button>
-                </div>    
-            </div>
             </div>
         )
     }
-} 
+}
 
 export default ForSale;
