@@ -27,7 +27,6 @@ class SoldItemPage extends Component {
             .then(z=> {this.setState({products: z})})
     };
     
-
     renderProducts = () => {
         console.log("Current issue - ", this.state.products)
         const { products } = this.state
@@ -43,35 +42,28 @@ class SoldItemPage extends Component {
                 />
             })
         } else {
-            return <h4>Products</h4>
+            return <h4>No Products</h4>
         }
     };
 
-    deleteItem = (item) => {
+    deleteItem = (item) =>  {
         //pass username into the item with clickfunction
         item.username = this.props.username
-        //need to update backend to remove an item from cart
-        // fetch("/delete", {
-        //     method: "POST",
-        //     body: JSON.stringify(item),
-        //   })
-
-        let newArray = this.state.products
-        let productsRemoved = newArray.filter(function (el) {
-            return el.name !== item.name;
-        });
-
-        console.log('new array =', productsRemoved);
-        console.log('old array =', this.state.products)
-
-        this.setState({ products: productsRemoved })// 
-        console.log(' delete this item only =', item)
+        //pass id's to backend to store in cart uncomment when backend is ready
+        fetch("/delteItem", {
+            method: "POST",
+            body: JSON.stringify(item),
+          })
+        .then(x=> x.text())
+        .then(y=> JSON.parse(y))
+        .then(lst=> this.setState({ products: lst }))
     };
 
 
     render() {
         return (
             <div>
+                <h3>Items Sold</h3>
                 <div>{this.renderProducts()}</div>
             </div>
 

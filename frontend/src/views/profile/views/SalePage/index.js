@@ -27,11 +27,10 @@ class ForSalePage extends Component {
             .then(z=> {this.setState({products: z})})
     };
     
-
     renderProducts = () => {
         console.log("Current issue - ", this.state.products)
         const { products } = this.state
-        if (products.length) {
+        if (products) {
             return products.map(item => {
                 return <ForSale
                     seller={item.seller}
@@ -40,38 +39,36 @@ class ForSalePage extends Component {
                     blurb={item.blurb}
                     category={item.category}
                     title={item.title}
+                    deleteItem={() => this.deleteItem(item)}
                 />
             })
         } else {
-            return <h4>Products</h4>
+            return <h4>No Products</h4>
         }
     };
 
-    deleteItem = (item) => {
+    deleteItem = (item) =>  {
         //pass username into the item with clickfunction
         item.username = this.props.username
-        //need to update backend to remove an item from cart
-        // fetch("/delete", {
-        //     method: "POST",
-        //     body: JSON.stringify(item),
-        //   })
-
-        let newArray = this.state.products
-        let productsRemoved = newArray.filter(function (el) {
-            return el.name !== item.name;
-        });
-
-        console.log('new array =', productsRemoved);
-        console.log('old array =', this.state.products)
-
-        this.setState({ products: productsRemoved })// 
-        console.log(' delete this item only =', item)
+        //pass id's to backend to store in cart uncomment when backend is ready
+        fetch("/deleteItem", {
+            method: "POST",
+            body: JSON.stringify(item),
+          })
+          let oldArr = this.state.products;
+          let newArr = oldArr.filter(function(x) {
+              return x.productID !== item.productID;
+          })
+          this.setState({ products: this.newArr})
+        // .then(x=> x.text())
+        // .then(y=> JSON.parse(y))
+        // .then(lst=> this.setState({ products: lst }))
+        this.componentDidMount()
     };
-
 
     render() {
         return (
-            <div>
+            <div><h3>Items for Sale</h3>
                 <div>{this.renderProducts()}</div>
             </div>
 

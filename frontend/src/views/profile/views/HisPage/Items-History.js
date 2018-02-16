@@ -7,7 +7,6 @@ export class HistoryItem extends Component {
         const { seller, price, title, blurb, deleteItem } = this.props// De-structuring
         return (
             <div>
-                <h3>Items Bought</h3>
                 <div className='sold-item'>
                     <div>
                         {title}
