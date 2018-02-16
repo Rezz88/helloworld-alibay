@@ -254,6 +254,7 @@ const buyItem = (itemInfo) => {
     for (var i = 0; i < products.length; i++) {
         purchase(products[i], buyerUsername);
     }
+    cart[username]=[];
 
 }
 
@@ -343,6 +344,7 @@ const removeFromCart = (userInfo) => {
             }
         })
     }
+    return cart[username]
 }
 
 const addImg = (req, res) => {
