@@ -6,8 +6,8 @@ export class ProfileCard extends Component {
 
     render() {
 
-        const { name, mail } = this.props// De-tructuring
-        console.log(mail)
+        const { name, mail } = this.props// De-structuring
+        console.log("ProfileCard Email test -", mail)
         return (
             <div>
                 <h4>Your User Info</h4>
@@ -17,7 +17,6 @@ export class ProfileCard extends Component {
                     </div>
                     <div>
                         {"E-mail - " + mail}
-                        {console.log(mail)}
                     </div>
                     <div className="remove-button">
                         <button className="button" onClick={this.editProfile}>Edit</button>

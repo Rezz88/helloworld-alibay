@@ -9,8 +9,7 @@ export class Sell extends Component {
             username: '',
             title: '',
             blurb: '', 
-            price: ''
-            
+            price: '' 
         }
     }
 
@@ -33,23 +32,34 @@ export class Sell extends Component {
     }
 
 
+
     sellPage = () => {
-        const { title, blurb, price } = this.state //put name in
+        const { title, blurb, price} = this.state //put name in
 
         var addItem = () => {
-            this.props.addItem( title, blurb, price ) //put name in
+            this.props.addItem( title, blurb, price) 
         }
+        var uploadFile = (x) => {
+            this.props.uploadFile(x)
+        }
+        console.log(this.props.imageName)
         return (
             <div className='App'>
+                <img src= {this.props.imageName} alt='Product' />
                 <input className="title" placeholder="Item Name" value={title} onChange={(e) => this.setInputValue('title', e.target.value)}></input>
                 <input className="blurb" placeholder="Description" value={blurb} onChange={(e) => this.setInputValue('blurb', e.target.value)}></input>
                 <input className="price" type="number" placeholder="Price" value={Number(price)} onChange={(e) => this.setInputValue('price', e.target.value)}></input>
                 <button className="button2" onClick={addItem}>Sell Item</button>
+                <div>
+                <input className="button" type="file" id="input" onChange={e => uploadFile(e.target.files[0])} />
+                </div>
             </div>)
     }
 
     componentWillReceiveProps(nextProps) {
-        this.setState({ itemPosted: nextProps.itemPosted, username: nextProps.username }) 
+        
+        this.setState({ itemPosted: nextProps.itemPosted, username: nextProps.username}) 
+        console.log('this is props: ',nextProps)
     }
     render() {
         console.log(this.state)

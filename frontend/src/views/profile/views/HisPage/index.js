@@ -5,46 +5,52 @@ import HistoryItem from './Items-History'
 class HisItemPage extends Component {
     constructor() {
         super()
-        this.state = { products: [] }
-
-    }
-
-    //Temp mockdata for testing
-    componentDidMount() {
-        const mockproducts = [
-            {
-                prodid: 3,
-                name: 'Bike',
-                descr: 'description of bike',
-                image: 'img of bike'
-            }
-        ]
-        this.setState({ products: mockproducts })
+        this.state = { 
+            products: [],
+            username: ""
+         }
     };
 
+    componentWillMount() {
+        this.setState({ username: this.props.username });
+    };
+
+    componentDidMount() {
+        console.log("ForSalePage test -", this.state.username)
+        fetch("/profile", {
+            method: 'post',
+            body: JSON.stringify({ username: this.state.username })
+        })
+            .then(x => x.text())
+            .then(y => JSON.parse(y))
+            .then(items =>items.itemsBought)
+            .then(z=> {this.setState({products: z})})
+    };
+    
+
     renderProducts = () => {
+        console.log("Current issue - ", this.state.products)
         const { products } = this.state
         if (products.length) {
-            return products.map(product => {
+            return products.map(item => {
                 return <HistoryItem
-                    name={product.name}
-                    image={product.image}
-                    description={product.descr}
-                    prodId={product.prodId}
-                    key={product.prodId}
-                // Currently not required for profile
-                // addToBag={this.addToBag}
-                // addToFav={() => this.addToFav(product.prodid)}
+                    seller={item.seller}
+                    productID={item.productID}
+                    price={item.price}
+                    blurb={item.blurb}
+                    category={item.category}
+                    title={item.title}
                 />
             })
         } else {
-            return <h4>No History</h4>
+            return <h4>No Products</h4>
         }
-    }
+    };
 
     render() {
         return (
             <div>
+                <h3>Items Bought</h3>
                 <div>{this.renderProducts()}</div>
             </div>
 
