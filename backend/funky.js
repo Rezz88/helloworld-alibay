@@ -65,7 +65,7 @@ const signUp = async (userInfo) => {
     return response;
 }
 
-const login = async (userInfo, users) => {
+const login = async (userInfo) => {
     //sorts user data coming in
     // console.log(userInfo)
     var attemptUsername = userInfo.username;
@@ -82,11 +82,9 @@ const login = async (userInfo, users) => {
             usernameExists = true;
             if (item.password !== attemptPass) {
                 returnVal = false;
-            } else {
-                usersLoggedIn["username"] = item.username;
-                console.log(usersLoggedIn);
-                returnVal = true;
-        }
+            }
+        } else {
+            returnVal = true;
         }
     });
     if (!usernameExists) {
@@ -96,6 +94,7 @@ const login = async (userInfo, users) => {
 }
 
 const createListing = (itemInfo) => {
+
     const dbForSalePath = './database/itemsForSale.json';
     const userDB = './database/userInfo.json';
     var username = itemInfo.username;
@@ -103,6 +102,8 @@ const createListing = (itemInfo) => {
     var blurb = itemInfo.blurb;
     var category = itemInfo.category;
     var title = itemInfo.title;
+    var imageName =  itemInfo.imageName;
+    var timeStamp = itemInfo.timeStamp;
     // console.log('create listing test2: ', itemInfo);
     // console.log('create listing test2.0: ', username);
     // console.log('create listing test2.1: ', price);
@@ -117,7 +118,9 @@ const createListing = (itemInfo) => {
             blurb: blurb,
             category: category,
             title: title,
-          timeStamp: timeStamp
+            timeStamp: timeStamp,
+            imageName: imageName
+            
         }]
     }
     var newItem = {
@@ -127,7 +130,8 @@ const createListing = (itemInfo) => {
         blurb: blurb,
         category: category,
         title: title,
-        timeStamp: timeStamp
+        timeStamp: timeStamp,
+        imageName: imageName
     }
 
     //console.log('create listing test 3', newUser);
@@ -171,85 +175,86 @@ const createListing = (itemInfo) => {
 
 const buyItem = (itemInfo) => {
     console.log("itemInfo: ", itemInfo);
-    
+
     //get control over buyer username
     var userObj = itemInfo[0]
     var buyerUsername = userObj.username;
-    itemInfo.splice(0,1)
-    
+    itemInfo.splice(0, 1)
+
+    //all products to be purchased
     var products = itemInfo
     console.log('products: ', products)
 
 
-   const purchase = (item, buyerUsernameArg) => { 
-       
-    
-    var buyerUsername = buyerUsernameArg;
-    var toBuyProductID = item.productID;
-     console.log('buyerUsername: ', buyerUsername);
-     console.log('product: ', toBuyProductID);
+    const purchase = (item, buyerUsernameArg) => {
 
-    var sellTempDB = JSON.parse(tools.FileReadSync(dbForSalePath));
-    var userTempDB = JSON.parse(tools.FileReadSync(userDbPath));
 
-    //looking for buyers productID to match db productID and get username of seller
-    var sellingUser;
-    var soldItem;
-    sellTempDB.forEach((item, pos) => {
+        var buyerUsername = buyerUsernameArg;
+        var toBuyProductID = item.productID;
+        console.log('buyerUsername: ', buyerUsername);
+        console.log('product: ', toBuyProductID);
 
-        item.forSale.forEach((things, posit) => {
+        var sellTempDB = JSON.parse(tools.FileReadSync(dbForSalePath));
+        var userTempDB = JSON.parse(tools.FileReadSync(userDbPath));
 
-            if (Number(things.productID) === Number(toBuyProductID)) {
-                soldItem = things
-                sellingUser = sellTempDB[pos].username
-                // console.log('soldItem: ', soldItem);
+        //looking for buyers productID to match db productID and get username of seller
+        var sellingUser;
+        var soldItem;
+        sellTempDB.forEach((item, pos) => {
+
+            item.forSale.forEach((things, posit) => {
+
+                if (Number(things.productID) === Number(toBuyProductID)) {
+                    soldItem = things
+                    sellingUser = sellTempDB[pos].username
+                    // console.log('soldItem: ', soldItem);
+                }
+            });
+        });
+
+        //rewrite dbs accordingly
+        //itemsforsaledb
+        userTempDB.forEach((item, pos) => {
+            if (item.username === sellingUser) {
+                userTempDB[pos].itemsSold.push(soldItem);
+            }
+            if (item.username === buyerUsername) {
+                userTempDB[pos].itemsBought.push(soldItem);
+            }
+        })
+        sellTempDB.forEach((item, pos, arr) => {
+            if (item.username === sellingUser) {
+                sellTempDB[pos].forSale.forEach((things, posit) => {
+                    if (Number(things.productID) === Number(toBuyProductID)) {
+                        //deletes item from  all items 
+                        sellTempDB[pos].forSale.splice(posit, 1)
+                    }
+                })
             }
         });
-    });
 
-    //rewrite dbs accordingly
-    //itemsforsaledb
-    userTempDB.forEach((item, pos) => {
-        if (item.username === sellingUser) {
-            userTempDB[pos].itemsSold.push(soldItem);
-        }
-        if (item.username === buyerUsername) {
-            userTempDB[pos].itemsBought.push(soldItem);
-        }
-    })
-    sellTempDB.forEach((item, pos, arr) => {
-        if (item.username === sellingUser) {
-            sellTempDB[pos].forSale.forEach((things, posit) => {
-                if (Number(things.productID) === Number(toBuyProductID)) {
-                    //deletes item from  all items 
-                    sellTempDB[pos].forSale.splice(posit, 1)
-                }
-            })
-        }
-    });
+        userTempDB.forEach((item, pos, arr) => {
+            if (item.username === sellingUser) {
+                userTempDB[pos].itemsForSale.forEach((things, posit) => {
+                    if (Number(things.productID) === Number(toBuyProductID)) {
+                        //deletes item from  all items 
+                        userTempDB[pos].itemsForSale.splice(posit, 1)
+                    }
+                })
 
-    userTempDB.forEach((item, pos, arr) => {
-        if (item.username === sellingUser) {
-            userTempDB[pos].itemsForSale.forEach((things, posit) => {
-                if (Number(things.productID) === Number(toBuyProductID)) {
-                    //deletes item from  all items 
-                    userTempDB[pos].itemsForSale.splice(posit, 1)
-                }
-            })
+            }
+        });
 
-        }
-    });
-
-    console.log('sellingUser: ', sellingUser)
-    console.log('soldItem: ', soldItem)
-    tools.FileWriteSync(dbForSalePath, JSON.stringify(sellTempDB));
-    tools.FileWriteSync(userDbPath, JSON.stringify(userTempDB))
+        console.log('sellingUser: ', sellingUser)
+        console.log('soldItem: ', soldItem)
+        tools.FileWriteSync(dbForSalePath, JSON.stringify(sellTempDB));
+        tools.FileWriteSync(userDbPath, JSON.stringify(userTempDB))
     }
 
     for (var i = 0; i < products.length; i++) {
         purchase(products[i], buyerUsername);
     }
-     
+
 }
 
 const mainPage = () => {
@@ -294,7 +299,7 @@ const addToCart = (info) => {
 const inCart = (info) => {
     username = info.username
 
-    if (!cart[username]){
+    if (!cart[username]) {
         return false
     }
     var inMyCart = cart[username];
@@ -340,16 +345,16 @@ const removeFromCart = (userInfo) => {
     }
 }
 
-// const addImg = (info) => {
-//     var username = info.username
-//     // var tempImgDB = fs.readFileSync(dbImagesPath);
-
-//     var extension = req.query.ext.split('.').pop();
-//     var randomString = '' +  Math.floor(Math.random() * 10000000)
-//     var randomFilename = randomString + '.' + extension
-//     fs.writeFileSync('./database/images/' +  randomFilename, req.body);
-//     res.send(randomFilename)
-// }
+const addImg = (req, res) => {
+    // var username = info.username
+    // var tempImgDB = fs.readFileSync(dbImagesPath);
+    console.log("test3123123")
+    var extension = req.query.ext.split('.').pop();
+    var randomString = '' +  Math.floor(Math.random() * 10000000)
+    var randomFilename = randomString + '.' + extension
+    fs.writeFileSync('./database/images/' +  randomFilename, req.body);
+    return (randomFilename)
+}
 
 
 module.exports = {
@@ -362,5 +367,6 @@ module.exports = {
     addToCart,
     inCart,
     removeFromCart,
+    addImg,
 }
 
