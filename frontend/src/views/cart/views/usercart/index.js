@@ -68,18 +68,22 @@ export class Cartindex extends Component {
         //pass username into the item with clickfunction
         item.username = this.props.username
 
-        let oldArray = this.state.products
-            let newArray = oldArray.filter(function(x) {
-            return x.name !== item.name;  
-            });
-
-            this.setState({products: newArray})
+        
         //pass id's to backend to store in cart uncomment when backend is ready
         fetch("/removeFromCart", {
             method: "POST",
             body: JSON.stringify(item),
           })
+        .then(x=> x.text())
+        .then(y=> JSON.parse(y))
+        .then(lst=> this.setState({ products: lst}))
 
+        //   let oldArray = this.state.products
+        //   let newArray = oldArray.filter(function(x) {
+        //   return x.name !== item.name;  
+        //   });
+
+        //   this.setState({products: newArray})
         
         
     }

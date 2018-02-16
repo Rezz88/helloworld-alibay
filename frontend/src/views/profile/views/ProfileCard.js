@@ -5,16 +5,19 @@ export class ProfileCard extends Component {
     
 
     render() {
+        
         const{ name, mail } = this.props// De-tructuring
+        console.log(mail)
         return (
             <div>
-                <h3>Items Sold</h3>
+                <h4>Your User Info</h4>
             <div className='sold-item'>
                 <div>
-                    {name}
+                    {"Username - " + name}
                 </div>
                 <div>
-                    {mail}
+                    {"E-mail - " + mail}
+                    {console.log(mail)}
                 </div>
             </div>
             </div>

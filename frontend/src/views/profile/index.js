@@ -24,16 +24,16 @@ export class Profile extends Component {
         this.setState({ username: this.props.username });
     };
 
+
     componentDidMount() {
+        
         fetch("/profile", {
-            method: 'POST',
+            method: 'post',
             body: JSON.stringify({ username: this.state.username })
         })
             .then(x => x.text())
-            .then(x => {console.log(x); return x})
             .then(y => JSON.parse(y))
-            .then(user => {console.log('this is user: ', user);this.setState({ profile: user })})
-            
+            .then(user => this.setState({ profile: [user] }))
     };
 
     ChangeComponent = (component) => {
@@ -50,7 +50,7 @@ export class Profile extends Component {
                 />
             })
         } else {
-            return <h4>Nothing sold...</h4>
+            return <h4>User Info</h4>
         }
     }
 

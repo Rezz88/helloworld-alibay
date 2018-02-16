@@ -19,11 +19,11 @@ export class Login extends Component {
       <div className="App">
         <header className="App-header">
           <div className="loginInput">
-            <input className="username" placeholder="username" value={username} onChange={(e)=> this.setInputValue('username', e.target.value)}></input>
-            <input className="password" placeholder="password" value={password} onChange={(e)=> this.setInputValue('password', e.target.value)}></input>
-            <input className="email" placeholder="email" value={email} onChange={(e)=> this.setInputValue('email', e.target.value)}></input>
+            <input className="username" placeholder="Username" value={username} onChange={(e)=> this.setInputValue('username', e.target.value)}></input>
+            <input className="password" placeholder="Password" type="password" value={password} onChange={(e)=> this.setInputValue('password', e.target.value)}></input>
+            <input className="email" placeholder="Email" value={email} onChange={(e)=> this.setInputValue('email', e.target.value)}></input>
           </div>
-          <button onClick={()=> this.props.signUp(username, password, email)}>Sign up</button>
+          <button className ="button2" onClick={()=> this.props.signUp(username, password, email)}>Sign up</button>
           {/* {this.state.list.map(x => <li>{x}</li>)} */}
           <div>
             {this.props.error ? 'Username/e-mail Already In Use': '' }
@@ -39,12 +39,12 @@ export class Login extends Component {
       <div className="App">
         <header className="App-header">
           <div className="loginInput">
-            <input className="username" placeholder="username" value={username} onChange={(e)=> this.setInputValue('username', e.target.value)}></input>
-            <input className="password" placeholder="password" value={password} onChange={(e)=> this.setInputValue('password', e.target.value)}></input>
+            <input className="username" placeholder="Username" value={username} onChange={(e)=> this.setInputValue('username', e.target.value)}></input>
+            <input className="password" placeholder="Password" type="password" value={password} onChange={(e)=> this.setInputValue('password', e.target.value)}></input>
           </div>
-          <button id="loginButtons" onClick={() => this.props.login(username, password)}>Login</button>
+          <button className="button2" id="loginButtons" onClick={() => this.props.login(username, password)}>Login</button>
           <div>or</div>
-          <button onClick={this.signupNow}>Sign up</button>
+          <button className="button2" onClick={this.signupNow}>Sign up</button>
           {/* {this.state.list.map(x => <li>{x}</li>)} */}
 
         </header>

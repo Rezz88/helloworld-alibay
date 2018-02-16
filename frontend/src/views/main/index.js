@@ -89,11 +89,19 @@ export class Main extends Component {
         //pass username into the item with clickfunction
         item.username = this.props.username
         //pass id's to backend to store in cart uncomment when backend is ready
+
         fetch("/addToCart", {
             method: "POST",
             body: JSON.stringify(item),
           })
+          .then((x)=> console.log(x)) 
         console.log('Cart', item);
+
+
+
+
+
+
     }
     sortPrice = () => {
         const { priceSort, products } = this.state;
@@ -193,7 +201,7 @@ export class Main extends Component {
                         value={this.state.searchQuery}
                         onChange={this.onInput}>
                     </input>
-                    <button onClick={this.submitQuery}>submit</button>
+                    <button className="button2" onClick={this.submitQuery}>S    ubmit</button>
 
                 </div>
                 <div>

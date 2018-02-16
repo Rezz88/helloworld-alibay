@@ -254,6 +254,11 @@ const buyItem = (itemInfo) => {
     for (var i = 0; i < products.length; i++) {
         purchase(products[i], buyerUsername);
     }
+<<<<<<< HEAD
+    cart[username]=[];
+=======
+    cart[username] = [];
+>>>>>>> ba6e731ec7e1e35eac89f981f338bf22b480c87b
 
 }
 
@@ -285,6 +290,13 @@ const addToCart = (info) => {
     if (!cart[buyerUsername]) {
         cart[buyerUsername] = [];
     }
+
+    cart[buyerUsername].forEach((item, pos) => {
+        if (Number(item.productID) === Number(toBuyProductID)) {
+            return true;
+        }
+    })
+
     allItems.forEach((item, pos) => {
         if (Number(item.productID) === Number(toBuyProductID)) {
             cart[buyerUsername].push(item);
@@ -326,7 +338,7 @@ const profilePage = (userInfo) => {
     var userInfoToSend = userTempDB[selectedUserPos];
     userInfoToSend.password = 'xxxxxxxxx';
 
-    return userInfoToSend;
+    return (userInfoToSend);
 }
 
 const removeFromCart = (userInfo) => {
@@ -343,6 +355,7 @@ const removeFromCart = (userInfo) => {
             }
         })
     }
+    return cart[username]
 }
 
 const addImg = (req, res) => {
@@ -356,6 +369,33 @@ const addImg = (req, res) => {
     return (randomFilename)
 }
 
+const editProfile = (info) => {
+    var username = info.username;
+    var address = info.address;
+    var payment = info.payment;
+    var userTempDB = JSON.parse(tools.FileReadSync(userDbPath));
+
+    console.log('userTempDB: ', userTempDB)
+
+    var selectedUser;
+    userTempDB.forEach((item, pos) => {
+        if (item.username === username) {
+            selectedUser = item
+        }
+    })
+
+    selectedUser['shippingAddress'] = address;
+    selectedUser['paymentInfo'] = payment; 
+
+    userTempDB.forEach((item, pos) => {
+        if (item.username === username) {
+            item = selectedUser
+        }
+    })
+
+
+    tools.FileWriteSync(userDbPath, JSON.stringify(userTempDB))
+}
 
 module.exports = {
     login,
@@ -368,5 +408,6 @@ module.exports = {
     inCart,
     removeFromCart,
     addImg,
+    editProfile
 }
 
