@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 [
   {
     "username": "washy",
@@ -72,3 +73,6 @@
     ]
   }
 ]
+=======
+[{"username":"bobby","forSale":[]},{"username":"washy","forSale":[{"seller":"washy","productID":9396844,"price":"235","blurb":"averagely used bad ass laptop","category":"electronics","title":"LapTop"}]},{"username":"gleb","forSale":[{"seller":"gleb","productID":5983497,"price":"3","blurb":"a case of good ol' PBR","category":"other","title":"BEER"},{"seller":"gleb","productID":27481389,"price":"22","blurb":"mild mannered friend","category":"other","title":"Llama"}]},{"username":"manny","forSale":[]},{"username":"dre","forSale":[{"seller":"dre","productID":45828781,"price":"1200","blurb":"a winter beater","category":"cars","title":"Mazda 3"}]},{"username":"sue","forSale":[{"seller":"sue","productID":32451123,"price":"","blurb":"trafficking ","title":"humans","timeStamp":"2018-02-16T00:47:59.790Z"},{"seller":"sue","productID":51648707,"price":"20","blurb":"from russia","title":"wife","timeStamp":"2018-02-16T00:49:16.830Z"}]},{"username":"","forSale":[{"seller":"","productID":41728396,"price":"","blurb":"","title":"","timeStamp":"2018-02-16T01:16:27.897Z"}]}]
+>>>>>>> c442058f89d37883b8476d49cc0281883c28f95f
