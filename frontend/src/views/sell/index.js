@@ -1,20 +1,23 @@
 import React, { Component } from 'react';
+import Select from 'react-select';
+import 'react-select/dist/react-select.css';
 import '../../App.css';
 
 export class Sell extends Component {
     constructor() {
         super();
-        this.state = { 
+        this.state = {
             itemPosted: false,
             username: '',
             title: '',
-            blurb: '', 
-            price: '' 
+            blurb: '',
+            price: '',
+            category: ''
         }
     }
 
     setInputValue = (key, value) => {
-        this.setState({ [key]: value }, ()=> {this.setState({price: Number(this.state.price)})})
+        this.setState({ [key]: value }, () => { this.setState({ price: Number(this.state.price) }) })
     }
     sellNew = () => {
         this.setState({ itemPosted: false })
@@ -34,10 +37,10 @@ export class Sell extends Component {
 
 
     sellPage = () => {
-        const { title, blurb, price} = this.state //put name in
+        const { title, blurb, price, category } = this.state //put name in
 
         var addItem = () => {
-            this.props.addItem( title, blurb, price) 
+            this.props.addItem(title, blurb, price)
         }
         var uploadFile = (x) => {
             this.props.uploadFile(x)
@@ -46,18 +49,37 @@ export class Sell extends Component {
         return (
             <div className='App'>
                 <input type="file" id="input" onChange={e => uploadFile(e.target.files[0])} />
-                <img src= {this.props.imageName} alt='Product' />
+                <img src={this.props.imageName} alt='Product' />
+                <Select
+                    name="categories"
+                    value={category}
+                    onChange={e => this.setState({category: e})}
+                    options={[
+                        { value: 'Artisanal', label: 'Artisanal' },
+                        { value: 'Audio', label: 'Audio' },
+                        { value: 'Automotive', label: 'Automotive' },
+                        { value: 'Beauty and Health', label: 'Beauty and Health' },
+                        { value: 'Books/Audible', label: 'Books/Audible' },
+                        { value: 'Clothing', label: 'Clothing' },
+                        { value: 'Electronics', label: 'Electronics' },
+                        { value: 'Home, Garden and Tools', label: 'Home, Garden and Tools' },
+                        { value: 'Toys, Kids and Baby', label: 'Toys, Kids and Baby' },
+                        { value: 'Odd Jobs', label: 'Odd Jobs' },
+                        { value: 'Other', label: 'Other' }
+                    ]}
+                />
                 <input className="title" placeholder="Item Name" value={title} onChange={(e) => this.setInputValue('title', e.target.value)}></input>
                 <input className="blurb" placeholder="Description" value={blurb} onChange={(e) => this.setInputValue('blurb', e.target.value)}></input>
                 <input className="price" type="number" placeholder="Price" value={Number(price)} onChange={(e) => this.setInputValue('price', e.target.value)}></input>
                 <button className="button2" onClick={addItem}>Sell Item</button>
+
             </div>)
     }
 
     componentWillReceiveProps(nextProps) {
-        
-        this.setState({ itemPosted: nextProps.itemPosted, username: nextProps.username}) 
-        console.log('this is props: ',nextProps)
+
+        this.setState({ itemPosted: nextProps.itemPosted, username: nextProps.username })
+        console.log('this is props: ', nextProps)
     }
     render() {
         console.log(this.state)
