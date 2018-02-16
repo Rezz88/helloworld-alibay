@@ -113,7 +113,7 @@ export class Checkoutindex extends Component {
         item.username = this.props.username
 
         let oldArray = this.state.products
-            let newArray = oldArray.filter(function(x) {
+            let newArray = oldArray.filter(x=> {
             return x.name !== item.name;  
             });
 

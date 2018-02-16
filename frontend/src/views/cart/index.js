@@ -6,8 +6,27 @@ import {Checkoutindex} from './views/usercheckout'
 export class Cart extends Component {
     constructor()   {
         super()
-        this.state = { active: 'Cartindex'}
+        this.state = { 
+          active: 'Cartindex',
+          }
     }
+
+    componentWillMount()    {
+      this.setState({username: this.props.username})
+
+      fetch("/cart", {
+        method: 'post',
+        body: JSON.stringify({username: this.state.username})
+      })
+    .then(x=> x.text())
+    .then(y=> JSON.parse(y))
+    .then(lst=> this.setState({ products: lst}))
+
+
+  }
+
+
+
 
     ChangeComponent = (component) => {
         this.setState({ active: component })
