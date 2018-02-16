@@ -20,19 +20,21 @@ export class Profile extends Component {
         }
     }
 
-    componentWillMount () {
-        this.setState({username: this.props.username});
+    componentWillMount() {
+        this.setState({ username: this.props.username });
     };
 
-    componentDidMount () {
+    componentDidMount() {
         fetch("/profile", {
             method: 'POST',
-            body: JSON.stringify({username: this.state.username})
+            body: JSON.stringify({ username: this.state.username })
         })
-        .then(x => x.text())
-        .then(y => JSON.parse(y))
-        .then(user => this.setState({ profile: user}))
-        };
+            .then(x => x.text())
+            .then(x => {console.log(x); return x})
+            .then(y => JSON.parse(y))
+            .then(user => {console.log('this is user: ', user);this.setState({ profile: user })})
+            
+    };
 
     ChangeComponent = (component) => {
         this.setState({ active: component })
@@ -66,7 +68,7 @@ export class Profile extends Component {
     };
 
     // //Will take info from backend
- 
+
 
     render() {
         return (
