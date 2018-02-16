@@ -3,23 +3,25 @@ import '../../../../App.css';
 import ForSale from './Items-ForSale'
 
 class ForSalePage extends Component {
-    constructor()   {
+    constructor() {
         super()
         this.state = { products: [] }
 
     }
 
     //Temp mockdata for testing
-    componentDidMount(){
+    componentDidMount() {
         const mockproducts = [
             {prodid: 1,
                 name: 'Blue jeans',
                 descr: 'description of jeans',
-                image: 'img of jeans'},
+                image: 'img of jeans'
+            },
             {prodid: 2,
-                name:  'MacBook',
+                name: 'MacBook',
                 descr: 'description of MacBook',
-                image: 'img of MacBook'},
+                image: 'img of MacBook'
+            },
         ]
         this.setState({ products: mockproducts })
     };
@@ -34,10 +36,10 @@ class ForSalePage extends Component {
                     description={product.descr}
                     prodId={product.prodId}
                     key={product.prodId}
-                    deleteItem={()=>this.deleteItem(product)}
-                    // Currently not required for profile
-                    // addToBag={this.addToBag}
-                    // addToFav={() => this.addToFav(product.prodid)}
+                    deleteItem={() => this.deleteItem(product)}
+                // Currently not required for profile
+                // addToBag={this.addToBag}
+                // addToFav={() => this.addToFav(product.prodid)}
                 />
             })
         } else {
@@ -45,7 +47,7 @@ class ForSalePage extends Component {
         }
     }
 
-    deleteItem = (item) =>  {
+    deleteItem = (item) => {
         //pass username into the item with clickfunction
         item.username = this.props.username
         //need to update backend to remove an item from cart
@@ -53,26 +55,26 @@ class ForSalePage extends Component {
         //     method: "POST",
         //     body: JSON.stringify(item),
         //   })
-        
+
         let newArray = this.state.products
-        let productsRemoved = newArray.filter(function(el) {
-        return el.name !== item.name;  
+        let productsRemoved = newArray.filter(function (el) {
+            return el.name !== item.name;
         });
 
         console.log('new array =', productsRemoved);
         console.log('old array =', this.state.products)
 
-        this.setState({products: productsRemoved})// 
-        console.log(' delete this item only =' ,item)
+        this.setState({ products: productsRemoved })// 
+        console.log(' delete this item only =', item)
     }
-        
 
-    render () {
+
+    render() {
         return (
             <div>
                 <div>{this.renderProducts()}</div>
             </div>
-            
+
         )
     }
 }

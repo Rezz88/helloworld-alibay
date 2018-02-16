@@ -3,27 +3,31 @@ import '../../../../App.css';
 import SoldItem from './Items-Sold'
 
 class SoldItemPage extends Component {
-    constructor()   {
+    constructor() {
         super()
         this.state = { products: [] }
 
     }
 
     //Temp mockdata for testing
-    componentDidMount(){
+    componentDidMount() {
         const mockproducts = [
-            {prodid: 1,
+            {
+                prodid: 1,
                 name: 'car',
                 descr: 'description of car',
-                image: 'img of car'},
+                image: 'img of car'
+            },
             {prodid: 2,
                 name: 'boat',
                 descr: 'description of boat',
-                image: 'img of boat'},
+                image: 'img of boat'
+            },
             {prodid: 3,
                 name: 'shoes',
                 descr: 'description of shoes',
-                image: 'img of shoes'}
+                image: 'img of shoes'
+            }
         ]
         this.setState({ products: mockproducts })
     };
@@ -38,10 +42,10 @@ class SoldItemPage extends Component {
                     description={product.descr}
                     prodId={product.prodId}
                     key={product.prodId}
-                    deleteItem={()=>this.deleteItem(product)}
-                    // Currently not required for profile
-                    // addToBag={this.addToBag}
-                    // addToFav={() => this.addToFav(product.prodid)}
+                    deleteItem={() => this.deleteItem(product)}
+                // Currently not required for profile
+                // addToBag={this.addToBag}
+                // addToFav={() => this.addToFav(product.prodid)}
                 />
             })
         } else {
@@ -49,7 +53,7 @@ class SoldItemPage extends Component {
         }
     }
 
-    deleteItem = (item) =>  {
+    deleteItem = (item) => {
         //pass username into the item with clickfunction
         item.username = this.props.username
         //need to update backend to remove an item from cart
@@ -57,26 +61,26 @@ class SoldItemPage extends Component {
         //     method: "POST",
         //     body: JSON.stringify(item),
         //   })
-        
+
         let newArray = this.state.products
-        let productsRemoved = newArray.filter(function(el) {
-        return el.name !== item.name;  
+        let productsRemoved = newArray.filter(function (el) {
+            return el.name !== item.name;
         });
 
         console.log('new array =', productsRemoved);
         console.log('old array =', this.state.products)
 
-        this.setState({products: productsRemoved})// 
-        console.log(' delete this item only =' ,item)
+        this.setState({ products: productsRemoved })// 
+        console.log(' delete this item only =', item)
     }
-        
 
-    render () {
+
+    render() {
         return (
             <div>
                 <div>{this.renderProducts()}</div>
             </div>
-            
+
         )
     }
 }

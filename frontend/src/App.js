@@ -39,7 +39,7 @@ class App extends Component {
         return <Main username={username} />
       }
       else if (active === 'Profile') {
-        return <Profile username={username} editProfile={this.editProfile}/>
+        return <Profile username={username} editProfile={this.editProfile} />
       }
       else if (active === 'Cart') {
         return <Cart username={username} />
@@ -51,7 +51,7 @@ class App extends Component {
         return <About />
       }
       else if (active === 'ContactUs') {
-        return <Contact  />
+        return <Contact />
       }
       else {
         return <div></div>
@@ -76,7 +76,7 @@ class App extends Component {
       }))
       .then(() => console.log(this.state))
   }
-  
+
   signUp = (username, password, email) => {
     this.setState({ username })
     fetch('/signUp', {
@@ -101,7 +101,7 @@ class App extends Component {
     //change x to something more descriptive
   }
 
-  addItem = ( title, blurb, price) => {
+  addItem = (title, blurb, price) => {
     fetch('/toSell', {
       method: 'post',
       body: JSON.stringify({   //send the suername instead of name
@@ -122,7 +122,8 @@ class App extends Component {
   }
 
 
-  
+  //Still in the works
+
   // editProfile = () => {
   //   const myProfile = {}
   //   fetch('/profile', {
@@ -150,12 +151,12 @@ class App extends Component {
     // const { active } = this.state;
     return (
       <div>
-      <TEST/>ghvgvvfvdddvdvdvf
+        <TEST />ghvgvvfvdddvdvdvf
         <ul className="App-header">
-            <a className="flash" onClick={() => this.ChangeComponent('Main')}>M A I N</a>
-            <a className="flash" onClick={() => this.ChangeComponent('Profile')}>P R O F I L E</a>
-            <a className="flash" onClick={() => this.ChangeComponent('Cart') && this.cartClick()}>C A R T</a>
-            <a className="flash" onClick={() => this.ChangeComponent('Sell')}>S E L L</a>
+          <a className="flash" onClick={() => this.ChangeComponent('Main')}>M A I N</a>
+          <a className="flash" onClick={() => this.ChangeComponent('Profile')}>P R O F I L E</a>
+          <a className="flash" onClick={() => this.ChangeComponent('Cart') && this.cartClick()}>C A R T</a>
+          <a className="flash" onClick={() => this.ChangeComponent('Sell')}>S E L L</a>
         </ul>
         <div>
           {this.renderComponent()}

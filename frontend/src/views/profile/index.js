@@ -26,7 +26,7 @@ export class Profile extends Component {
 
 
     componentDidMount() {
-        
+
         fetch("/profile", {
             method: 'post',
             body: JSON.stringify({ username: this.state.username })
@@ -76,7 +76,6 @@ export class Profile extends Component {
                 <h4>Profile Page</h4>
                 <div>
                     {this.renderProfile()}
-                    <button className="button" onClick={this.editProfile}>Edit</button>
                 </div>
                 <div className="App-header">
                     <a className="flash" onClick={() => this.ChangeComponent("ForSale")}>FOR SALE</a>
