@@ -260,6 +260,7 @@ const buyItem = (itemInfo) => {
 
 const mainPage = () => {
     var allItems = JSON.parse(tools.FileReadSync(dbForSalePath));
+    console.log(allItems)
     return allItems;
 }
 
@@ -298,13 +299,18 @@ const addToCart = (info) => {
         return true;
     }
 
+    var alreadySold;
     allItems.forEach((item, pos) => {
         if (!alreadyMatched && Number(item.productID) === Number(toBuyProductID)) {
             cart[buyerUsername].push(item);
         } else {
-            return ('item has already been sold')
+            alreadySold = 'Already Sold'
         }
     })
+
+    if (alreadySold) {
+        return alreadySold;
+    }
 
     console.log('added to cart:', cart)
 }
@@ -362,21 +368,20 @@ const removeFromCart = (userInfo) => {
 const addImg = (req, res) => {
     // var username = info.username
     // var tempImgDB = fs.readFileSync(dbImagesPath);
-    console.log("test3123123")
     var extension = req.query.ext.split('.').pop();
     var randomString = '' +  Math.floor(Math.random() * 10000000)
     var randomFilename = randomString + '.' + extension
     fs.writeFileSync('./database/images/' +  randomFilename, req.body);
-    return (randomFilename)
+    return JSON.stringify(randomFilename);
 }
 
 const editProfile = (info) => {
     var username = info.username;
     var address = info.address;
     var payment = info.payment;
+    var newPass = info.newPass;
+    var newEmail = info.newEmail;
     var userTempDB = JSON.parse(tools.FileReadSync(userDbPath));
-
-    console.log('userTempDB: ', userTempDB)
 
     var selectedUser;
     userTempDB.forEach((item, pos) => {
@@ -388,6 +393,13 @@ const editProfile = (info) => {
     selectedUser['shippingAddress'] = address;
     selectedUser['paymentInfo'] = payment; 
 
+    if (newPass) {
+        selectedUser[password] = newPass;
+    }
+    if (newEmail) {
+        selectedUser[email] = newEmail;
+    }
+
     userTempDB.forEach((item, pos) => {
         if (item.username === username) {
             item = selectedUser
@@ -396,6 +408,40 @@ const editProfile = (info) => {
 
 
     tools.FileWriteSync(userDbPath, JSON.stringify(userTempDB))
+}
+
+const deleteItem = (info) => {
+    var username = info.username;
+    var toDeleteID = info.productID;
+    //temp DBs
+    var userTempDB = JSON.parse(tools.FileReadSync(userDbPath));
+    var sellTempDB = JSON.parse(tools.FileReadSync(dbForSalePath));
+
+    sellTempDB.forEach((item, pos) => {
+        if (item.username === username) {
+            sellTempDB[pos].forSale.forEach((things, posit) => {
+                if (Number(things.productID) === Number(toDeleteID)) {
+                    //deletes item from  all items 
+                    sellTempDB[pos].forSale.splice(posit, 1)
+                }
+            })
+        }
+    });
+
+    userTempDB.forEach((item, pos) => {
+        if (item.username === username) {
+            userTempDB[pos].itemsForSale.forEach((things, posit) => {
+                if (Number(things.productID) === Number(toDeleteID)) {
+                    //deletes item from  users items for sale 
+                    userTempDB[pos].itemsForSale.splice(posit, 1)
+                }
+            })
+
+        }
+    });
+
+    tools.FileWriteSync(dbForSalePath, JSON.stringify(sellTempDB));
+    tools.FileWriteSync(userDbPath, JSON.stringify(userTempDB));
 }
 
 module.exports = {
@@ -409,6 +455,7 @@ module.exports = {
     inCart,
     removeFromCart,
     addImg,
-    editProfile
+    editProfile,
+    deleteItem
 }
 

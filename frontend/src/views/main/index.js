@@ -11,7 +11,9 @@ export class Main extends Component {
             searchQuery: '', //for the 
             priceSort: false,
             nameSort: false,
-            timeSort: false
+            timeSort: false,
+            about: false,
+            contact: false,
         }
     }
 
@@ -21,10 +23,10 @@ export class Main extends Component {
             return products.map(product => {
                 // console.log(product)
                 return <ProductCard
-                // plus whatever else we get from the backend
+                    // plus whatever else we get from the backend
                     seller={product.seller}
-                    productID= {product.productID}
-                    description= {product.blurb}
+                    productID={product.productID}
+                    description={product.blurb}
                     username={product.username}
                     title={product.title}
                     category={product.category}
@@ -90,12 +92,12 @@ export class Main extends Component {
         fetch("/addToCart", {
             method: "POST",
             body: JSON.stringify(item),
-          })
-        //   .then(x=> x.text())
-        //   .then(y=> JSON.parse(y))
-          .then((z)=> console.log('from renaud',z.text())) 
+        })
+            //   .then(x=> x.text())
+            //   .then(y=> JSON.parse(y))
+            .then((z) => console.log('from renaud', z.text()))
         //   .then(lst=> this.setState({ products: lst}))
-          
+
         console.log('Cart', item);
     }
     sortPrice = () => {
@@ -146,7 +148,7 @@ export class Main extends Component {
         } else {
             products.sort(function (a, b) {
                 var x = new Date(a.timeStamp);
-                var y = new Date(b.timeStamp); 
+                var y = new Date(b.timeStamp);
                 if (x < y) { return -1; }
                 if (x > y) { return 1; }
                 return 0;
@@ -182,31 +184,34 @@ export class Main extends Component {
 
     render() {
         //console.log(this.state)
-        return (
-            <div className='App'>
-                <div className='Main-items'>
-                    W E L C O M E
-                </div>
-                <div className='Main-items'>
-                    <input
-                        type="text"
-                        id="mySearch"
-                        placeholder="Search for items"
-                        value={this.state.searchQuery}
-                        onChange={this.onInput}>
-                    </input>
-                    <button className="button2" onClick={this.submitQuery}>Submit</button>
 
+        if (!this.state.about) {
+            return (
+                <div className='App'>
+                    <div className='Main-items'>
+                        W E L C O M E
                 </div>
-                <div>
-                    <button id="sort" onClick={this.sortPrice}>price</button>
-                    <button id="sort" onClick={this.sortName}>name</button>
-                    <button id="sort" onClick={this.sortTime}>recent</button>
+                    <div className='Main-items'>
+                        <input
+                            type="text"
+                            id="mySearch"
+                            placeholder="Search for items"
+                            value={this.state.searchQuery}
+                            onChange={this.onInput}>
+                        </input>
+                        <button className="button2" onClick={this.submitQuery}>Submit</button>
+
+                    </div>
+                    <div>
+                        <button id="sort" onClick={this.sortPrice}>price</button>
+                        <button id="sort" onClick={this.sortName}>name</button>
+                        <button id="sort">recent</button>
+                    </div>
+                    <div>
+                        {this.renderProducts()}
+                    </div>
                 </div>
-                <div>
-                    {this.renderProducts()}
-                </div>
-            </div>
-        )
+            )
+        }
     }
 }
