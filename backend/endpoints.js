@@ -4,7 +4,7 @@ const express = require('express');
 const morgan = require('morgan');
 const app = express()
 
-app.use(express.static('images'))
+app.use(express.static('database/images'))
 
 var fs = require('fs');
 var bodyParser = require('body-parser');
@@ -49,7 +49,7 @@ app.post('/removeFromCart', (req, res) => {
 })
 
 app.post('/upics', (req, res) => {
-    res.send(funky.addImg(req, res));
+    res.send(funky.addImg(req));
 })
 
 app.post('/editProfile', (req, res) => {

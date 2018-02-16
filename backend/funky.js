@@ -368,7 +368,6 @@ const removeFromCart = (userInfo) => {
 const addImg = (req, res) => {
     // var username = info.username
     // var tempImgDB = fs.readFileSync(dbImagesPath);
-    console.log("test3123123")
     var extension = req.query.ext.split('.').pop();
     var randomString = '' +  Math.floor(Math.random() * 10000000)
     var randomFilename = randomString + '.' + extension
@@ -381,8 +380,6 @@ const editProfile = (info) => {
     var address = info.address;
     var payment = info.payment;
     var userTempDB = JSON.parse(tools.FileReadSync(userDbPath));
-
-    console.log('userTempDB: ', userTempDB)
 
     var selectedUser;
     userTempDB.forEach((item, pos) => {

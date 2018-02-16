@@ -22,7 +22,8 @@ class App extends Component {
       username: 'washy',
       prodId: '',
       itemPosted: false,
-      footer: ''
+      footer: '',
+      imageName: ''
     }
   }
 
@@ -31,7 +32,7 @@ class App extends Component {
   }
 
   renderComponent = () => {
-    const { active, login, error, itemPosted, username } = this.state;
+    const { active, login, error, itemPosted, username, imageName } = this.state;
     if (!login) {
       return <Login login={this.login} signUp={this.signUp} error={error} />  //this.login points at the function error points at the state
     } else {
@@ -45,7 +46,7 @@ class App extends Component {
         return <Cart username={username} />
       }
       else if (active === 'Sell') {
-        return <Sell addItem={this.addItem} itemPosted={itemPosted} username={username} />
+        return <Sell addItem={this.addItem} itemPosted={itemPosted} username={username} uploadFile={this.uploadFile} imageName={imageName}/>
       }
       else if (active === 'About') {
         return <About />
@@ -57,6 +58,19 @@ class App extends Component {
         return <div></div>
       }
     }
+  }
+
+  uploadFile=(x) => {
+    var filename = x.name;
+    var fileExtension = filename.split('.').pop();
+    fetch('/upics?ext=' + fileExtension,{method: "POST", body: x}) 
+    .then(x=> x.text())
+    .then(x=> {console.log(x); return JSON.parse(x)})   //use x.json()
+    .then(x=> this.setState({imageName: x}))
+    .catch((err) => {
+      console.log(err)
+      this.setState({ error: true })
+    }) 
   }
 
   login = (username, password) => {
@@ -116,6 +130,7 @@ class App extends Component {
       method: 'post',
       body: JSON.stringify({   //send the suername instead of name
         username: this.state.username,
+        imageName: this.state.imageName,
         title,
         blurb,
         price,
@@ -156,8 +171,12 @@ class App extends Component {
   //   )
   // }
 
+ 
+
+
+
   render() {
-    console.log(this.state)
+    console.log(this.state.imageName)
     // const { active } = this.state;
     return (
       <div>

@@ -3,30 +3,26 @@ import '../../../../App.css';
 
 export class HistoryItem extends Component {
 
-    historyItem = () => {
-        // fetch("")
-        // .then(x=> x.text())
-        // .then(y=> JSON.parse(y))
-        // .then(lst=> this.setState({ products: lst}))
-    }
-
     render() {
-        const { image, price, name, description } = this.props// de-structuring shit from perks
+        const { seller, price, title, blurb, deleteItem } = this.props// De-structuring
         return (
             <div>
-                <h3>History</h3>
+                <h3>Items Bought</h3>
                 <div className='sold-item'>
                     <div>
-                        {image}
+                        {title}
                     </div>
                     <div>
-                        {name}
+                        {blurb}
                     </div>
                     <div>
-                        {description}
+                        {seller}
                     </div>
                     <div>
                         {price}
+                    </div>
+                    <div className="remove-button">
+                        <button className="button" onClick={deleteItem}>Remove</button>
                     </div>
                 </div>
             </div>
