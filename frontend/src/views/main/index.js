@@ -98,6 +98,7 @@ export class Main extends Component {
         //   .then(x=> x.text())
         //   .then(y=> JSON.parse(y))
           .then((z)=> console.log('from renaud',z.text())) 
+        //   .then(y=> JSON.parse(y))
         //   .then(lst=> this.setState({ products: lst}))
           
         console.log('Cart', item);

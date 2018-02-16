@@ -24,6 +24,7 @@ export class Cart extends Component {
           else if (active === 'Checkoutindex') {
             return <Checkoutindex
             username={this.props.username}
+            ChangeComponent={this.props.ChangeComponent}
             />
           }
         

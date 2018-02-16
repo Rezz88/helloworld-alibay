@@ -290,13 +290,7 @@ const addToCart = (info) => {
     var alreadyMatched;
     cart[buyerUsername].forEach((item, pos) => {
         if (Number(item.productID) === Number(toBuyProductID)) {
-<<<<<<< HEAD
             alreadyMatched = true;
-=======
-            console.log('im in')
-            // var alreadyCart = 
-            return true
->>>>>>> ef91ed182aa34ace11344f94d51470c7cc8781a9
         }
     })
 
@@ -304,13 +298,17 @@ const addToCart = (info) => {
         return true;
     }
 
+    var alreadySold;
     allItems.forEach((item, pos) => {
         if (!alreadyMatched && Number(item.productID) === Number(toBuyProductID)) {
             cart[buyerUsername].push(item);
         } else {
-            return ('item has already been sold')
+            alreadySold = 'Already Sold'
         }
     })
+    if (alreadySold)  {
+        return alreadySold;
+    }
 
     console.log('added to cart:', cart)
 }
