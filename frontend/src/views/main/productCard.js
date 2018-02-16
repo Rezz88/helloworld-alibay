@@ -7,7 +7,7 @@ import '../../App.css';
 export default class ProductCard extends Component {
 
     render() {
-        const{ productID, price, seller, description, addToCart, title} = this.props// de-structuring shit from perks
+        const{ productID, category, price, seller, description, addToCart, title} = this.props// de-structuring shit from perks
         return (
             <div className='Main-items'>
                 <div>
@@ -18,6 +18,9 @@ export default class ProductCard extends Component {
                 </div>
                 <div>
                     <h2>{title}</h2>
+                </div>
+                <div>
+                    {'category: '+category}
                 </div>
                 <div>
                     {description}

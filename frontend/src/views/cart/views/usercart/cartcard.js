@@ -5,7 +5,7 @@ export default class Cartcard extends Component {
 
 
     render() {
-        const{ seller ,price, productID, description, deleteItem} = this.props// de-structuring shit from perks
+        const{ seller ,title ,price, productID, description, deleteItem} = this.props// de-structuring shit from perks
         return (
             <div className='Main-items'>
                 <div>
@@ -16,6 +16,9 @@ export default class Cartcard extends Component {
                 </div>
                 <div>
                     {'description: '+description}
+                </div>
+                <div>
+                    {'title: '+title}
                 </div>
                 <div>
                     {'$ '+price}
