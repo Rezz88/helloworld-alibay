@@ -8,7 +8,6 @@ import ProfileCard from './views/ProfileCard'
 
 //Parent App.js
 //Child ProfileCard.js
-
 export class Profile extends Component {
 
     constructor() {
@@ -33,7 +32,7 @@ export class Profile extends Component {
         .then(x => x.text())
         .then(y => JSON.parse(y))
         .then(user => this.setState({ profile: user}))
-    };
+        )};
 
     ChangeComponent = (component) => {
         this.setState({ active: component })
