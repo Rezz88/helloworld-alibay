@@ -6,7 +6,6 @@ export class Cartindex extends Component {
     constructor()   {
         super()
         this.state = { products: [], username: ''}
-
     }
 
     componentWillMount()    {
@@ -33,6 +32,8 @@ export class Cartindex extends Component {
                     productID= {product.productID}
                     description= {product.blurb}
                     name={product.name}
+                    title={product.title}
+                    category={product.category}
                     image= {product.image}
                     sellerId= {product.seller}
                     key= {product.prodId}
@@ -54,6 +55,7 @@ export class Cartindex extends Component {
             for (var i = 0; i < products.length; i++)   {
                 total += parseInt(products[i].price, 10)
         }
+        
         return (
             <div>
                 <div>TOTAL ${total} </div>
@@ -84,8 +86,6 @@ export class Cartindex extends Component {
         //   });
 
         //   this.setState({products: newArray})
-        
-        
     }
 
     render() {

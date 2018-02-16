@@ -30,7 +30,8 @@ export class Main extends Component {
                     productID= {product.productID}
                     description= {product.blurb}
                     username={product.username}
-                    title={products.title}
+                    title={product.title}
+                    category={product.category}
                     // sellerId= {product.seller}
                     // prodId= {product.prodId}
                     // key= {product.prodId}
@@ -94,7 +95,11 @@ export class Main extends Component {
             method: "POST",
             body: JSON.stringify(item),
           })
-          .then((x)=> console.log(x)) 
+        //   .then(x=> x.text())
+        //   .then(y=> JSON.parse(y))
+          .then((z)=> console.log('from renaud',z.text())) 
+        //   .then(lst=> this.setState({ products: lst}))
+          
         console.log('Cart', item);
 
 

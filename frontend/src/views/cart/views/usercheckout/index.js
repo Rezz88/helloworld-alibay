@@ -5,7 +5,11 @@ import Checkoutcard from './checkoutcard'
 export class Checkoutindex extends Component {
     constructor()   {
         super()
-        this.state = { products: []}
+        this.state = { 
+            products: [],
+            payment: false,
+            thanks: false
+        }
 
     }
 
@@ -68,6 +72,9 @@ export class Checkoutindex extends Component {
 
     checkout = () =>  {
         const { products, username } = this.state
+        this.setState({payment: true})
+        
+        
 
 
         var toSend = [{username: username}]
@@ -93,6 +100,14 @@ export class Checkoutindex extends Component {
 
     }
 
+    thanks = () => {
+        this.setState({})
+    }
+    payment = () => {
+        this.setState({thanks: true})
+    }
+
+
     deleteItem = (item) =>  {
         //pass username into the item with clickfunction
         item.username = this.props.username
@@ -115,6 +130,7 @@ export class Checkoutindex extends Component {
 
 
     render() {
+        if (!this.state.payment)    {
         return  (
             <div className='App'>
                 <div className='Main-items'>
@@ -129,7 +145,6 @@ export class Checkoutindex extends Component {
                 </div>
                 
                 <div>
-                    
                     {this.renderProducts()}
                 </div>
                 <div>
@@ -137,6 +152,54 @@ export class Checkoutindex extends Component {
                 </div>
             </div>
         )
+    } 
+    if (this.state.payment && !this.state.thanks)    {
+        return (
+            <div className='App'>
+            <div>
+                <a>P A Y M E N T</a>
+            </div>
+            <div>
+                <input placeholder="Carn Number"/>
+            </div>
+            <div>
+                <input placeholder="Exp Date"/>
+            </div>
+            <div>
+                <input placeholder="Name"/>
+            </div>
+            <div>
+                <button onClick={this.payment}> Buy </button>
+            </div>
+        </div>
+        )
+    }
+
+
+    // if (!this.state.thanks)    {
+    //     return (
+    //         <div className='App'>
+    //         <div>
+    //             <a>thanks</a>
+    //         </div>
+    //         {/* <div>
+    //             <button onClick={this.thanks}> PAY </button>
+    //         </div> */}
+    //     </div>
+    //     )
+    // }
+    if (this.state.payment && this.state.thanks)    {
+        return (
+            <div className='App'>
+            <div>
+                <a>T H A N K S</a>
+            </div>
+            <div>
+                <button onClick={this.pay}> Back to main? </button>
+            </div>
+        </div>
+        )
+    }
 
     }
 
