@@ -307,6 +307,9 @@ const addToCart = (info) => {
             alreadySold = 'Already Sold'
         }
     })
+    if (alreadySold)  {
+        return alreadySold;
+    }
 
     if (alreadySold) {
         return alreadySold;

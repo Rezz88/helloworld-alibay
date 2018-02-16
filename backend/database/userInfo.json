@@ -3,16 +3,7 @@
     "username": "washy",
     "email": "mmnaksl@mman.com",
     "password": "pamsmm",
-    "itemsForSale": [
-      {
-        "seller": "washy",
-        "productID": 11690846,
-        "price": "235",
-        "blurb": "averagely used bad ass laptop",
-        "category": "electronics",
-        "title": "LapTop"
-      }
-    ],
+    "itemsForSale": [],
     "itemsSold": [
       {
         "seller": "washy",

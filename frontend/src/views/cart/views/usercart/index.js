@@ -70,7 +70,7 @@ export class Cartindex extends Component {
         //pass username into the item with clickfunction
         item.username = this.props.username
 
-        
+
         //pass id's to backend to store in cart uncomment when backend is ready
         fetch("/removeFromCart", {
             method: "POST",

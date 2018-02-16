@@ -16,7 +16,10 @@ export class Checkoutindex extends Component {
     componentWillMount()    {
         this.setState({username: this.props.username})
     }
-
+    backToMain = () =>  {
+        this.props.ChangeComponent('Main')
+    }
+    
 
     componentDidMount() {
         fetch("/cart", {
@@ -74,9 +77,6 @@ export class Checkoutindex extends Component {
         const { products, username } = this.state
         this.setState({payment: true})
         
-        
-
-
         var toSend = [{username: username}]
         products.forEach((item, pos) => {
             if (item.productID) {
@@ -113,7 +113,7 @@ export class Checkoutindex extends Component {
         item.username = this.props.username
 
         let oldArray = this.state.products
-            let newArray = oldArray.filter(function(x) {
+            let newArray = oldArray.filter(x=> {
             return x.name !== item.name;  
             });
 
@@ -174,20 +174,6 @@ export class Checkoutindex extends Component {
         </div>
         )
     }
-
-
-    // if (!this.state.thanks)    {
-    //     return (
-    //         <div className='App'>
-    //         <div>
-    //             <a>thanks</a>
-    //         </div>
-    //         {/* <div>
-    //             <button onClick={this.thanks}> PAY </button>
-    //         </div> */}
-    //     </div>
-    //     )
-    // }
     if (this.state.payment && this.state.thanks)    {
         return (
             <div className='App'>
@@ -195,7 +181,7 @@ export class Checkoutindex extends Component {
                 <a>T H A N K S</a>
             </div>
             <div>
-                <button onClick={this.pay}> Back to main? </button>
+                <button onClick={this.backToMain}> Back to main? </button>
             </div>
         </div>
         )
