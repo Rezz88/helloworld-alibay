@@ -32,6 +32,7 @@ export class Main extends Component {
                     username={product.username}
                     title={product.title}
                     category={product.category}
+                    imageName={product.imageName}
                     // sellerId= {product.seller}
                     // prodId= {product.prodId}
                     // key= {product.prodId}
@@ -213,7 +214,7 @@ export class Main extends Component {
                 <div>
                     <button id="sort" onClick={this.sortPrice}>price</button>
                     <button id="sort" onClick={this.sortName}>name</button>
-                    <button id="sort">recent</button>
+                    <button id="sort" onClick={this.sortTime}>recent</button>
                 </div>
                 <div>
                     {this.renderProducts()}
