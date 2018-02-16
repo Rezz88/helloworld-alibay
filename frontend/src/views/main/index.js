@@ -15,10 +15,6 @@ export class Main extends Component {
         }
     }
 
-    // CallParentFunction = () => {
-    //     this.props.changeParentState(false)
-    //   }
-
     renderProducts = () => {
         const { products } = this.state;
         if (products.length) {
@@ -75,7 +71,6 @@ export class Main extends Component {
             }
         })
     }
-
     addToFav = (item) => {
         //pass username into the item with clickfunction
         item.username = this.props.username
@@ -102,12 +97,6 @@ export class Main extends Component {
         //   .then(lst=> this.setState({ products: lst}))
           
         console.log('Cart', item);
-
-
-
-
-
-
     }
     sortPrice = () => {
         const { priceSort, products } = this.state;
@@ -164,8 +153,6 @@ export class Main extends Component {
             })
         }
     }
-
-
 
     componentDidMount() {
         let forSaleProducts = []
