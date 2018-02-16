@@ -26,10 +26,10 @@ export class Profile extends Component {
     };
 
     componentDidMount () {
-        fetch("/profile"), {
+        fetch("/profile", {
             method: 'POST',
             body: JSON.stringify({username: this.state.username})
-        }
+        })
         .then(x => x.text())
         .then(y => JSON.parse(y))
         .then(user => this.setState({ profile: user}))
