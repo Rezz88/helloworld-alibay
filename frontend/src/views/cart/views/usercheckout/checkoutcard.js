@@ -18,7 +18,7 @@ export default class Checkoutcard extends Component {
                     {description}
                 </div>
                 <div>
-                    {price}
+                    {'$ '+price}
                 </div>
                 <div>
                     <button className="button" onClick={deleteItem}>D E L E T E</button>

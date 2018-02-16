@@ -26,6 +26,7 @@ export class Cart extends Component {
             username={this.props.username}
             />
           }
+        
           else {
             return <div></div>
           }
@@ -39,11 +40,13 @@ export class Cart extends Component {
             <div>
               <ul className="App-header">
                   <a className="flash" onClick={() => this.ChangeComponent('Cartindex')}>  Cart</a>
-                  <a className="flash" onClick={() => this.ChangeComponent('Checkoutindex')}>Checkout</a>
               </ul>
               <div>
                 {this.renderComponent()}
               </div>
+              <ul className="App-header">
+                  <a className="flash" onClick={() => this.ChangeComponent('Checkoutindex')}>Checkout</a>
+              </ul>
             </div>
           )
 

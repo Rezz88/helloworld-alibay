@@ -3,19 +3,21 @@ import '../../../../App.css';
 import HistoryItem from './Items-History'
 
 class HisItemPage extends Component {
-    constructor()   {
+    constructor() {
         super()
         this.state = { products: [] }
 
     }
 
     //Temp mockdata for testing
-    componentDidMount(){
+    componentDidMount() {
         const mockproducts = [
-            {prodid: 3,
+            {
+                prodid: 3,
                 name: 'Bike',
                 descr: 'description of bike',
-                image: 'img of bike'}
+                image: 'img of bike'
+            }
         ]
         this.setState({ products: mockproducts })
     };
@@ -30,9 +32,9 @@ class HisItemPage extends Component {
                     description={product.descr}
                     prodId={product.prodId}
                     key={product.prodId}
-                    // Currently not required for profile
-                    // addToBag={this.addToBag}
-                    // addToFav={() => this.addToFav(product.prodid)}
+                // Currently not required for profile
+                // addToBag={this.addToBag}
+                // addToFav={() => this.addToFav(product.prodid)}
                 />
             })
         } else {
@@ -40,12 +42,12 @@ class HisItemPage extends Component {
         }
     }
 
-    render () {
+    render() {
         return (
             <div>
                 <div>{this.renderProducts()}</div>
             </div>
-            
+
         )
     }
 }

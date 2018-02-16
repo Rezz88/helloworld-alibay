@@ -2,16 +2,16 @@ import React, { Component } from 'react';
 import '../../../../App.css';
 
 export class SoldItem extends Component {
-    
+
     soldItem = () => {
-    // fetch("")
-    //     .then(x=> x.text())
-    //     .then(y=> JSON.parse(y))
-    //     .then(lst=> this.setState({ products: lst}))
+        // fetch("")
+        //     .then(x=> x.text())
+        //     .then(y=> JSON.parse(y))
+        //     .then(lst=> this.setState({ products: lst}))
     }
 
     componentDidMount() {
-          // fetch(""), {
+        // fetch(""), {
         //     method: 'post',
         //     body: JSON.stringify({
         //     })
@@ -21,30 +21,30 @@ export class SoldItem extends Component {
 
 
     render() {
-        const{ image, price, name, description, deleteItem} = this.props// De-tructuring
+        const { image, price, name, description, deleteItem } = this.props// De-tructuring
         return (
             <div>
                 <h3>Items Sold</h3>
-            <div className='sold-item'>
-                <div>
-                    {image}
+                <div className='sold-item'>
+                    <div>
+                        {image}
+                    </div>
+                    <div>
+                        {name}
+                    </div>
+                    <div>
+                        {description}
+                    </div>
+                    <div>
+                        {price}
+                    </div>
+                    <div className="remove-button">
+                        <button className="button" onClick={deleteItem}>Remove</button>
+                    </div>
                 </div>
-                <div>
-                    {name}
-                </div>
-                <div>
-                    {description}
-                </div>
-                <div>
-                    {price}
-                </div>
-                <div className="remove-button">
-                    <button className="button" onClick={deleteItem}>Remove</button>
-                </div>    
-            </div>
             </div>
         )
     }
-} 
+}
 
 export default SoldItem;

@@ -15,7 +15,7 @@ export class Sell extends Component {
     }
 
     setInputValue = (key, value) => {
-        this.setState({ [key]: value })
+        this.setState({ [key]: value }, ()=> {this.setState({price: Number(this.state.price)})})
     }
     sellNew = () => {
         this.setState({ itemPosted: false })
@@ -43,7 +43,7 @@ export class Sell extends Component {
             <div className='App'>
                 <input className="title" placeholder="Item Name" value={title} onChange={(e) => this.setInputValue('title', e.target.value)}></input>
                 <input className="blurb" placeholder="Description" value={blurb} onChange={(e) => this.setInputValue('blurb', e.target.value)}></input>
-                <input className="price" type="number" placeholder="Price" value={price} onChange={(e) => this.setInputValue('price', e.target.value)}></input>
+                <input className="price" type="number" placeholder="Price" value={Number(price)} onChange={(e) => this.setInputValue('price', e.target.value)}></input>
                 <button className="button2" onClick={addItem}>Sell Item</button>
             </div>)
     }

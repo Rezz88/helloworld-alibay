@@ -24,15 +24,17 @@ export class Profile extends Component {
         this.setState({ username: this.props.username });
     };
 
-    // componentDidMount() {
-    //     fetch("/profile", {
-    //         method: 'POST',
-    //         body: JSON.stringify({ username: this.state.username })
-    //     })
-    //         .then(x => x.text())
-    //         .then(y => JSON.parse(y))
-    //         .then(user => this.setState({ profile: user }))
-    // };
+
+    componentDidMount() {
+
+        fetch("/profile", {
+            method: 'post',
+            body: JSON.stringify({ username: this.state.username })
+        })
+            .then(x => x.text())
+            .then(y => JSON.parse(y))
+            .then(user => this.setState({ profile: [user] }))
+    };
 
     ChangeComponent = (component) => {
         this.setState({ active: component })
@@ -74,7 +76,6 @@ export class Profile extends Component {
                 <h4>Profile Page</h4>
                 <div>
                     {this.renderProfile()}
-                    <button className="button" onClick={this.editProfile}>Edit</button>
                 </div>
                 <div className="App-header">
                     <a className="flash" onClick={() => this.ChangeComponent("ForSale")}>FOR SALE</a>

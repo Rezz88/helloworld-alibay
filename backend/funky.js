@@ -254,7 +254,7 @@ const buyItem = (itemInfo) => {
     for (var i = 0; i < products.length; i++) {
         purchase(products[i], buyerUsername);
     }
-    cart[username] = [];
+    cart[username]=[];
 
 }
 
@@ -290,7 +290,13 @@ const addToCart = (info) => {
     var alreadyMatched;
     cart[buyerUsername].forEach((item, pos) => {
         if (Number(item.productID) === Number(toBuyProductID)) {
+<<<<<<< HEAD
             alreadyMatched = true;
+=======
+            console.log('im in')
+            // var alreadyCart = 
+            return true
+>>>>>>> ef91ed182aa34ace11344f94d51470c7cc8781a9
         }
     })
 
