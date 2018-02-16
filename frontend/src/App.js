@@ -94,7 +94,6 @@ class App extends Component {
           }
         })
       })
-
   }
 
   signUp = (username, password, email) => {
@@ -145,35 +144,6 @@ class App extends Component {
           itemPosted: true
         }))
   }
-
-
-  //Still in the works
-
-  // editProfile = () => {
-  //   const myProfile = {}
-  //   fetch('/profile', {
-  //     method: 'post',
-  //     body: JSON.stringify({
-  //       username: this.state.username
-  //     })
-  //   })
-  //   .then(x => x.text())
-  //   .then(x => JSON.parse(x))
-  //   .then(x => myProfile = x)
-  //   return (
-  //     <div>
-  //       <input> </input>
-  //       <input> </input>
-  //       <input> </input>
-  //       <input> </input>
-  //       <input> </input>
-  //     </div>
-  //   )
-  // }
-
- 
-
-
 
   render() {
     console.log(this.state.imageName)
