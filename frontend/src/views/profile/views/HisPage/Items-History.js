@@ -4,7 +4,7 @@ import '../../../../App.css';
 export class HistoryItem extends Component {
 
     render() {
-        const { seller, price, title, blurb, deleteItem } = this.props// De-structuring
+        const { seller, price, title, blurb} = this.props// De-structuring
         return (
             <div>
                 <div className='sold-item'>
@@ -19,9 +19,6 @@ export class HistoryItem extends Component {
                     </div>
                     <div>
                         {price}
-                    </div>
-                    <div className="remove-button">
-                        <button className="button" onClick={deleteItem}>Remove</button>
                     </div>
                 </div>
             </div>
