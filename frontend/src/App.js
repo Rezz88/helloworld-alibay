@@ -9,6 +9,7 @@ import { Login } from './views/login'
 import { Sell } from './views/sell'
 import { About } from './views/about'
 import { Contact } from './views/contact'
+var imageName = require('./Alibay-Banner.png')
 
 class App extends Component {
   constructor() {
@@ -161,15 +162,16 @@ class App extends Component {
     console.log(this.state.imageName)
     // const { active } = this.state;
     return (
-      <div>
-        <ul className="App-header">
+      <div className="logoPos">
+        <img className="logoImage" src={imageName} alt="Alibay-Banner" />
+        <div className="App-header">
           <a>{'Logged in as : ' + this.state.username}</a>
           <a className="flash" onClick={() => this.ChangeComponent('Main')}>M A I N</a>
           <a className="flash" onClick={() => this.ChangeComponent('Profile')}>P R O F I L E</a>
           <a className="flash" onClick={() => this.ChangeComponent('Cart') && this.cartClick()}>C A R T</a>
           <a className="flash" onClick={() => this.ChangeComponent('Sell')}>S E L L</a>
           <a className="button2" onClick={() => this.setState({ login: false, username: '', active: 'Main' })}>L O G O U T</a>
-        </ul>
+        </div>
         <div>
           {this.renderComponent()}
         </div>

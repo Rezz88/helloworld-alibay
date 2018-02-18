@@ -36,7 +36,7 @@ export class Sell extends Component {
         const { title, blurb, price, category } = this.state //put name in
 
         var addItem = () => {
-            if (title.length && blurb.length && Number.isNaN(price) === false && category.label.length) {
+            if (title.length && blurb.length && typeof(price) === 'number' && category.label) {
                 this.props.addItem(title, blurb, price, category);
             } else {
                 return console.log("You need to fill out all fields!")
