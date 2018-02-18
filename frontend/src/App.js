@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import moment from 'moment'
 // import logo from './logo.svg';
 import './App.css';
 import { Main } from './views/main'
@@ -16,7 +17,7 @@ class App extends Component {
       active: 'Main',
       login: true, //Temp marked as true. 
       error: false,
-      username: 'washy',
+      username: 'blue',
       prodId: '',
       itemPosted: false,
       footer: '',
@@ -43,13 +44,19 @@ class App extends Component {
         return <Cart username={username} ChangeComponent={this.ChangeComponent} />
       }
       else if (active === 'Sell') {
-        return <Sell addItem={this.addItem} itemPosted={itemPosted} username={username} uploadFile={this.uploadFile} imageName={imageName}/>
+        return <Sell
+          addItem={this.addItem}
+          itemPosted={itemPosted}
+          username={username}
+          uploadFile={this.uploadFile}
+          imageName={imageName}
+          sellNew={this.sellNew} />
       }
       else if (active === 'About') {
         return <About />
       }
       else if (active === 'Contact') {
-        return <Contact/>
+        return <Contact />
       }
       else {
         return <div></div>
@@ -57,13 +64,15 @@ class App extends Component {
     }
   }
 
-  uploadFile=(x) => {
+  uploadFile = (x) => {
     var filename = x.name;
     var fileExtension = filename.split('.').pop();
-    fetch('/upics?ext=' + fileExtension,{method: "POST", body: x}) 
-    .then(x=> x.text())
-    .then(x=> {console.log(x); return JSON.parse(x)})   //use x.json()
-    .then(x=> this.setState({imageName: x}))
+    fetch('/upics?ext=' + fileExtension, { method: "POST", body: x })
+      .then(x => x.text())
+      .then(x => { console.log(x); return JSON.parse(x) })   //use x.json()
+      .then(x => this.setState({ imageName: x }))
+
+
   }
 
   login = (username, password) => {
@@ -82,6 +91,7 @@ class App extends Component {
           login: x,
           error: !x
         }, () => {
+          console.log(this.state.login);
           if (typeof (this.state.login) !== "boolean") {
             this.setState({ login: false, username: '' })
           }
@@ -114,28 +124,37 @@ class App extends Component {
     //change x to something more descriptive
   }
 
-  addItem = (title, blurb, price) => {
-    if(typeof(price) !== 'number'){
-      return this.setState({itemPosted: false})
+  addItem = (title, blurb, price, category) => {
+    console.log(category)
+    if (typeof (price) !== 'number') {
+      return this.setState({ itemPosted: false })
     }
     fetch('/toSell', {
       method: 'post',
       body: JSON.stringify({   //send the suername instead of name
         username: this.state.username,
         imageName: this.state.imageName,
+        category: category.label,
         title,
         blurb,
         price,
-        timeStamp: new Date()
+        timeStamp: new Date(),
+        timeSince: moment().startOf('day').fromNow()
       })
     })
       .then(x => x.text())
       .then(x => JSON.parse(x))
       .then(x => { console.log("new Item: ", x); return x })
-      .then(() =>
+      .then(() => {
         this.setState({
-          itemPosted: true
-        }))
+          itemPosted: true,
+          imageName: ''
+        })
+        //document.getElementById('italics500').value = ''
+      })
+  }
+  sellNew = () => {
+    this.setState({ itemPosted: false })
   }
 
   render() {
@@ -144,11 +163,12 @@ class App extends Component {
     return (
       <div>
         <ul className="App-header">
-          <a>{'Logged in as : '+this.state.username}</a>
+          <a>{'Logged in as : ' + this.state.username}</a>
           <a className="flash" onClick={() => this.ChangeComponent('Main')}>M A I N</a>
           <a className="flash" onClick={() => this.ChangeComponent('Profile')}>P R O F I L E</a>
           <a className="flash" onClick={() => this.ChangeComponent('Cart') && this.cartClick()}>C A R T</a>
           <a className="flash" onClick={() => this.ChangeComponent('Sell')}>S E L L</a>
+          <a className="button2" onClick={() => this.setState({ login: false, username: '', active: 'Main' })}>L O G O U T</a>
         </ul>
         <div>
           {this.renderComponent()}
@@ -168,10 +188,3 @@ class App extends Component {
 }
 
 export default App;
-
-
-
-
-
-
-

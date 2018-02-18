@@ -33,6 +33,7 @@ class ForSalePage extends Component {
         if (products) {
             return products.map(item => {
                 return <ForSale
+                    imageName={item.imageName}
                     seller={item.seller}
                     productID={item.productID}
                     price={item.price}
@@ -74,14 +75,14 @@ class ForSalePage extends Component {
     //     this.componentDidMount()
     // };
 
-render() {
-    return (
-        <div><h3>Items for Sale</h3>
-            <div>{this.renderProducts()}</div>
-        </div>
+    render() {
+        return (
+            <div><h3>Items for Sale</h3>
+                <div>{this.renderProducts()}</div>
+            </div>
 
-    )
-}
+        )
+    }
 }
 
 export default ForSalePage;

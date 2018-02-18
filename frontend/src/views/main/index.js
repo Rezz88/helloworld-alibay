@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import moment from 'moment'
 import '../../App.css';
 import ProductCard from './productCard'
 
@@ -118,16 +119,16 @@ export class Main extends Component {
         this.setState({ nameSort: !nameSort })
         if (nameSort) {
             products.sort(function (a, b) {
-                var x = b.blurb.toLowerCase();
-                var y = a.blurb.toLowerCase();
+                var x = b.title.toLowerCase();
+                var y = a.title.toLowerCase();
                 if (x < y) { return -1; }
                 if (x > y) { return 1; }
                 return 0;
             })
         } else {
             products.sort(function (a, b) {
-                var x = a.blurb.toLowerCase();
-                var y = b.blurb.toLowerCase();
+                var x = a.title.toLowerCase();
+                var y = b.title.toLowerCase();
                 if (x < y) { return -1; }
                 if (x > y) { return 1; }
                 return 0;
@@ -180,10 +181,31 @@ export class Main extends Component {
             }
             )
     }
-
+    categotySearch = () => {
+        const { products } = this.state
+        this.setState({ products: this.state.allProducts })
+        var searchName = document.getElementById("tableOfContents").innerHTML
+        console.log(searchName);
+        let tempObj = {};
+        let finalArray = [];
+        function filterItems(query, value) {
+            var word = value.toString().toLowerCase().indexOf(query.toLowerCase()) > -1;
+            return word
+        }
+        for (var i = 0; i < products.length; i++) {
+            tempObj = products[i]
+            for (let value of Object.values(tempObj)) {
+                if (filterItems(searchName, value)) {
+                    finalArray.push(tempObj)
+                    break
+                }
+            }
+        }
+        this.setState({ products: finalArray })
+    }
 
     render() {
-        //console.log(this.state)
+        console.log(this.state.products)
 
         if (!this.state.about) {
             return (
@@ -205,7 +227,21 @@ export class Main extends Component {
                     <div>
                         <button id="sort" onClick={this.sortPrice}>price</button>
                         <button id="sort" onClick={this.sortName}>name</button>
-                        <button id="sort">recent</button>
+                        <button id="sort" onClick={this.sortTime}>recent</button>
+                    </div>
+                    <div>
+                    <button className ="button2" id="tableOfContents" onClick={this.categotySearch}>Clear</button> 
+                    <button className ="button2" id="tableOfContents" onClick={this.categotySearch}>Artisanal</button>
+                    <button className ="button2" id="tableOfContents" onClick={this.categotySearch}>Audio</button>
+                    <button className ="button2" id="tableOfContents" onClick={this.categotySearch}>Automotive</button>
+                    <button className ="button2" id="tableOfContents" onClick={this.categotySearch}>Beauty and Health</button>
+                    <button className ="button2" id="tableOfContents" onClick={this.categotySearch}>Books/Audible</button>
+                    <button className ="button2" id="tableOfContents" onClick={this.categotySearch}>Clothing</button>
+                    <button className ="button2" id="tableOfContents" onClick={this.categotySearch}>Electronics</button>
+                    <button className ="button2" id="tableOfContents" onClick={this.categotySearch}>Home, Garden and Tools</button>
+                    <button className ="button2" id="tableOfContents" onClick={this.categotySearch}>Toys, Kids and Baby</button>
+                    <button className ="button2" id="tableOfContents" onClick={this.categotySearch}>Odd Jobs</button>
+                    <button className ="button2" id="tableOfContents" onClick={this.categotySearch}>Other</button>
                     </div>
                     <div>
                         {this.renderProducts()}

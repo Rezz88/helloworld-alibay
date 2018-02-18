@@ -23,6 +23,15 @@
   margin: 0 5px;
 }
 
+.App-header > a {
+  font-size: 90%;
+  text-decoration: none;
+  display: inline-block;
+  border: 1px solid white;
+  border-style: outset;
+  padding: 4px;
+  margin: 0 5px;
+}
 .App-footer {
   display: flex; 
   justify-content: center;
@@ -39,17 +48,6 @@
   border: 1px solid rgb(5, 5, 5);
   padding: 2px;
   margin: 0 50px;
-}
-
-
-.App-header > a {
-  font-size: 90%;
-  text-decoration: none;
-  display: inline-block;
-  border: 1px solid white;
-  border-style: outset;
-  padding: 4px;
-  margin: 0 5px;
 }
 
 .sold-item {
@@ -117,6 +115,11 @@
   border: 3px solid #555555;
 }
 
+.button3:hover {
+  background-color: #555555;
+  color: white;
+}
+
 .button2:hover {
   background-color: #555555;
   color: white;
@@ -159,4 +162,50 @@
 
 .curse {
   cursor: pointer
+}
+
+img {
+ object-position: 50% 50%;
+ height: 100%;
+ width: 100%;
+ text-align: center;
+ vertical-align: center;
+ align-content: center;
+}
+
+.imageDiv {
+  width:20%;
+  height: 150px;
+  border: 2px solid #555555;
+  align-content: center;
+  object-fit: contain;
+  display: flex;
+  flex-direction: row;
+}
+
+.itemInfo {
+  width: 60%;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+}
+
+.itemDisplayBox {
+  display: flex;
+  flex-direction: row;
+}
+
+.fontStyleMain {
+  font-family: "Helvetica";
+  font-weight: bolder;
+  font-size: 26px;
+ 
+}
+
+.italics500 {
+  text-align: left;
+}
+
+.Select-control {
+  width:40%;
 }
