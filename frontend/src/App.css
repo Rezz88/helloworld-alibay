@@ -209,3 +209,18 @@ img {
 .Select-control {
   width:40%;
 }
+
+.logoImage {
+  display: flex;
+  margin-left: auto;
+  margin-right: auto;
+  border: 3px solid #555555;
+  height: 60px;
+  width: 200px;
+}
+
+.logoPos {
+  background-color: #222;
+  max-width: 100vw;
+  max-height: 66px;
+}
