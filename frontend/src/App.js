@@ -44,13 +44,13 @@ class App extends Component {
         return <Cart username={username} ChangeComponent={this.ChangeComponent} />
       }
       else if (active === 'Sell') {
-        return <Sell 
-        addItem={this.addItem} 
-        itemPosted={itemPosted} 
-        username={username} 
-        uploadFile={this.uploadFile} 
-        imageName={imageName} 
-        sellNew={this.sellNew}/>
+        return <Sell
+          addItem={this.addItem}
+          itemPosted={itemPosted}
+          username={username}
+          uploadFile={this.uploadFile}
+          imageName={imageName}
+          sellNew={this.sellNew} />
       }
       else if (active === 'About') {
         return <About />
@@ -164,11 +164,11 @@ class App extends Component {
       <div>
         <ul className="App-header">
           <a>{'Logged in as : ' + this.state.username}</a>
-          <a className="flash" onClick={() => this.setState({login: false, username: '', active: 'Main'})}>l o g o u t</a>
           <a className="flash" onClick={() => this.ChangeComponent('Main')}>M A I N</a>
           <a className="flash" onClick={() => this.ChangeComponent('Profile')}>P R O F I L E</a>
           <a className="flash" onClick={() => this.ChangeComponent('Cart') && this.cartClick()}>C A R T</a>
           <a className="flash" onClick={() => this.ChangeComponent('Sell')}>S E L L</a>
+          <a className="button2" onClick={() => this.setState({ login: false, username: '', active: 'Main' })}>L O G O U T</a>
         </ul>
         <div>
           {this.renderComponent()}

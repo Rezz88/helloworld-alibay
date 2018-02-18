@@ -23,6 +23,15 @@
   margin: 0 5px;
 }
 
+.App-header > a {
+  font-size: 90%;
+  text-decoration: none;
+  display: inline-block;
+  border: 1px solid white;
+  border-style: outset;
+  padding: 4px;
+  margin: 0 5px;
+}
 .App-footer {
   display: flex; 
   justify-content: center;
@@ -39,17 +48,6 @@
   border: 1px solid rgb(5, 5, 5);
   padding: 2px;
   margin: 0 50px;
-}
-
-
-.App-header > a {
-  font-size: 90%;
-  text-decoration: none;
-  display: inline-block;
-  border: 1px solid white;
-  border-style: outset;
-  padding: 4px;
-  margin: 0 5px;
 }
 
 .sold-item {
@@ -115,6 +113,11 @@
   background-color: white;
   color: black;
   border: 3px solid #555555;
+}
+
+.button3:hover {
+  background-color: #555555;
+  color: white;
 }
 
 .button2:hover {

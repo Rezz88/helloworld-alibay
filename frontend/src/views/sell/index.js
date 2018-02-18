@@ -79,7 +79,7 @@ export class Sell extends Component {
                 <input type="file" id="italics500" onChange={e => uploadFile(e.target.files[0])} />
                 <div className="itemDisplayBox">
                     <div className='imageDiv'>
-                        <img id="newImageStyle" src={this.props.imageName} alt='Product' />
+                        <img id="newImageStyle" src={this.props.imageName} alt='P R O D U C T' />
                     </div>
 
                     <div className="itemInfo">
