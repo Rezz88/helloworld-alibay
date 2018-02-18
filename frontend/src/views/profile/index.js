@@ -48,6 +48,7 @@ export class Profile extends Component {
                     mail={info.email}
                     shipping={info.shippingAddress}
                     edit={this.editProfile}
+                    componentDidMount={this.componentDidMount}
                 />
             })
         } else {

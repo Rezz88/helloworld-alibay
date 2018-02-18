@@ -17,7 +17,7 @@ class App extends Component {
       active: 'Main',
       login: true, //Temp marked as true. 
       error: false,
-      username: 'blue',
+      username: 'washy',
       prodId: '',
       itemPosted: false,
       footer: '',
@@ -38,7 +38,7 @@ class App extends Component {
         return <Main username={username} />
       }
       else if (active === 'Profile') {
-        return <Profile username={username} editProfile={this.editProfile} />
+        return <Profile username={username} editProfile={this.editProfile} ChangeComponent={this.ChangeComponent}/>
       }
       else if (active === 'Cart') {
         return <Cart username={username} ChangeComponent={this.ChangeComponent} />
