@@ -57,14 +57,31 @@ class ForSalePage extends Component {
         this.componentDidMount()
     };
 
-    render() {
-        return (
-            <div><h3>Items for Sale</h3>
-                <div>{this.renderProducts()}</div>
-            </div>
+    // Original deleteItem function
+    // deleteItem = (item) => {
+    //     item.username = this.props.username
+    //     fetch("/deleteItem", {
+    //         method: "POST",
+    //         body: JSON.stringify(item),
+    //     })
+    //     let oldArr = this.state.products;
+    //     let newArr = oldArr.filter(function (x) {
+    //         return x.productID !== item.productID;
+    //     })
+    //     .then(x=> x.text())
+    //     .then(y=> JSON.parse(y))
+    //     this.setState({ products: this.newArr })
+    //     this.componentDidMount()
+    // };
 
-        )
-    }
+render() {
+    return (
+        <div><h3>Items for Sale</h3>
+            <div>{this.renderProducts()}</div>
+        </div>
+
+    )
+}
 }
 
 export default ForSalePage;
