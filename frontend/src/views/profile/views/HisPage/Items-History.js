@@ -4,10 +4,13 @@ import '../../../../App.css';
 export class HistoryItem extends Component {
 
     render() {
-        const { seller, price, title, blurb, deleteItem } = this.props// De-structuring
+        const { seller, price, title, blurb, deleteItem, imageName } = this.props// De-structuring
         return (
             <div>
                 <div className='sold-item'>
+                    <div>
+                    <img src={imageName} alt='Product' className='imageDiv' />
+                    </div>
                     <div>
                         {title}
                     </div>

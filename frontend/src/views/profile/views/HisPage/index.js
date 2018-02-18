@@ -34,6 +34,7 @@ class HisItemPage extends Component {
         if (products.length) {
             return products.map(item => {
                 return <HistoryItem
+                    imageName={item.imageName}
                     seller={item.seller}
                     productID={item.productID}
                     price={item.price}

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import moment from 'moment'
 // import logo from './logo.svg';
 import './App.css';
 import { Main } from './views/main'
@@ -16,7 +17,7 @@ class App extends Component {
       active: 'Main',
       login: true, //Temp marked as true. 
       error: false,
-      username: 'washy',
+      username: 'blue',
       prodId: '',
       itemPosted: false,
       footer: '',
@@ -137,7 +138,8 @@ class App extends Component {
         title,
         blurb,
         price,
-        timeStamp: new Date()
+        timeStamp: new Date(),
+        timeSince: moment().startOf('day').fromNow()
       })
     })
       .then(x => x.text())
@@ -148,7 +150,7 @@ class App extends Component {
           itemPosted: true,
           imageName: ''
         })
-        document.getElementById('italics500').value = ''
+        //document.getElementById('italics500').value = ''
       })
   }
   sellNew = () => {
@@ -162,6 +164,7 @@ class App extends Component {
       <div>
         <ul className="App-header">
           <a>{'Logged in as : ' + this.state.username}</a>
+          <a className="flash" onClick={() => this.setState({login: false, username: '', active: 'Main'})}>l o g o u t</a>
           <a className="flash" onClick={() => this.ChangeComponent('Main')}>M A I N</a>
           <a className="flash" onClick={() => this.ChangeComponent('Profile')}>P R O F I L E</a>
           <a className="flash" onClick={() => this.ChangeComponent('Cart') && this.cartClick()}>C A R T</a>
@@ -185,10 +188,3 @@ class App extends Component {
 }
 
 export default App;
-
-
-
-
-
-
-

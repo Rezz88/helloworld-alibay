@@ -34,6 +34,7 @@ class SoldItemPage extends Component {
         if (products.length) {
             return products.map(item => {
                 return <SoldItem
+                    imageName={item.imageName}
                     seller={item.seller}
                     productID={item.productID}
                     price={item.price}

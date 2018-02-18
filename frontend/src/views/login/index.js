@@ -24,6 +24,7 @@ export class Login extends Component {
             <input className="email" placeholder="Email" value={email} onChange={(e)=> this.setInputValue('email', e.target.value)}></input>
           </div>
           <button className ="button2" onClick={()=> this.props.signUp(username, password, email)}>Sign up</button>
+          <button className ="button2" onClick={()=> this.setState({signIn: false})}>Login</button>
           {/* {this.state.list.map(x => <li>{x}</li>)} */}
           <div>
             {this.props.error ? 'Username/e-mail Already In Use': '' }

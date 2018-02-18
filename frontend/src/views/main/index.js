@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import moment from 'moment'
 import '../../App.css';
 import ProductCard from './productCard'
 

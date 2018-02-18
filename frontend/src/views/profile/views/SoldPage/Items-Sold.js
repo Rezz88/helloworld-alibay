@@ -4,10 +4,13 @@ import '../../../../App.css';
 export class SoldItem extends Component {
 
     render() {
-        const { seller, price, title, blurb} = this.props// De-structuring
+        const { seller, price, title, blurb, imageName} = this.props// De-structuring
         return (
             <div>
                 <div className='sold-item'>
+                <div>
+                    <img src={imageName} alt='Product' className='imageDiv' />
+                    </div>
                     <div>
                         {title}
                     </div>
