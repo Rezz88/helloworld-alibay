@@ -188,7 +188,6 @@ const buyItem = (itemInfo) => {
 
     const purchase = (item, buyerUsernameArg) => {
 
-
         var buyerUsername = buyerUsernameArg;
         var toBuyProductID = item.productID;
         console.log('buyerUsername: ', buyerUsername);
@@ -395,7 +394,6 @@ const editProfile = (info) => {
 
     selectedUser['shippingAddress'] = address;
     selectedUser['paymentInfo'] = payment; 
-
     if (newPass) {
         selectedUser[password] = newPass;
     }
@@ -406,11 +404,13 @@ const editProfile = (info) => {
     userTempDB.forEach((item, pos) => {
         if (item.username === username) {
             item = selectedUser
+            console.log('>>selected user>>', selectedUser)
+            console.log('>>item>>>>>>>>', item)
         }
     })
 
 
-    tools.FileWriteSync(userDbPath, JSON.stringify(userTempDB))
+    tools.FileWriteSync(userDbPath, JSON.stringify(userTempDB));
 }
 
 const deleteItem = (info) => {

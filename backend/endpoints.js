@@ -4,7 +4,7 @@ const express = require('express');
 const morgan = require('morgan');
 const app = express()
 
-app.use(express.static('database/images'))
+app.use(express.static('images'))
 
 var fs = require('fs');
 var bodyParser = require('body-parser');
@@ -49,15 +49,11 @@ app.post('/removeFromCart', (req, res) => {
 })
 
 app.post('/upics', (req, res) => {
-    res.send(funky.addImg(req));
+    res.send(funky.addImg(req, res));
 })
 
 app.post('/editProfile', (req, res) => {
     res.send(funky.editProfile(JSON.parse(req.body.toString())));
-})
-
-app.post('/deleteItem', (req, res) => {
-    res.send(funky.deleteItem(JSON.parse(req.body.toString())));
 })
 
 app.listen(4001, console.log("We're a go!"))
