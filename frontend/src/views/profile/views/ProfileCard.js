@@ -6,6 +6,7 @@ export class ProfileCard extends Component {
         super();
         this.state = {
             editing: false,
+            edited: false,
             shipping: {},
             profile: {},
             newProfile: {
@@ -48,7 +49,14 @@ export class ProfileCard extends Component {
             method: 'post',
             body: JSON.stringify(item)
         })
+
         this.setState({editing: false})
+        this.setState({edited: true})
+    }
+
+
+    backToMain = () => {
+        this.setState({edited: false})
     }
 
     render() {
@@ -56,7 +64,20 @@ export class ProfileCard extends Component {
         const { username, mail, shipping /*edit Not used yet*/ } = this.props// De-structuring
         const { streetAddress , city, stateProvice, postalCode} = this.state.newProfile
         console.log("ProfileCard Email test -", mail)
-        if (this.state.editing === false)   {
+        if (this.state.edited === true && this.state.editing === false)
+        return(
+            <div>
+                <h4>Your User Info</h4>
+                <div className='sold-item'>
+                    YOUR CHANGES HAVE BEEN SAVED
+                    <div className="remove-button">
+                        <button className="button" onClick={()=>this.backToMain()}>SAVE</button>
+                    </div>
+                </div>
+            </div>
+    
+    )
+        if (this.state.editing === false && this.state.edited===false)   {
             return (
                 <div>
                     <h4>Your User Info</h4>
@@ -87,7 +108,7 @@ export class ProfileCard extends Component {
                 </div>
             )
         } 
-        if (this.state.editing === true)
+        if (this.state.editing === true && this.state.edited === false)
         return(
             <div>
                 <h4>Your User Info</h4>
@@ -124,6 +145,7 @@ export class ProfileCard extends Component {
             </div>
     
     )
+    
     }
 }
 

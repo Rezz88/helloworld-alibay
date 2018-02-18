@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import moment from 'moment'
 import '../../App.css';
 import ProductCard from './productCard'
 
@@ -220,18 +219,18 @@ export class Main extends Component {
                         <button id="sort" onClick={this.sortTime}>recent</button>
                     </div>
                     <div>
-                        <button className="tableOfContents" onClick={()=> this.setState({products: this.state.allProducts})}>Clear</button>
-                        <button id="tableOfContents" onClick={() => this.categorySearch('Artisanal')}>Artisanal</button>
-                        <button id="tableOfContents" onClick={() => this.categorySearch('Audio')}>Audio</button>
-                        <button id="tableOfContents" onClick={() => this.categorySearch('Automotive')}>Automotive</button>
-                        <button id="tableOfContents" onClick={() => this.categorySearch('Beauty and Health')}>Beauty and Health</button>
-                        <button id="tableOfContents" onClick={() => this.categorySearch('Books/Audible')}>Books/Audible</button>
-                        <button id="tableOfContents" onClick={() => this.categorySearch('Clothing')}>Clothing</button>
-                        <button id="tableOfContents" onClick={() => this.categorySearch('Electronics')}>Electronics</button>
-                        <button id="tableOfContents" onClick={() => this.categorySearch('Home, Garden and Tools')}>Home, Garden and Tools</button>
-                        <button id="tableOfContents" onClick={() => this.categorySearch('Toys, Kids and Baby')}>Toys, Kids and Baby</button>
-                        <button id="tableOfContents" onClick={() => this.categorySearch('Odd Jobs')}>Odd Jobs</button>
-                        <button id="tableOfContents" onClick={() => this.categorySearch('Other')}>Other</button>
+                        <button className="button2" id="tableOfContents" onClick={()=> this.setState({products: this.state.allProducts})}>Clear</button>
+                        <button className="button2" id="tableOfContents" onClick={() => this.categorySearch('Artisanal')}>Artisanal</button>
+                        <button className="button2" id="tableOfContents" onClick={() => this.categorySearch('Audio')}>Audio</button>
+                        <button className="button2" id="tableOfContents" onClick={() => this.categorySearch('Automotive')}>Automotive</button>
+                        <button className="button2" id="tableOfContents" onClick={() => this.categorySearch('Beauty and Health')}>Beauty and Health</button>
+                        <button className="button2" id="tableOfContents" onClick={() => this.categorySearch('Books/Audible')}>Books/Audible</button>
+                        <button className="button2" id="tableOfContents" onClick={() => this.categorySearch('Clothing')}>Clothing</button>
+                        <button className="button2" id="tableOfContents" onClick={() => this.categorySearch('Electronics')}>Electronics</button>
+                        <button className="button2" id="tableOfContents" onClick={() => this.categorySearch('Home, Garden and Tools')}>Home, Garden and Tools</button>
+                        <button className="button2" id="tableOfContents" onClick={() => this.categorySearch('Toys, Kids and Baby')}>Toys, Kids and Baby</button>
+                        <button className="button2" id="tableOfContents" onClick={() => this.categorySearch('Odd Jobs')}>Odd Jobs</button>
+                        <button className="button2" id="tableOfContents" onClick={() => this.categorySearch('Other')}>Other</button>
                     </div>
                     <div>
                         {this.renderProducts()}

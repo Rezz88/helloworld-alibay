@@ -8,6 +8,7 @@ export class Checkoutindex extends Component {
         this.state = {
             products: [],
             profile: {},
+            editingProfile: false,
             newProfile: {
                 address:    {
                     streetAddress: '',
@@ -67,26 +68,42 @@ export class Checkoutindex extends Component {
             return <div>cart is empty</div>
         }
     }
+    editingProfile = () =>  {
+        this.setState({editingProfile: true})
+    }
 
     renderShipping = () => {
-        const { profile } = this.state
-        if (profile.shippingAddress !== undefined) {
+        const { profile, editingProfile } = this.state
+        if (profile.shippingAddress !== undefined && editingProfile === true)   {
+            return (
+                <div>            
+                    <div>{this.showShippingEditFields()}</div>                
+                </div>
+            )            
+        }
+
+        if (profile.shippingAddress !== undefined && editingProfile === false) {
             return (
                 <div>            
                     <div>{profile.shippingAddress.streetAddress}</div>
                     <div>{profile.shippingAddress.city}</div>                        
                     <div>{profile.shippingAddress.stateProvice}</div>
-                    <div>{profile.shippingAddress.postalCode}</div>                    
+                    <div>{profile.shippingAddress.postalCode}</div>  
+                    <div>
+                        <button className="button" onClick={()=>this.editingProfile()}>Edit</button>
+                    </div>                  
                 </div>
+                
             )
-        } else {
+        }
+        if (profile.shippingAddress === undefined && editingProfile === false)
             return (
                 <div>
                     <div>no shipping info</div>
                     <div>{this.showShippingEditFields()}</div>
                 </div>
             )
-        }
+        
     }
 
     setInputValue =(key, value)=> {
@@ -109,6 +126,7 @@ export class Checkoutindex extends Component {
     }
 
     saveAddress= (item) =>  {
+        window.alert('Saved!')
         item.username = this.props.username
         console.log(item)
         fetch('/editProfile', {
@@ -177,6 +195,7 @@ export class Checkoutindex extends Component {
                 <div className='App'>
                     <div className='Main-items'>
                         SHIPPING INFO
+                        
                 </div>
                     <div>
                         {this.renderShipping()}
@@ -213,11 +232,9 @@ export class Checkoutindex extends Component {
             return (
                 <div className='App'>
                     <div><a>T H A N K S</a></div>
-                    <div><button onClick={this.backToMain}> Back to main? </button></div>
+                    <div><button onClick={this.backToMain}> continue shopping! </button></div>
                 </div>
             )
         }
-
     }
-
 }
