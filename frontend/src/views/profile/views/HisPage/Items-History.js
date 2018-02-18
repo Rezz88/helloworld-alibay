@@ -20,9 +20,6 @@ export class HistoryItem extends Component {
                     <div>
                         {price}
                     </div>
-                    <div className="remove-button">
-                        <button className="button" onClick={deleteItem}>Remove</button>
-                    </div>
                 </div>
             </div>
         )
