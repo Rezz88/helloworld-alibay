@@ -118,16 +118,16 @@ export class Main extends Component {
         this.setState({ nameSort: !nameSort })
         if (nameSort) {
             products.sort(function (a, b) {
-                var x = b.blurb.toLowerCase();
-                var y = a.blurb.toLowerCase();
+                var x = b.title.toLowerCase();
+                var y = a.title.toLowerCase();
                 if (x < y) { return -1; }
                 if (x > y) { return 1; }
                 return 0;
             })
         } else {
             products.sort(function (a, b) {
-                var x = a.blurb.toLowerCase();
-                var y = b.blurb.toLowerCase();
+                var x = a.title.toLowerCase();
+                var y = b.title.toLowerCase();
                 if (x < y) { return -1; }
                 if (x > y) { return 1; }
                 return 0;
@@ -183,7 +183,7 @@ export class Main extends Component {
 
 
     render() {
-        //console.log(this.state)
+        console.log(this.state.products)
 
         if (!this.state.about) {
             return (
@@ -205,7 +205,7 @@ export class Main extends Component {
                     <div>
                         <button id="sort" onClick={this.sortPrice}>price</button>
                         <button id="sort" onClick={this.sortName}>name</button>
-                        <button id="sort">recent</button>
+                        <button id="sort" onClick={this.sortTime}>recent</button>
                     </div>
                     <div>
                         {this.renderProducts()}

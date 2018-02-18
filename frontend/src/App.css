@@ -160,3 +160,49 @@
 .curse {
   cursor: pointer
 }
+
+img {
+ object-position: 50% 50%;
+ height: 100%;
+ width: 100%;
+ text-align: center;
+ vertical-align: center;
+ align-content: center;
+}
+
+.imageDiv {
+  width:40%;
+  height: 150px;
+  border: 2px solid #555555;
+  align-content: center;
+  object-fit: contain;
+  display: flex;
+  flex-direction: row;
+}
+
+.itemInfo {
+  width: 60%;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+}
+
+.itemDisplayBox {
+  display: flex;
+  flex-direction: row;
+}
+
+.fontStyleMain {
+  font-family: "Helvetica";
+  font-weight: bolder;
+  font-size: 26px;
+ 
+}
+
+.italics500 {
+  text-align: left;
+}
+
+.Select-control {
+  width:40%;
+}
