@@ -6,7 +6,7 @@ export class ProfileCard extends Component {
 
     render() {
 
-        const { name, mail, edit } = this.props// De-structuring
+        const { name, mail } = this.props// De-structuring
         console.log("ProfileCard Email test -", mail)
         return (
             <div>
