@@ -4,7 +4,7 @@ const express = require('express');
 const morgan = require('morgan');
 const app = express()
 
-app.use(express.static('images'))
+app.use(express.static('database/images'))
 
 var fs = require('fs');
 var bodyParser = require('body-parser');

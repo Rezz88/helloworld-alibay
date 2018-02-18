@@ -72,20 +72,11 @@ export class Checkoutindex extends Component {
         const { profile } = this.state
         if (profile.shippingAddress !== undefined) {
             return (
-                <div>
-                    <div>
+                <div>            
                     <div>{profile.shippingAddress.streetAddress}</div>
-                    </div>
-                    <div>
-                    <div>{profile.shippingAddress.city}</div>
-                    </div>
-                    <div>
+                    <div>{profile.shippingAddress.city}</div>                        
                     <div>{profile.shippingAddress.stateProvice}</div>
-                    </div>
-                    <div>
-                    <div>{profile.shippingAddress.postalCode}</div>
-                    </div>
-                    
+                    <div>{profile.shippingAddress.postalCode}</div>                    
                 </div>
             )
         } else {
@@ -108,21 +99,11 @@ export class Checkoutindex extends Component {
         const { streetAddress , city, stateProvice, postalCode} = this.state.newProfile
         return (
             <div>
-                <div>
-                    <input placeholder="street address" value={streetAddress} onChange={(e)=> this.setInputValue('streetAddress', e.target.value)} />
-                </div>
-                <div>
-                    <input placeholder="city" value={city} onChange={(e)=> this.setInputValue('city', e.target.value)}/>
-                </div>
-                <div>
-                    <input placeholder="state/provice" value={stateProvice} onChange={(e)=> this.setInputValue('stateProvice', e.target.value)} />
-                </div>
-                <div>
-                    <input placeholder="postal code" value={postalCode} onChange={(e)=> this.setInputValue('postalCode', e.target.value)} />
-                </div>
-                <div>
-                    <button onClick={()=>this.saveAddress(this.state.newProfile)}>save</button>
-                </div>
+                <div><input placeholder="street address" value={streetAddress} onChange={(e)=> this.setInputValue('streetAddress', e.target.value)} /></div>
+                <div><input placeholder="city" value={city} onChange={(e)=> this.setInputValue('city', e.target.value)}/></div>
+                <div><input placeholder="state/provice" value={stateProvice} onChange={(e)=> this.setInputValue('stateProvice', e.target.value)} /></div>
+                <div><input placeholder="postal code" value={postalCode} onChange={(e)=> this.setInputValue('postalCode', e.target.value)} /></div>
+                <div><button onClick={()=>this.saveAddress(this.state.newProfile)}>save</button></div>
             </div>
         )
     }
@@ -220,33 +201,19 @@ export class Checkoutindex extends Component {
         if (this.state.payment && !this.state.thanks) {
             return (
                 <div className='App'>
-                    <div>
-                        <a>P A Y M E N T</a>
-                    </div>
-                    <div>
-                        <input placeholder="Carn Number" />
-                    </div>
-                    <div>
-                        <input placeholder="Exp Date" />
-                    </div>
-                    <div>
-                        <input placeholder="Name" />
-                    </div>
-                    <div>
-                        <button onClick={this.payment}> Buy </button>
-                    </div>
+                    <div><a>P A Y M E N T</a></div>
+                    <div><input placeholder="Carn Number" /></div>
+                    <div><input placeholder="Exp Date" /></div>
+                    <div><input placeholder="Name" /></div>
+                    <div><button onClick={this.payment}> Buy </button></div>
                 </div>
             )
         }
         if (this.state.payment && this.state.thanks) {
             return (
                 <div className='App'>
-                    <div>
-                        <a>T H A N K S</a>
-                    </div>
-                    <div>
-                        <button onClick={this.backToMain}> Back to main? </button>
-                    </div>
+                    <div><a>T H A N K S</a></div>
+                    <div><button onClick={this.backToMain}> Back to main? </button></div>
                 </div>
             )
         }
