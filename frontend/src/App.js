@@ -17,9 +17,9 @@ class App extends Component {
     super();
     this.state = {
       active: 'Main',
-      login: true, //Temp marked as true. 
+      login: false, //Temp marked as true. 
       error: false,
-      username: 'washy',
+      username: '',
       prodId: '',
       itemPosted: false,
       footer: '',
