@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import '../../../../App.css';
+import '../../../../grid.css';
 import Cartcard from './cartcard'
 
 export class Cartindex extends Component {
@@ -58,11 +59,11 @@ export class Cartindex extends Component {
         
         return (
             <div>
-                <div>TOTAL ${total} </div>
+                <div className='Main-items'>TOTAL ${total} </div>
             </div>
             )
         } else if (!products){
-            return <div>TOTAL $0.00</div>
+            return <div className='Main-items'>TOTAL $0.00</div>
         }
     }
 
@@ -83,15 +84,15 @@ export class Cartindex extends Component {
     render() {
         return  (
             <div className='App'>
-                <div>
+                <div className='Main-items'>
                     Items in cart: {this.state.products.length} 
                 </div>
                 
-                <div>
+                <div className='Main-items'>
                     
                     {this.renderProducts()}
                 </div>
-                <div>
+                <div className='Main-items'>
                     {this.renderPrice()}
                 </div>
                 {/* <div>

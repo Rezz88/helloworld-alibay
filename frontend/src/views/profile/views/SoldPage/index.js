@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import '../../../../App.css';
+import '../../../../grid.css';
 import SoldItem from './Items-Sold'
 
 class SoldItemPage extends Component {
@@ -50,7 +51,8 @@ class SoldItemPage extends Component {
 
     render() {
         return (
-            <div>
+            <div> 
+                <h3 className='App'>ITEMS SOLD</h3>
                 <div>{this.renderProducts()}</div>
             </div>
 

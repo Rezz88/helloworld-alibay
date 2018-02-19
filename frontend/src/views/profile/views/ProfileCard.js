@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import '../../../App.css';
+import '../../../grid.css';
 
 export class ProfileCard extends Component {
     constructor()   {
@@ -67,7 +68,7 @@ export class ProfileCard extends Component {
         if (this.state.edited === true && this.state.editing === false)
         return(
             <div>
-                <h4>Your User Info</h4>
+                <h4 className='App'>Your User Info</h4>
                 <div className='sold-item'>
                     YOUR CHANGES HAVE BEEN SAVED
                     <div className="remove-button">
@@ -77,10 +78,10 @@ export class ProfileCard extends Component {
             </div>
     
     )
-        if (this.state.editing === false && this.state.edited===false)   {
+        if (shipping !== undefined && this.state.editing === false && this.state.edited===false)   {
             return (
                 <div>
-                    <h4>Your User Info</h4>
+                    <h4 className='App'>Your User Info</h4>
                     <div     className='sold-item'>
                         <div>
                             {"Username - " + username}
@@ -111,7 +112,7 @@ export class ProfileCard extends Component {
         if (this.state.editing === true && this.state.edited === false)
         return(
             <div>
-                <h4>Your User Info</h4>
+                <h4 className='App'>Your User Info</h4>
                 <div className='sold-item'>
                     <div>edit name</div>
                     <div>

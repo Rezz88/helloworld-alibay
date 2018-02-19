@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import '../../../../App.css';
+import '../../../../grid.css';
 
 export default class Checkoutcard extends Component {
 
@@ -11,13 +12,13 @@ export default class Checkoutcard extends Component {
                 <div>
                     {image}
                 </div>
-                <div>
+                <div className='Main-items'>
                     {name}
                 </div>
-                <div>
+                <div className='Main-items'>
                     {description}
                 </div>
-                <div>
+                <div className='Main-items'>
                     {'$ '+price}
                 </div>
                 <div>

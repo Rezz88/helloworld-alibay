@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import '../../../../App.css';
+import '../../../../grid.css';
 import HistoryItem from './Items-History'
 
 class HisItemPage extends Component {
@@ -51,7 +52,7 @@ class HisItemPage extends Component {
     render() {
         return (
             <div>
-                <h3>Items Bought</h3>
+                <h3 className='App'>Items Bought</h3>
                 <div>{this.renderProducts()}</div>
             </div>
 

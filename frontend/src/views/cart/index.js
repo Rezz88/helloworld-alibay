@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import '../../App.css';
+import '../../grid.css';
 import {Cartindex} from './views/usercart'
 import {Checkoutindex} from './views/usercheckout'
 

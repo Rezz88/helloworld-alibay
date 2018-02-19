@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import '../../../../App.css';
+import '../../../../grid.css';
 import Checkoutcard from './checkoutcard'
 
 export class Checkoutindex extends Component {
@@ -65,7 +66,7 @@ export class Checkoutindex extends Component {
                 />
             })
         } else if (!products) {
-            return <div>cart is empty</div>
+            return <div className='Main-items'>cart is empty</div>
         }
     }
     editingProfile = () =>  {
@@ -76,20 +77,20 @@ export class Checkoutindex extends Component {
         const { profile, editingProfile } = this.state
         if (profile.shippingAddress !== undefined && editingProfile === true)   {
             return (
-                <div>            
-                    <div>{this.showShippingEditFields()}</div>                
+                <div className='Main-items'>            
+                    <div className='Main-items'>{this.showShippingEditFields()}</div>                
                 </div>
             )            
         }
 
         if (profile.shippingAddress !== undefined && editingProfile === false) {
             return (
-                <div>            
+                <div className='Main-items'>            
                     <div>{profile.shippingAddress.streetAddress}</div>
                     <div>{profile.shippingAddress.city}</div>                        
                     <div>{profile.shippingAddress.stateProvice}</div>
                     <div>{profile.shippingAddress.postalCode}</div>  
-                    <div>
+                    <div className='Main-items'>
                         <button className="button" onClick={()=>this.editingProfile()}>Edit</button>
                     </div>                  
                 </div>
@@ -98,8 +99,8 @@ export class Checkoutindex extends Component {
         }
         if (profile.shippingAddress === undefined && editingProfile === false)
             return (
-                <div>
-                    <div>no shipping info</div>
+                <div className='Main-items'>
+                    <div className='Main-items'>no shipping info</div>
                     <div>{this.showShippingEditFields()}</div>
                 </div>
             )
@@ -115,12 +116,12 @@ export class Checkoutindex extends Component {
     showShippingEditFields = () => {
         const { streetAddress , city, stateProvice, postalCode} = this.state.newProfile
         return (
-            <div>
+            <div className='Main-items'>
                 <div><input placeholder="street address" value={streetAddress} onChange={(e)=> this.setInputValue('streetAddress', e.target.value)} /></div>
                 <div><input placeholder="city" value={city} onChange={(e)=> this.setInputValue('city', e.target.value)}/></div>
                 <div><input placeholder="state/provice" value={stateProvice} onChange={(e)=> this.setInputValue('stateProvice', e.target.value)} /></div>
                 <div><input placeholder="postal code" value={postalCode} onChange={(e)=> this.setInputValue('postalCode', e.target.value)} /></div>
-                <div><button onClick={()=>this.saveAddress(this.state.newProfile)}>save</button></div>
+                <div className='Main-items'><button onClick={()=>this.saveAddress(this.state.newProfile)}>save</button></div>
             </div>
         )
     }
@@ -144,13 +145,13 @@ export class Checkoutindex extends Component {
                 total += parseInt(products[i].price, 10)
             }
             return (
-                <div>
-                    <div>TOTAL ${total} </div>
+                <div className='Main-items'>
+                    <div className='Main-items'>TOTAL ${total} </div>
                     <button className="button2" onClick={this.checkout}>CHECKOUT</button>
                 </div>
             )
         } else if (!products) {
-            return <div>TOTAL $0.00</div>
+            return <div className='Main-items'>TOTAL $0.00</div>
         }
     }
 
@@ -193,46 +194,31 @@ export class Checkoutindex extends Component {
         if (!this.state.payment) {
             return (
                 <div className='App'>
-                    <div className='Main-items'>
-                        SHIPPING INFO
-                        
-                </div>
-                    <div>
-                        {this.renderShipping()}
-                    </div>
-
-                    <div className='Main-items'>
-                        ORDER SUMMARY
-                </div>
-                    <div className='Main-items'>
-                        Items in checkout: {this.state.products.length}
-                    </div>
-
-                    <div>
-                        {this.renderProducts()}
-                    </div>
-                    <div>
-                        {this.renderPrice()}
-                    </div>
+                    <div className='Main-items'>SHIPPING INFO</div>
+                    <div className='Main-items'>{this.renderShipping()}</div>
+                    <div className='Main-items'>    ORDER SUMMARY</div>
+                    <div className='Main-items'>Items in checkout: {this.state.products.length}</div>
+                    <div className='Main-items'>{this.renderProducts()}</div>
+                    <div className='Main-items'>{this.renderPrice()}</div>
                 </div>
             )
         }
         if (this.state.payment && !this.state.thanks) {
             return (
                 <div className='App'>
-                    <div><a>P A Y M E N T</a></div>
+                    <div className='Main-items'><a>P A Y M E N T</a></div>
                     <div><input placeholder="Carn Number" /></div>
                     <div><input placeholder="Exp Date" /></div>
                     <div><input placeholder="Name" /></div>
-                    <div><button onClick={this.payment}> Buy </button></div>
+                    <div className='Main-items'><button onClick={this.payment}> Buy </button></div>
                 </div>
             )
         }
         if (this.state.payment && this.state.thanks) {
             return (
                 <div className='App'>
-                    <div><a>T H A N K S</a></div>
-                    <div><button onClick={this.backToMain}> continue shopping! </button></div>
+                    <div className='Main-items'><a>T H A N K S</a></div>
+                    <div className='Main-items'><button onClick={this.backToMain}> continue shopping! </button></div>
                 </div>
             )
         }

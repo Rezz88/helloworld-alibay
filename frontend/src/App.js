@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import moment from 'moment'
 // import logo from './logo.svg';
 import './App.css';
+import './grid.css';
 import { Main } from './views/main'
 import { Profile } from './views/profile'
 import { Cart } from './views/cart'

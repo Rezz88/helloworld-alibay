@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import '../../App.css';
+import '../../grid.css';
 import ForSalePage from './views/SalePage'
 import SoldItemPage from './views/SoldPage'
 import HisItemPage from './views/HisPage'
@@ -72,7 +73,7 @@ export class Profile extends Component {
     render() {
         return (
             <div className="profile">
-                <h4>Profile Page</h4>
+                <h4 className='App'>Profile Page</h4>
                 <div>
                     {this.renderProfile()}
                 </div>

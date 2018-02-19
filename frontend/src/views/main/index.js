@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import '../../App.css';
+import '../../grid.css';
 import ProductCard from './productCard'
 
 export class Main extends Component {
@@ -208,9 +209,7 @@ export class Main extends Component {
         if (!this.state.about) {
             return (
                 <div className='App'>
-                    <div className='Main-items'>
-                        W E L C O M E
-                </div>
+                    <div className='Main-items'></div>
                     <div className='Main-items'>
                         <input
                             type="text"
@@ -227,19 +226,19 @@ export class Main extends Component {
                         <button id="sort" onClick={this.sortName}>name</button>
                         <button id="sort" onClick={this.sortTime}>recent</button>
                     </div>
-                    <div>
-                    <button className="button2" onClick={this.categotySearch}>Clear</button> 
-                    <button className="button2" id="tableOfContents" onClick={() => this.categotySearch('Artisanal')}>Artisanal</button>
-                    <button className="button2" id="tableOfContents" onClick={() => this.categotySearch('Audio')}>Audio</button>
-                    <button className="button2" id="tableOfContents" onClick={() => this.categotySearch('Automotive')}>Automotive</button>
-                    <button className="button2" id="tableOfContents" onClick={() => this.categotySearch('Beauty and Health')}>Beauty and Health</button>
-                    <button className="button2" id="tableOfContents" onClick={() => this.categotySearch('Books/Audible')}>Books/Audible</button>
-                    <button className="button2" id="tableOfContents" onClick={() => this.categotySearch('Clothing')}>Clothing</button>
-                    <button className="button2" id="tableOfContents" onClick={() => this.categotySearch('Electronics')}>Electronics</button>
-                    <button className="button2" id="tableOfContents" onClick={() => this.categotySearch('Home, Garden and Tools')}>Home, Garden and Tools</button>
-                    <button className="button2" id="tableOfContents" onClick={() => this.categotySearch('Toys, Kids and Baby')}>Toys, Kids and Baby</button>
-                    <button className="button2" id="tableOfContents" onClick={() => this.categotySearch('Odd Jobs')}>Odd Jobs</button>
-                    <button className="button2" id="tableOfContents" onClick={() => this.categotySearch('Other')}>Other</button>
+                    <div className='Main-items'>
+                        <button className="button2" onClick={this.categotySearch}>Clear</button> 
+                        <button className="button2" id="tableOfContents" onClick={() => this.categotySearch('Artisanal')}>Artisanal</button>
+                        <button className="button2" id="tableOfContents" onClick={() => this.categotySearch('Audio')}>Audio</button>
+                        <button className="button2" id="tableOfContents" onClick={() => this.categotySearch('Automotive')}>Automotive</button>
+                        <button className="button2" id="tableOfContents" onClick={() => this.categotySearch('Beauty and Health')}>Beauty and Health</button>
+                        <button className="button2" id="tableOfContents" onClick={() => this.categotySearch('Books/Audible')}>Books/Audible</button>
+                        <button className="button2" id="tableOfContents" onClick={() => this.categotySearch('Clothing')}>Clothing</button>
+                        <button className="button2" id="tableOfContents" onClick={() => this.categotySearch('Electronics')}>Electronics</button>
+                        <button className="button2" id="tableOfContents" onClick={() => this.categotySearch('Home, Garden and Tools')}>Home, Garden and Tools</button>
+                        <button className="button2" id="tableOfContents" onClick={() => this.categotySearch('Toys, Kids and Baby')}>Toys, Kids and Baby</button>
+                        <button className="button2" id="tableOfContents" onClick={() => this.categotySearch('Odd Jobs')}>Odd Jobs</button>
+                        <button className="button2" id="tableOfContents" onClick={() => this.categotySearch('Other')}>Other</button>
                     </div>
                     <div>
                         {this.renderProducts()}
