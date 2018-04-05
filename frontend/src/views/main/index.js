@@ -217,21 +217,6 @@ export class Main extends Component {
                         <button id="sort" onClick={this.sortName}>name</button>
                         <button id="sort" onClick={this.sortTime}>recent</button>
                     </div>
-<<<<<<< HEAD
-                    <div className='Main-items'>
-                        <button className="button2" onClick={this.categotySearch}>Clear</button> 
-                        <button className="button2" id="tableOfContents" onClick={() => this.categotySearch('Artisanal')}>Artisanal</button>
-                        <button className="button2" id="tableOfContents" onClick={() => this.categotySearch('Audio')}>Audio</button>
-                        <button className="button2" id="tableOfContents" onClick={() => this.categotySearch('Automotive')}>Automotive</button>
-                        <button className="button2" id="tableOfContents" onClick={() => this.categotySearch('Beauty and Health')}>Beauty and Health</button>
-                        <button className="button2" id="tableOfContents" onClick={() => this.categotySearch('Books/Audible')}>Books/Audible</button>
-                        <button className="button2" id="tableOfContents" onClick={() => this.categotySearch('Clothing')}>Clothing</button>
-                        <button className="button2" id="tableOfContents" onClick={() => this.categotySearch('Electronics')}>Electronics</button>
-                        <button className="button2" id="tableOfContents" onClick={() => this.categotySearch('Home, Garden and Tools')}>Home, Garden and Tools</button>
-                        <button className="button2" id="tableOfContents" onClick={() => this.categotySearch('Toys, Kids and Baby')}>Toys, Kids and Baby</button>
-                        <button className="button2" id="tableOfContents" onClick={() => this.categotySearch('Odd Jobs')}>Odd Jobs</button>
-                        <button className="button2" id="tableOfContents" onClick={() => this.categotySearch('Other')}>Other</button>
-=======
                     <div>
                         <button className="button2" id="tableOfContents" onClick={()=> this.setState({products: this.state.allProducts})}>Clear</button>
                         <button className="button2" id="tableOfContents" onClick={() => this.categorySearch('Artisanal')}>Artisanal</button>
@@ -245,7 +230,6 @@ export class Main extends Component {
                         <button className="button2" id="tableOfContents" onClick={() => this.categorySearch('Toys, Kids and Baby')}>Toys, Kids and Baby</button>
                         <button className="button2" id="tableOfContents" onClick={() => this.categorySearch('Odd Jobs')}>Odd Jobs</button>
                         <button className="button2" id="tableOfContents" onClick={() => this.categorySearch('Other')}>Other</button>
->>>>>>> 4e533f7b2c9fd65a5f1ed0b1fd93669b98fb7b45
                     </div>
                     <div>
                         {this.renderProducts()}

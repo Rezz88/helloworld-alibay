@@ -8,7 +8,7 @@ export class SoldItem extends Component {
         const { seller, price, title, blurb, imageName } = this.props// De-structuring
         return (
             <div>
-                <h3 className='App'></h3>
+                <h3 className='App'>Items Sold</h3>
                 <div className='sold-item'>
                     <div>
                         <img src={imageName} alt='Product' className='imageDiv' />
